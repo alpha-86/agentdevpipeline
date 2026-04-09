@@ -18,6 +18,8 @@
 - `012_anomaly_and_escalation_loop.md`
 - `013_github_issue_and_review_comments.md`
 - `014_process_compliance_and_audit.md`
+- `015_review_evaluation_dimensions.md`
+- `016_dual_track_delivery_mechanism.md`
 
 ## 配套共享能力
 
