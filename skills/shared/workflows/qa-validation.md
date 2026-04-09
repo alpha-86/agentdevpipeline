@@ -19,6 +19,7 @@
 - 实现证据
 - QA cases
 - 关联 issue 记录
+- 必要时的 Human Review #2 安排
 
 ## 步骤
 
@@ -27,7 +28,8 @@
 3. QA 记录 defects 和残留风险。
 4. PM 评估对验收的影响。
 5. QA 和 PM 记录签字结论。
-6. 把发布准备状态写入关联 issue，给出 approved 或 blocked 结论。
+6. 对关键交付或高风险发布前内容执行 Human Review #2。
+7. 把发布准备状态写入关联 issue，给出 approved 或 blocked 结论。
 
 ## 退出条件
 
@@ -41,8 +43,14 @@
 - QA：必需
 - PM：确认验收范围时必需
 
+## Human Review 规则
+
+- 关键交付、高风险改动或用户要求确认的交付物，必须执行 Human Review #2。
+- Human Review #2 未完成时，不得进入 Release Review 或 Issue 完成状态。
+
 ## 回退规则
 
 - blocker defects：回到 implementation
 - 可测试性或覆盖映射缺失：回到 tech review
 - 验收标准变化：回到 PRD review
+- 若 Human Review #2 退回：回到 implementation 或 tech review，取决于退回原因

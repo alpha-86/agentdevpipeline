@@ -118,6 +118,8 @@ Todo Closure / Weekly Review / Monthly Review
 
 这三层共同作用，才有可能把多 agent 研发流程从“能跑”推进到“可控、可审计、可长期运行”。
 
+平台侧的最小要求见 [平台最小检查规范](./docs/zh-cn/governance/platform-minimum-checks.md)。
+
 ## 整体架构
 
 可以把 AgentDevPipeline 理解为四层结构：

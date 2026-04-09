@@ -18,6 +18,7 @@
 - 已批准的 Tech Spec
 - 已切分的 todo items
 - 关联 issue 记录
+- 文档阶段 Human Review 已完成的证据
 
 ## 步骤
 
@@ -34,6 +35,7 @@
 - 单元测试已存在
 - 实现说明已存在
 - 已具备 QA 交接条件
+- 文档阶段 Human Review 已明确允许进入实现
 
 ## 必需签字
 
@@ -44,3 +46,4 @@
 
 - 若实现偏离已批准 tech spec：回到 tech review
 - 若验收映射断裂：回到 PRD review
+- 若发现文档阶段 Human Review 未完成：停止实现并回到对应上游 Gate

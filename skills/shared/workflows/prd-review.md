@@ -17,6 +17,7 @@
 - PRD 草稿
 - 已知约束或依赖
 - 关联 issue 记录
+- 必要时的 Human Review 安排
 
 ## 步骤
 
@@ -24,8 +25,9 @@
 2. Tech Lead 评估可行性、依赖和风险。
 3. 必要时由领域 reviewer 验证业务匹配。
 4. PM 和 Tech Lead 在 PRD review record 中记录签字结论。
-5. 在 memo 和关联 issue comment 中记录 review 结论。
-6. 把 action items 写入 todo 跟踪，并补充 owner 和 due date。
+5. 若本次 PRD 属于关键需求或高风险需求，执行 Human Review。
+6. 在 memo 和关联 issue comment 中记录 review 结论。
+7. 把 action items 写入 todo 跟踪，并补充 owner 和 due date。
 
 ## Review 检查清单
 
@@ -40,6 +42,12 @@
 - PM：必需
 - Tech Lead：必需
 
+## Human Review 规则
+
+- 高风险或关键需求的 PRD，必须进入 Human Review。
+- Human Review 未完成时，不得进入 Tech Review。
+- Human Review 结论必须写回 issue comment 或 review record。
+
 ## 结果
 
 - approved
@@ -51,3 +59,4 @@
 - conditionally approved：所有条件关闭并补齐证据后，才能进入 tech review
 - rejected：PRD 必须修订后重新 review
 - blocked：升级给 Team Lead，并把 issue 状态保持为 `blocked`
+- 若 Human Review 退回：PRD 必须修订后重新执行当前阶段 review

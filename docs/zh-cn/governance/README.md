@@ -15,3 +15,6 @@
 
 - `localization-policy.md`
   中文主版本与英文发布镜像的语言治理规则。
+
+- `platform-minimum-checks.md`
+  平台适配层必须实现的最小自动化检查集合。

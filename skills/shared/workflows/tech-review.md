@@ -18,6 +18,7 @@
 - tech spec 草稿
 - 依赖和 rollout 说明
 - 关联 issue 记录
+- 必要时的 Human Review 安排
 
 ## 步骤
 
@@ -25,8 +26,9 @@
 2. PM 检查需求覆盖情况。
 3. QA 检查可测试性和验证路径。
 4. Tech Lead 和 QA 在 tech review record 中记录签字结论。
-5. 在 memo 和关联 issue comment 中记录 review 结果。
-6. 把 action items 写入 todo 跟踪，并补充 owner 和 due date。
+5. 对关键方案、复杂方案或高风险改动执行 Human Review。
+6. 在 memo 和关联 issue comment 中记录 review 结果。
+7. 把 action items 写入 todo 跟踪，并补充 owner 和 due date。
 
 ## Review 检查清单
 
@@ -42,6 +44,12 @@
 - QA：必需
 - PM：范围一致性确认必需
 
+## Human Review 规则
+
+- 关键方案、复杂方案和高风险改动，必须进入 Human Review。
+- Human Review 未完成时，不得进入 Implementation。
+- Human Review 结论必须说明是否允许开始实现。
+
 ## 结果
 
 - approved
@@ -53,3 +61,4 @@
 - conditionally approved：所有条件关闭并复核后，才能进入 implementation
 - rejected：tech spec 必须修订后重新 review
 - 若 PRD 发生重大变化：先回到 PRD review
+- 若 Human Review 退回：tech spec 必须修订并重新执行 Tech Review

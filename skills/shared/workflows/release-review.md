@@ -18,6 +18,7 @@
 - 回滚计划
 - release notes
 - 关联 issue 记录
+- 需要时的 Human 放行安排
 
 ## 步骤
 
@@ -26,7 +27,8 @@
 3. Platform/SRE 确认部署和回滚准备情况。
 4. 明确 review 已知风险。
 5. PM、Tech Lead 和 Platform/SRE 记录签字结论。
-6. 把发布决定和后续动作写入关联 issue。
+6. 若项目策略要求 Human 放行，则执行最终 Human Release Approval。
+7. 把发布决定和后续动作写入关联 issue。
 
 ## 结果
 
@@ -40,7 +42,13 @@
 - Tech Lead：必需
 - Platform/SRE：必需
 
+## Human Review 规则
+
+- 对高风险发布、重大变更发布或需要外部确认的发布，必须执行最终 Human Release Approval。
+- Human Release Approval 未完成时，不得标记发布完成。
+
 ## 回退规则
 
 - blocked pending actions：把 issue 状态保持在 `in_release` 或 `blocked`
 - 发布范围发生重大变化：回到 QA validation 或 tech review
+- 若最终 Human Release Approval 退回：继续保持 `in_release` 或回退到 QA validation
