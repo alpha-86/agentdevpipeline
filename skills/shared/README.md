@@ -44,6 +44,8 @@
 - `event-bus.md`
 - `templates/agent-activation-template.md`
 - `templates/audit-report-template.md`
+- `templates/event-record-template.md`
+- `templates/gate-queue-template.md`
 - `templates/qa-report-template.md`
 - `templates/release-record-template.md`
 - `templates/platform-checklist-template.md`
@@ -59,3 +61,4 @@
 - 角色文件必须明确：必读文档、初始化动作、上下文恢复、Issue/Gate 责任、禁止行为、输出格式。
 - 主持会议或执行评审前，必须先读取对应 workflow。
 - 团队启动、Agent 创建、事件分发都必须优先复用共享入口，而不是在平台层各写一套。
+- 运行态输出至少要能沉淀 `event record`、`gate queue`、`platform check result` 三类记录。

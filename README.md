@@ -189,6 +189,8 @@ Todo Closure / Weekly Review / Monthly Review
 - [Issue Comment Gate 示例](./docs/memo/issue_comment_gate_2026-04-09_example.md)
 - [Issue Comment 缺失阻断示例](./docs/memo/issue_comment_failure_2026-04-09_example.md)
 - [项目状态板示例](./docs/memo/project_status_board_2026-04-09_example.md)
+- [事件总线追踪示例](./docs/memo/event_bus_trace_2026-04-09_example.md)
+- [Gate Queue 示例](./docs/memo/gate_queue_2026-04-09_example.md)
 - [平台检查清单示例](./docs/memo/platform_checklist_2026-04-09_example.md)
 - [QA Report 示例](./docs/qa/001_user_notification_center_qa_report_2026-04-09.md)
 - [Release Record 示例](./docs/release/001_release_record_example_2026-04-09.md)

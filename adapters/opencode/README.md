@@ -36,3 +36,4 @@
 - `skills/shared/templates/platform-checklist-template.md`
 - `skills/shared/templates/platform-check-result-template.md`
 - `adapters/opencode/platform-check-example.md`
+- `adapters/opencode/event-automation-example.md`
