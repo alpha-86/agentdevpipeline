@@ -47,6 +47,11 @@
 - 负责环境、流水线、发布稳定性
 - 负责上线前后的运行保障与回滚能力
 
+### Process Auditor
+
+- 负责流程合规审计、例外审批检查、状态漂移发现
+- 负责对 Gate、Issue、Todo、Comment、发布记录进行主动检查
+
 ## 推荐组织关系
 
 ```text
@@ -56,7 +61,8 @@ Team Lead
 ├── Engineer
 ├── QA Engineer
 ├── Researcher
-└── Platform/SRE
+├── Platform/SRE
+└── Process Auditor
 ```
 
 ## 角色协作关系
@@ -70,6 +76,7 @@ Team Lead
 | QA Engineer | PRD + Tech + 实现 | QA Case、测试报告、缺陷列表 |
 | Researcher | 模糊问题或方向 | 调研报告、选项比较、建议 |
 | Platform/SRE | 发布需求、运行约束 | 部署方案、发布记录、回滚方案 |
+| Process Auditor | 当前 issue / gate / todo / comment 状态 | 审计报告、纠正动作、例外审批检查 |
 
 ## 基本原则
 
@@ -80,6 +87,7 @@ Team Lead
 - 所有会议必须留痕
 - 所有行动项必须进入 Todo
 - 所有关键文档必须可追溯
+- Team Lead 负责推进，Process Auditor 负责主动发现漂移和违规
 
 ## 升级原则
 
@@ -88,3 +96,4 @@ Team Lead
 - 技术不可行由 Tech Lead 退回
 - 质量阻塞由 QA Engineer 持有 gate
 - 发布风险由 Platform/SRE 提出阻塞意见
+- 流程违规和状态漂移由 Process Auditor 记录并推动纠正

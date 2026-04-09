@@ -54,6 +54,7 @@ docs/
     platforms/
     reference/
 prompts/
+  discuss/
   zh-cn/
   en/
 skills/
@@ -71,7 +72,7 @@ plugins/
 
 ## 约束
 
-- 角色定义写在 `skills/shared/agents/`
+- 角色定义写在 `skills/shared/agents/`，执行手册使用同名 `*.playbook.md`
 - 流程定义写在 `skills/shared/workflows/`
 - 模板写在 `skills/shared/templates/`
 - 顶层原则、边界和协议写在 `docs/zh-cn/governance/`

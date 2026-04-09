@@ -20,7 +20,7 @@ AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编
 
 项目把完整研发流程拆成一组可复用的通用机制：
 
-- 角色层：定义 Team Lead、PM、Tech Lead、Engineer、QA、Researcher、Platform/SRE 的职责边界、禁止越权规则和交付物
+- 角色层：定义 Team Lead、PM、Tech Lead、Engineer、QA、Researcher、Platform/SRE、Process Auditor 的职责边界、禁止越权规则和交付物
 - 流程层：定义 PRD、Tech、Implementation、QA、Release 的阶段 Gate，以及日会、周会、月会、Todo Review 等节奏机制
 - 留痕层：统一 PRD、Tech Spec、QA Case、Memo、Todo、Change Record、Review Comment、Release Record 的结构
 - 编排层：用 Issue 驱动整个流程，把文档、评审结论、阻塞、异常、恢复动作全部串起来
@@ -139,6 +139,15 @@ Todo Closure / Weekly Review / Monthly Review
 
 这是平台无关的核心资产层。角色边界、workflow、模板都放在这里，供不同平台复用。
 
+其中 `skills/shared/agents/` 下的每个角色都应至少包含一份主规范和一份 playbook，用来说明：
+
+- 必读文档
+- 初始化动作
+- 上下文恢复
+- Issue / Gate / Human Review 责任
+- 禁止行为
+- 输出格式
+
 ### 3. 交付目录层
 
 - `docs/prd/`
@@ -163,6 +172,7 @@ Todo Closure / Weekly Review / Monthly Review
 目前项目已经沉淀的关键机制包括：
 
 - 团队拓扑与角色边界
+- 流程治理与合规审计角色
 - Issue 驱动编排
 - Issue 路由与项目组合管理
 - 文档契约与状态机

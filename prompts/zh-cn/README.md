@@ -32,6 +32,19 @@
 
 - `skills/shared/agents/`
 
+当前共享角色包括：
+
+- `team-lead.md`
+- `product-manager.md`
+- `tech-lead.md`
+- `engineer.md`
+- `qa-engineer.md`
+- `researcher.md`
+- `platform-sre.md`
+- `process-auditor.md`
+
+每个共享角色应同时维护对应的 `*.playbook.md`。
+
 工作流位于：
 
 - `skills/shared/workflows/prd-review.md`
