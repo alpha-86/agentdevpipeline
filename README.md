@@ -172,6 +172,9 @@ Todo Closure / Weekly Review / Monthly Review
 ## 最小可运行示例
 
 - [Kickoff 示例纪要](./docs/memo/kickoff_2026-04-09_agentdevpipeline_execution_example.md)
+- [项目组合视图示例](./docs/memo/project_portfolio_2026-04-09_example.md)
+- [上下文恢复示例](./docs/memo/context_recovery_2026-04-09_example.md)
+- [审计报告示例](./docs/memo/audit_2026-04-09_example.md)
 - [Todo Registry](./docs/todo/TODO_REGISTRY.md)
 
 ## 适用场景

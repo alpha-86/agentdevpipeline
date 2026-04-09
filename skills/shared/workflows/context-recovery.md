@@ -18,6 +18,11 @@
 - 最新 memo 和 todo 链接
 - 最新 change record 链接
 
+## 推荐模板与输出目录
+
+- 恢复摘要：`skills/shared/templates/context-recovery-template.md`
+- 推荐输出目录：`docs/memo/` 或当前阶段工作目录
+
 ## 步骤
 
 1. 读取 issue 状态和最近一次决策记录。
@@ -25,6 +30,13 @@
 3. 读取未关闭 blocker、todo 和异常记录。
 4. 产出恢复摘要。
 5. 在执行前确认下一步动作仍然有效。
+
+## 阶段最小产物集合
+
+- 一份恢复摘要
+- 当前 gate 结论
+- 未关闭 blocker / todo 清单
+- 下一步动作与 owner
 
 ## 恢复摘要字段
 

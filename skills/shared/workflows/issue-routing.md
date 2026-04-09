@@ -37,12 +37,24 @@
 - priority
 - linked artifacts
 
+## 推荐模板与输出目录
+
+- 项目组合视图：`skills/shared/templates/project-portfolio-template.md`
+- 审计报告：`skills/shared/templates/audit-report-template.md`
+- 推荐输出目录：`docs/memo/` 或项目治理目录
+
 ## 路由步骤
 
 1. 创建 issue 时补齐项目组合字段。
 2. 按 issue type 指派默认 owner。
 3. 由 Team Lead 在日会或周度复盘中检查 owner 和优先级是否合理。
 4. 若 issue 需要跨角色协同，记录次级 owner 和 handoff 计划。
+
+## 阶段最小产物集合
+
+- 一份项目组合视图或等价状态表
+- 当前 owner 和 current gate 记录
+- 必要时的一份审计结论
 
 ## 组合管理检查点
 
