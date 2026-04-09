@@ -161,6 +161,8 @@ Todo Closure / Weekly Review / Monthly Review
 - `adapters/`
 - `plugins/`
 
+平台适配层至少应落地一份平台最小检查清单，而不是只写接入说明。
+
 ## 从哪里开始读
 
 1. [中文总览](./docs/zh-cn/README.md)

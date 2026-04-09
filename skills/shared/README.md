@@ -34,6 +34,7 @@
 - `templates/audit-report-template.md`
 - `templates/qa-report-template.md`
 - `templates/release-record-template.md`
+- `templates/platform-checklist-template.md`
 
 ## 使用原则
 
