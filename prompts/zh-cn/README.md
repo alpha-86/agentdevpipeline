@@ -10,6 +10,9 @@
 - `004_delivery_gates.md`
 - `005_meeting_and_todo.md`
 - `006_agent_creation_contract.md`
+- `007_issue_driven_orchestration.md`
+- `008_change_record_and_revalidation.md`
+- `009_review_rigor_and_context_recovery.md`
 
 ## 配套共享能力
 
