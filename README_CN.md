@@ -2,70 +2,82 @@
 
 [English](./README.md) | 中文
 
-AgentDevPipeline 是一套自包含的通用产研 Agent 能力包，面向 Claude、Codex、OpenCode 等环境使用。
+AgentDevPipeline 是一个面向 Claude、Codex、OpenCode 等环境的独立产研流程编排项目。它不是单个 Agent 的 prompt 包，也不是某个业务系统的脚手架，而是一套把“需求、设计、开发、测试、发布、复盘”串成闭环的通用研发流程系统。
 
-## 概览
+## 这个项目解决什么问题
 
-本项目提供：
+很多团队已经能用 Agent 写代码、查资料、做评审，但真正卡住交付的往往不是“单点能力”，而是流程失控：
 
-- 面向产研协作的 agent 角色定义
-- PRD、Tech Review、开发、QA、Release 的分阶段 Gate 流程
-- PRD、Tech Spec、QA Case、Memo、Todo 等可复用模板
-- Claude、Codex、OpenCode 适配入口
-- 中文内部主版本、英文发布镜像的文档治理模型
+- 需求、方案、代码、测试之间断链
+- 评审靠聊天记录推进，没有正式 Gate
+- 任务有人做，但没人维护状态、风险和升级路径
+- 会话一断、Agent 一换，整个上下文就丢了
+- 同一套流程在 Claude、Codex、OpenCode 上重复造轮子
 
-## 核心理念
+AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编排问题。
 
-- 建立一套全流程自动化的多 agent 研发流程编排能力
-- 通过明确的阶段、Gate、负责人、评审记录，让过程始终可控
-- 通过 prompts、workflows、templates、memo、todo 等资产，让关键交付步骤可追溯、可复盘
-- 作为独立项目，为 Claude、Codex、OpenCode 提供完整的多 agent 研发流程能力
+## 它如何解决
 
-## 文档治理
+项目把完整研发流程拆成一组可复用的通用机制：
 
-- `docs/zh-cn/` 和 `prompts/zh-cn/` 是内部主版本
-- `docs/en/` 和 `prompts/en/` 是英文发布版本
-- 所有功能和流程变更必须先更新中文，再同步英文
-- 与 hedge-ai 的迁移必须遵循强约束边界，见 [迁移边界（强约束）](./docs/zh-cn/reference/migration-boundary-from-hedge-ai.md)
+- 角色层：定义 Team Lead、PM、Tech Lead、Engineer、QA、Researcher、Platform/SRE 的职责边界、禁止越权规则和交付物
+- 流程层：定义 PRD、Tech、Implementation、QA、Release 的阶段 Gate，以及日会、周会、月会、Todo Review 等节奏机制
+- 留痕层：统一 PRD、Tech Spec、QA Case、Memo、Todo、Change Record、Review Comment、Release Record 的结构
+- 编排层：用 Issue 驱动整个流程，把文档、评审结论、阻塞、异常、恢复动作全部串起来
+- 适配层：把共享角色、workflow、template 封装成平台无关资产，再由 Claude/Codex/OpenCode 入口接入
 
-## 快速开始
+项目的目标不是让 Agent “更聪明”，而是让 Agent 参与的研发过程更稳定、更可控、更可审计。
 
-1. 阅读 [中文总览](./docs/zh-cn/README.md)
-2. 阅读 [仓库结构图](./docs/zh-cn/architecture/repository-map.md)
-3. 按平台选择接入文档：
-   - [Claude Code](./docs/zh-cn/platforms/claude-code.md)
-   - [Codex](./docs/zh-cn/platforms/codex.md)
-   - [OpenCode](./docs/zh-cn/platforms/opencode.md)
-4. 使用 `skills/shared/` 下的共享资产
+## 内部逻辑
 
-## 共享 Workflow 包
+这个项目内部围绕五个核心对象运转：
 
-- `skills/shared/workflows/prd-review.md`
-- `skills/shared/workflows/tech-review.md`
-- `skills/shared/workflows/implementation.md`
-- `skills/shared/workflows/qa-validation.md`
-- `skills/shared/workflows/release-review.md`
-- `skills/shared/workflows/daily-sync.md`
-- `skills/shared/workflows/todo-review.md`
-- `skills/shared/workflows/weekly-review.md`
-- `skills/shared/workflows/monthly-review.md`
-- `skills/shared/workflows/issue-lifecycle.md`
-- `skills/shared/workflows/anomaly-response.md`
-- `skills/shared/workflows/context-recovery.md`
+1. `Issue`
+   它是流程主索引。需求从这里开始，所有 PRD、Tech、QA、Release 记录都要回链到它。
 
-## 项目结构
+2. `Gate`
+   它是阶段切换阀门。没有通过当前 Gate，就不能安全进入下一阶段。
 
-```text
-AgentDevPipeline/
-├── adapters/           # 平台适配入口
-├── docs/               # 源文档、发布文档、交付目录
-├── plugins/            # Codex 插件包
-├── prompts/            # 中文源 prompts + 英文发布 prompts
-├── registry/           # 依赖元数据
-└── skills/shared/      # 平台无关角色、流程、模板、playbook
-```
+3. `Document`
+   它是正式决策与交付证据。聊天记录不能替代 PRD、Tech Spec、QA Report、Release Record。
 
-## 可直接使用的交付目录
+4. `Todo`
+   它是行动项闭环机制。所有评审、会议、异常处理都必须落成 Todo 并跟踪到完成。
+
+5. `Memo / Comment / Record`
+   它们负责留痕。会议纪要、Issue 评论、变更记录、异常记录、恢复摘要共同保证过程可追溯。
+
+把这五类对象连接起来后，项目形成的是一条完整研发链路，而不是一堆分散的提示词文件。
+
+## 核心原则
+
+- 不允许跳过 Gate 直接推进下游阶段
+- 代码、文档、测试、发布结论必须一致
+- 所有关键判断都要有正式留痕，而不是只留在聊天里
+- 上下文恢复必须先读状态、再继续执行
+- 中文是内部主版本，英文是发布镜像
+- 本项目只保留通用研发流程机制，不引入量化交易业务语义
+
+## 整体架构
+
+可以把 AgentDevPipeline 理解为四层结构：
+
+### 1. 中文源层
+
+- `docs/zh-cn/`
+- `prompts/zh-cn/`
+
+这是内部设计和迭代主版本。所有流程、规则、机制先在这里演进。
+
+### 2. 共享能力层
+
+- `skills/shared/agents/`
+- `skills/shared/workflows/`
+- `skills/shared/templates/`
+
+这是平台无关的核心资产层。角色边界、workflow、模板都放在这里，供不同平台复用。
+
+### 3. 交付目录层
 
 - `docs/prd/`
 - `docs/tech/`
@@ -74,6 +86,81 @@ AgentDevPipeline/
 - `docs/todo/`
 - `docs/research/`
 - `docs/release/`
+
+这是项目实际产物落地的位置，用来承接每个阶段的正式交付物。
+
+### 4. 平台适配层
+
+- `adapters/`
+- `plugins/`
+
+这里只做接入和包装，不改写核心流程语义。
+
+## 关键机制
+
+目前项目已经沉淀的关键机制包括：
+
+- 团队拓扑与角色边界
+- Issue 驱动编排
+- 文档契约与状态机
+- PRD / Tech / QA / Release Gate
+- 研发日会、周复盘、月复盘
+- Todo 闭环
+- 变更记录与重审
+- 异常升级闭环
+- 上下文恢复
+- 双轨交付机制
+- 流程合规与审计
+
+如果你要找“这套流程具体怎么跑”，核心入口在：
+
+- [中文总览](./docs/zh-cn/README.md)
+- [Prompt 索引](./prompts/zh-cn/README.md)
+- [仓库结构图](./docs/zh-cn/architecture/repository-map.md)
+
+## 适用场景
+
+- 你已经在用 Agent 做研发，但缺统一的交付流程
+- 你希望把多角色协作做成可复用的标准资产
+- 你需要跨 Claude、Codex、OpenCode 复用同一套研发方法
+- 你希望需求、设计、开发、QA、发布之间形成正式闭环
+
+## 不适用场景
+
+- 只想找一个代码生成 prompt
+- 只需要单角色自动化，不需要流程治理
+- 想直接复用 hedge-ai 的量化交易业务角色和业务流程
+
+本项目明确排除基金、交易、回测、因子、盘前盘后、DBR 等量化交易语义。相关边界见 [迁移边界（强约束）](./docs/zh-cn/reference/migration-boundary-from-hedge-ai.md)。
+
+## 快速开始
+
+1. 先读 [中文总览](./docs/zh-cn/README.md)，理解项目范围和阅读顺序。
+2. 再读 [Prompt 索引](./prompts/zh-cn/README.md)，理解流程机制。
+3. 按平台选择入口：
+   - [Claude Code](./docs/zh-cn/platforms/claude-code.md)
+   - [Codex](./docs/zh-cn/platforms/codex.md)
+   - [OpenCode](./docs/zh-cn/platforms/opencode.md)
+4. 在你的项目中落地 `skills/shared/` 里的角色、workflow、template，并把正式产物写入 `docs/prd/`、`docs/tech/`、`docs/qa/`、`docs/release/` 等目录。
+
+## 仓库结构
+
+```text
+AgentDevPipeline/
+├── adapters/           # 平台适配入口
+├── docs/               # 中文源文档、英文发布文档、交付目录
+├── plugins/            # 插件与平台包装
+├── prompts/            # 流程机制与规则定义
+├── registry/           # 依赖元数据
+└── skills/shared/      # 角色、workflow、template、playbook
+```
+
+## 文档治理
+
+- `docs/zh-cn/` 和 `prompts/zh-cn/` 是内部主版本
+- `docs/en/` 和 `prompts/en/` 是英文发布版本
+- 所有流程和规则变更必须先更新中文，再同步英文
+- 与 hedge-ai 的关系是“参考流程样本”，不是运行依赖
 
 ## 当前版本
 
