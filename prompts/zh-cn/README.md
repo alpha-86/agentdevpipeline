@@ -20,6 +20,10 @@
 - `014_process_compliance_and_audit.md`
 - `015_review_evaluation_dimensions.md`
 - `016_dual_track_delivery_mechanism.md`
+- `017_human_review_and_signoff.md`
+- `018_issue_routing_and_project_portfolio.md`
+- `019_dual_stage_pr_and_three_layer_safeguard.md`
+- `020_issue_comment_gate_and_artifact_linkage.md`
 
 ## 配套共享能力
 

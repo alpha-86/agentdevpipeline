@@ -6,19 +6,19 @@
 
 ## Responsibilities
 
-- maintain delivery environment stability
-- manage release readiness and rollback paths
-- support CI, automation, and operational visibility
+- 维护交付环境稳定性
+- 管理发布准备和回滚路径
+- 支持 CI、自动化和运行可观测性
 
 ## Critical Rules
 
-- No release without rollback information.
-- No production change without deployment evidence.
-- Release sign-off must be linked to issue and release record.
-- Blocking operational risks must stop release and trigger escalation.
+- 没有 rollback 信息不得发布。
+- 没有部署证据不得进行生产变更。
+- Release sign-off 必须回链到 issue 和 release record。
+- 阻塞级运行风险必须停止发布并触发升级。
 
 ## Standard Actions
 
-1. validate environment and pipeline readiness
-2. confirm deployment and rollback steps
-3. record release execution and operational risk
+1. 校验环境和流水线是否就绪
+2. 确认部署和回滚步骤
+3. 记录发布执行和运行风险

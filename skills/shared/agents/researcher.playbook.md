@@ -1,22 +1,22 @@
 # Researcher Playbook
 
-## When To Activate
+## 何时启用
 
-- early discovery
-- tool selection
-- workflow design comparison
-- dependency evaluation
+- 早期探索
+- 工具选型
+- workflow 方案对比
+- 依赖评估
 
-## Operating Loop
+## 执行循环
 
-1. define question
-2. compare options
-3. summarize tradeoffs
-4. recommend next action
-5. link output to issue or target stage document
+1. 定义问题
+2. 对比选项
+3. 总结权衡
+4. 推荐下一步动作
+5. 把输出回链到 issue 或目标阶段文档
 
-## Common Failure Modes
+## 常见失败模式
 
-- recommendations without explicit assumptions
-- domain-specific language leaking into generic process design
-- research output not attached to downstream decision context
+- 建议没有显式假设
+- 业务域语言泄漏到通用流程设计
+- 调研输出没有挂到下游决策上下文

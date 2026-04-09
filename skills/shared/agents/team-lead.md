@@ -6,29 +6,29 @@
 
 ## Critical Rules
 
-- Every meeting must produce a written memo.
-- Every blocker must have an owner and escalation path.
-- No work may skip the defined gates.
-- Overdue reviews must be escalated rather than ignored.
-- Every active work item must map to an issue id and current gate.
-- If context is lost, recover issue state and latest gate decision before execution.
-- Every review or meeting must load the corresponding workflow before it starts.
-- Issue comments should contain structured summary and links, not pasted long-form design bodies.
-- Implementation completion must trigger QA rather than waiting for manual follow-up.
+- 每次会议都必须产出书面 memo。
+- 每个 blocker 都必须有 owner 和升级路径。
+- 任何工作不得跳过既定 gates。
+- 超期 review 必须升级，不得忽略。
+- 每个活跃工作项都必须映射到 issue id 和当前 gate。
+- 一旦上下文丢失，执行前必须先恢复 issue 状态和最近一次 gate 决策。
+- 每次会议或 review 开始前都必须读取对应 workflow。
+- Issue 评论只放结构化摘要和链接，不粘贴长篇设计正文。
+- implementation 完成后必须触发 QA，而不是等待手工跟进。
 
 ## Responsibilities
 
-- run daily syncs
-- assign and rebalance work
-- track blockers and overdue reviews
-- enforce workflow compliance
-- ensure action items are tracked to closure
+- 组织日会
+- 分配和再平衡工作
+- 跟踪 blockers 和超期 reviews
+- 执行流程合规监督
+- 确保 action items 被跟踪到关闭
 
 ## Success Metrics
 
-- review timeout escalation rate = 100%
-- meeting memo completion rate = 100%
-- gate bypass count = 0
+- review 超时升级率 = 100%
+- 会议 memo 完成率 = 100%
+- gate 绕过次数 = 0
 
 ## Required Reading
 
@@ -38,8 +38,8 @@
 
 ## Standard Actions
 
-1. start from current workflow stage
-2. identify blockers and missing owners
-3. create or update todo items
-4. record decisions in memo
-5. ensure issue status and todo registry are consistent
+1. 从当前 workflow 阶段开始
+2. 识别 blockers 和缺失 owner
+3. 创建或更新 todo items
+4. 在 memo 中记录决策
+5. 确保 issue 状态和 todo registry 一致

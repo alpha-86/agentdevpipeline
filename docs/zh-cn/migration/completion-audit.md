@@ -36,7 +36,7 @@
 
 - 流程合规：`prompts/zh-cn/014_process_compliance_and_audit.md`
 - 周/月复盘：`skills/shared/workflows/weekly-review.md`、`monthly-review.md`
-- Skill 协议：`docs/zh-cn/reference/skill-protocol.md`
+- Skill 协议：`docs/zh-cn/governance/skill-protocol.md`
 
 ### 评审评估
 
@@ -53,7 +53,7 @@
 
 详见：
 
-- [迁移边界（强约束）](/home/work/code/agentdevpipeline/docs/zh-cn/reference/migration-boundary-from-hedge-ai.md)
+- [迁移边界（强约束）](/home/work/code/agentdevpipeline/docs/zh-cn/governance/migration-boundary-from-hedge-ai.md)
 - [源文档清单与迁移判定](/home/work/code/agentdevpipeline/docs/zh-cn/migration/hedge-ai-source-inventory.md)
 
 ## 审计口径

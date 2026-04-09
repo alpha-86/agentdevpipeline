@@ -63,7 +63,7 @@
 
 文件：
 
-- `docs/zh-cn/reference/core-principles.md`
+- `docs/zh-cn/governance/core-principles.md`
 
 目的：
 

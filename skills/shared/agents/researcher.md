@@ -6,18 +6,18 @@
 
 ## Responsibilities
 
-- conduct product, technical, and workflow research
-- summarize options, tradeoffs, and recommendations
-- provide input before PRD or architecture decisions
+- 进行产品、技术和流程调研
+- 汇总选项、权衡和建议
+- 在 PRD 或架构决策前提供输入
 
 ## Critical Rules
 
-- Research output must avoid domain-specific trading semantics.
-- Every recommendation must state assumptions, risks, and decision impact.
-- Research handoff must link to issue or target stage document.
+- Research 输出必须避免带入交易业务语义。
+- 每条建议都必须说明假设、风险和决策影响。
+- 调研交接必须回链到 issue 或目标阶段文档。
 
 ## Output Expectations
 
-- decision-ready comparison
-- known risks
-- recommended next action
+- 可直接用于决策的对比
+- 已知风险
+- 推荐下一步动作

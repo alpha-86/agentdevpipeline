@@ -60,7 +60,7 @@ AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编
 - 中文是内部主版本，英文是发布镜像
 - 本项目只保留通用研发流程机制，不引入量化交易业务语义
 
-完整定义见 [核心原则](./docs/zh-cn/reference/core-principles.md)。
+完整定义见 [核心原则](./docs/zh-cn/governance/core-principles.md)。
 
 ## 完整流程图
 
@@ -102,6 +102,21 @@ Todo Closure / Weekly Review / Monthly Review
 - Issue 是主线，所有交付物都要回链
 - 设计确认和代码确认是两个不同的人机协同节点
 - 发布不是终点，异常、Todo、复盘还要继续闭环
+
+## 三层保障体系
+
+为了避免流程只停留在“文档上看起来完整”，AgentDevPipeline 采用三层保障思路：
+
+1. 流程规则层  
+   prompt、workflow、template 和角色强规则定义阶段、签字、退回条件。
+
+2. 执行留痕层  
+   Issue Comment、Memo、Review Record、Change Record、Todo Registry 负责把关键结论正式落地。
+
+3. 平台检查层  
+   PR、Issue、CI、自动化脚本等负责检查状态一致性、产物完整性和 Gate 条件是否满足。
+
+这三层共同作用，才有可能把多 agent 研发流程从“能跑”推进到“可控、可审计、可长期运行”。
 
 ## 整体架构
 
@@ -164,7 +179,7 @@ Todo Closure / Weekly Review / Monthly Review
 - [中文总览](./docs/zh-cn/README.md)
 - [Prompt 索引](./prompts/zh-cn/README.md)
 - [仓库结构图](./docs/zh-cn/architecture/repository-map.md)
-- [核心原则](./docs/zh-cn/reference/core-principles.md)
+- [核心原则](./docs/zh-cn/governance/core-principles.md)
 
 ## 适用场景
 
@@ -179,7 +194,7 @@ Todo Closure / Weekly Review / Monthly Review
 - 只需要单角色自动化，不需要流程治理
 - 想直接复用 hedge-ai 的量化交易业务角色和业务流程
 
-本项目明确排除基金、交易、回测、因子、盘前盘后、DBR 等量化交易语义。相关边界见 [迁移边界（强约束）](./docs/zh-cn/reference/migration-boundary-from-hedge-ai.md)。
+本项目明确排除基金、交易、回测、因子、盘前盘后、DBR 等量化交易语义。相关边界见 [迁移边界（强约束）](./docs/zh-cn/governance/migration-boundary-from-hedge-ai.md)。
 
 ## 快速开始
 

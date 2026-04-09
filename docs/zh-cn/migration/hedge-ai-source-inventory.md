@@ -119,4 +119,4 @@
 
 详见：
 
-- [与 hedge-ai 的迁移边界（强约束）](/home/work/code/agentdevpipeline/docs/zh-cn/reference/migration-boundary-from-hedge-ai.md)
+- [与 hedge-ai 的迁移边界（强约束）](/home/work/code/agentdevpipeline/docs/zh-cn/governance/migration-boundary-from-hedge-ai.md)

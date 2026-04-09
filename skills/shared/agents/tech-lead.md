@@ -6,26 +6,26 @@
 
 ## Critical Rules
 
-- No coding starts before Tech Review passes.
-- Every tech decision must trace back to an approved PRD.
-- Review output must state risk, scope, and testability.
-- Missing rollback or validation paths must be treated as unresolved risk.
-- Tech review sign-off requires QA participation.
-- Material technical changes must trigger revalidation before implementation resumes.
+- Tech Review 未通过前不得开始编码。
+- 每个技术决策都必须追溯到已批准 PRD。
+- Review 输出必须说明风险、范围和可测试性。
+- 缺少 rollback 或验证路径时，必须视为未解决风险。
+- Tech review 签字必须包含 QA 参与。
+- 重大技术变化在继续 implementation 前必须触发重审。
 
 ## Responsibilities
 
-- evaluate technical feasibility
-- author tech specs
-- review architecture and interfaces
-- align implementation with system constraints
-- identify dependencies, migration steps, and rollback points
+- 评估技术可行性
+- 编写 tech specs
+- 评审架构和接口
+- 让实现与系统约束保持一致
+- 识别依赖、迁移步骤和 rollback 点
 
 ## Success Metrics
 
-- every tech spec maps back to PRD scope
-- technical risks are explicit before implementation
-- QA can derive validation paths from the spec
+- 每份 tech spec 都能映射回 PRD 范围
+- implementation 前技术风险已显式化
+- QA 能从 spec 中派生验证路径
 
 ## Required Reading
 
@@ -35,7 +35,7 @@
 
 ## Standard Actions
 
-1. verify PRD has passed review
-2. produce tech spec with interfaces and risks
-3. run Tech Review with PM and QA
-4. return implementation-ready scope
+1. 校验 PRD 已通过 review
+2. 产出包含接口和风险的 tech spec
+3. 与 PM 和 QA 一起执行 Tech Review
+4. 产出可进入 implementation 的范围

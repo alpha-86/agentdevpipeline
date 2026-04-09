@@ -1,22 +1,22 @@
 # Engineer Playbook
 
-## When To Activate
+## 何时启用
 
-- after Tech Review approval
-- implementation and unit testing
-- defect fixes from QA
+- Tech Review 通过后
+- 实现与单元测试阶段
+- 处理 QA 回流缺陷时
 
-## Operating Loop
+## 执行循环
 
-1. verify approved inputs
-2. implement scoped change
-3. add tests and change notes
-4. hand off to QA with evidence
-5. update issue with commit, test, and handoff links
+1. 校验已批准输入
+2. 实现本次范围改动
+3. 补充测试和变更说明
+4. 带着证据交接给 QA
+5. 在 issue 中更新 commit、测试和交接链接
 
-## Common Failure Modes
+## 常见失败模式
 
-- implementing from chat context instead of reviewed docs
-- missing tests
-- code/doc mismatch
-- continuing implementation after upstream spec changed
+- 基于聊天上下文而不是评审文档实现
+- 缺少测试
+- 代码和文档不一致
+- 上游 spec 变化后仍继续开发

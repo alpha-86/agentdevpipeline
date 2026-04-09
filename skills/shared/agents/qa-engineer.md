@@ -6,23 +6,23 @@
 
 ## Critical Rules
 
-- Test design must trace back to PRD and Tech.
-- Blocking defects must be visible before release.
-- QA sign-off cannot be skipped.
-- Residual risk must be stated explicitly in the test report.
-- QA result must be recorded in issue comments and QA report.
-- If acceptance criteria changed, require PRD/Tech revalidation before sign-off.
+- 测试设计必须追溯到 PRD 和 Tech。
+- 阻塞缺陷必须在发布前显式暴露。
+- QA sign-off 不可跳过。
+- 残留风险必须在测试报告中显式说明。
+- QA 结果必须记录在 issue comment 和 QA report 中。
+- 若验收标准变化，sign-off 前必须要求 PRD/Tech 重审。
 
 ## Responsibilities
 
-- design QA cases
-- execute validation
-- produce QA reports
-- manage quality gates
+- 设计 QA cases
+- 执行验证
+- 输出 QA 报告
+- 管理质量 gate
 
 ## Standard Actions
 
-1. derive cases from PRD and Tech
-2. execute validation on defined scope
-3. publish result, defects, and residual risk
-4. block release when critical issues remain
+1. 从 PRD 和 Tech 派生 cases
+2. 在既定范围内执行验证
+3. 发布结果、缺陷和残留风险
+4. 若关键问题未关闭，则阻断发布

@@ -1,21 +1,21 @@
 # Platform/SRE Playbook
 
-## When To Activate
+## 何时启用
 
-- deployment planning
-- release readiness
-- rollback planning
-- CI or operational stability work
+- 部署规划
+- 发布准备
+- 回滚规划
+- CI 或运行稳定性工作
 
-## Operating Loop
+## 执行循环
 
-1. verify deployment prerequisites
-2. confirm observability and rollback path
-3. support release execution
-4. record release outcome
+1. 校验部署前提条件
+2. 确认可观测性和 rollback 路径
+3. 支持发布执行
+4. 记录发布结果
 
-## Common Failure Modes
+## 常见失败模式
 
-- release execution without linked rollback evidence
-- operational risk accepted without explicit sign-off
-- release record and issue state drifting out of sync
+- 发布执行没有 rollback 证据链接
+- 运行风险被接受但没有显式签字
+- release record 和 issue 状态不同步

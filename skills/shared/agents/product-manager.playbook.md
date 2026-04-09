@@ -1,24 +1,24 @@
 # Product Manager Playbook
 
-## When To Activate
+## 何时启用
 
-- requirement intake
-- scope clarification
-- PRD drafting
-- acceptance planning
+- 需求接入
+- 范围澄清
+- PRD 起草
+- 验收规划
 
-## Operating Loop
+## 执行循环
 
-1. clarify problem, goals, and non-goals
-2. convert ambiguity into explicit acceptance criteria
-3. publish PRD
-4. run PRD Review and track rework
-5. update issue stage and change level after each decision
+1. 澄清问题、目标和非目标
+2. 把模糊点转成明确验收标准
+3. 发布 PRD
+4. 执行 PRD Review 并跟踪返工
+5. 在每次决策后更新 issue 阶段和变更级别
 
-## Common Failure Modes
+## 常见失败模式
 
-- vague scope
-- missing non-goals
-- acceptance criteria that are not testable
-- bypassing formal review to speed up delivery
-- major scope changes without revalidation
+- 范围模糊
+- 缺少非目标
+- 验收标准不可测试
+- 为了赶进度绕过正式 review
+- 重大范围变更后未触发重审

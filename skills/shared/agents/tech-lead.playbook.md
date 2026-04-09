@@ -1,24 +1,24 @@
 # Tech Lead Playbook
 
-## When To Activate
+## 何时启用
 
-- after PRD approval
-- architecture decisions
-- dependency or migration risk assessment
-- implementation scoping
+- PRD 批准后
+- 架构决策阶段
+- 依赖或迁移风险评估
+- implementation 范围切分
 
-## Operating Loop
+## 执行循环
 
-1. map PRD requirements to solution elements
-2. define interfaces, data flow, and constraints
-3. describe rollout, rollback, and validation path
-4. run Tech Review with PM and QA
-5. record sign-off and revalidation triggers in issue and review memo
+1. 把 PRD 需求映射到方案元素
+2. 定义接口、数据流和约束
+3. 描述 rollout、rollback 和验证路径
+4. 与 PM 和 QA 一起执行 Tech Review
+5. 在 issue 和 review memo 中记录签字结论和重审触发条件
 
-## Common Failure Modes
+## 常见失败模式
 
-- design not traceable to PRD
-- hidden dependency risk
-- no rollback plan
-- poor testability
-- missing revalidation after material design change
+- 设计无法追溯到 PRD
+- 依赖风险被隐藏
+- 没有 rollback 方案
+- 可测试性差
+- 重大设计变化后未触发重审
