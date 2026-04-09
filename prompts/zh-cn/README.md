@@ -13,6 +13,11 @@
 - `007_issue_driven_orchestration.md`
 - `008_change_record_and_revalidation.md`
 - `009_review_rigor_and_context_recovery.md`
+- `010_team_setup_and_bootstrap.md`
+- `011_event_bus_and_handoff.md`
+- `012_anomaly_and_escalation_loop.md`
+- `013_github_issue_and_review_comments.md`
+- `014_process_compliance_and_audit.md`
 
 ## 配套共享能力
 
