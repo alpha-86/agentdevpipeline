@@ -12,6 +12,9 @@
 - Overdue reviews must be escalated rather than ignored.
 - Every active work item must map to an issue id and current gate.
 - If context is lost, recover issue state and latest gate decision before execution.
+- Every review or meeting must load the corresponding workflow before it starts.
+- Issue comments should contain structured summary and links, not pasted long-form design bodies.
+- Implementation completion must trigger QA rather than waiting for manual follow-up.
 
 ## Responsibilities
 
