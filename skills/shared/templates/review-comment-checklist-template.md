@@ -1,0 +1,27 @@
+# Issue Comment Gate 检查清单
+
+**Issue**: {#N}
+**Gate**: {PRD / Tech / QA / Release}
+**日期**: {YYYY-MM-DD}
+**检查人**: {Name}
+
+## 必填字段检查
+
+- [ ] Gate 名称
+- [ ] 决策人
+- [ ] 结论
+- [ ] 证据链接
+- [ ] Action Items
+- [ ] 下游是否允许推进
+
+## 一致性检查
+
+- [ ] comment 结论与正式文档状态一致
+- [ ] comment 结论与 issue 当前阶段一致
+- [ ] 若为 conditional，条件项和复核人已写明
+
+## 失败处理
+
+- [ ] 缺失时会阻断当前阶段
+- [ ] 已指定修复 owner
+- [ ] 已写明重试条件

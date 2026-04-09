@@ -37,6 +37,7 @@
 - `templates/platform-checklist-template.md`
 - `templates/platform-check-result-template.md`
 - `templates/agent-creation-log-template.md`
+- `templates/review-comment-checklist-template.md`
 
 ## 使用原则
 

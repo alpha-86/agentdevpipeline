@@ -181,6 +181,7 @@ Todo Closure / Weekly Review / Monthly Review
 - [平台检查失败示例](./docs/memo/platform_check_failure_2026-04-09_example.md)
 - [Agent 激活记录示例](./docs/memo/agent_activation_2026-04-09_example.md)
 - [Issue Comment Gate 示例](./docs/memo/issue_comment_gate_2026-04-09_example.md)
+- [Issue Comment 缺失阻断示例](./docs/memo/issue_comment_failure_2026-04-09_example.md)
 - [Todo Registry](./docs/todo/TODO_REGISTRY.md)
 
 ## 适用场景
