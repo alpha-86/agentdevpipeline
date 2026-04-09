@@ -55,8 +55,53 @@ AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编
 - 代码、文档、测试、发布结论必须一致
 - 所有关键判断都要有正式留痕，而不是只留在聊天里
 - 上下文恢复必须先读状态、再继续执行
+- 关键交付物必须支持 Human Review，而不是只在 Agent 内部流转
+- Issue 是流程主索引，必须能承载多项目并行和项目内问题追踪
 - 中文是内部主版本，英文是发布镜像
 - 本项目只保留通用研发流程机制，不引入量化交易业务语义
+
+完整定义见 [核心原则](./docs/zh-cn/reference/core-principles.md)。
+
+## 完整流程图
+
+```text
+需求 / 问题 / 异常
+        │
+        ▼
+   创建主 Issue
+        │
+        ▼
+Research / PRD
+        │
+        ▼
+Tech Spec + QA Case Design
+        │
+        ▼
+Human Review #1
+设计确认 / 退回重审
+        │
+        ▼
+Implementation
+        │
+        ▼
+QA Validation + 测试报告
+        │
+        ▼
+Human Review #2
+代码/交付确认
+        │
+        ▼
+Release Decision
+        │
+        ▼
+Todo Closure / Weekly Review / Monthly Review
+```
+
+这张图强调三件事：
+
+- Issue 是主线，所有交付物都要回链
+- 设计确认和代码确认是两个不同的人机协同节点
+- 发布不是终点，异常、Todo、复盘还要继续闭环
 
 ## 整体架构
 
@@ -117,6 +162,7 @@ AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编
 - [中文总览](./docs/zh-cn/README.md)
 - [Prompt 索引](./prompts/zh-cn/README.md)
 - [仓库结构图](./docs/zh-cn/architecture/repository-map.md)
+- [核心原则](./docs/zh-cn/reference/core-principles.md)
 
 ## 适用场景
 
