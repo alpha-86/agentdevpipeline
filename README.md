@@ -47,12 +47,13 @@ AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编
 
 ## 核心原则
 
-- 不允许跳过 Gate 直接推进下游阶段
-- 代码、文档、测试、发布结论必须一致
-- 所有关键判断都要有正式留痕，而不是只留在聊天里
-- 上下文恢复必须先读状态、再继续执行
-- 关键交付物必须支持 Human Review，而不是只在 Agent 内部流转
-- Issue 是流程主索引，必须能承载多项目并行和项目内问题追踪
+- Issue 是正式研发流程的强制入口
+- PM 先回到问题本身，不直接把用户方案当结论
+- 设计确认和实现确认都必须有 Human Review
+- 文档阶段和代码阶段必须拆开
+- 关键结论必须进入正式留痕对象
+- Gate 缺产物、缺签字、缺 Comment 时不能视为完成
+- 合规检查是独立治理职责，不替代正式签字角色
 - 本项目只保留通用研发流程机制，不引入量化交易业务语义
 
 完整定义见 [核心原则](./docs/zh-cn/governance/core-principles.md)。
@@ -63,33 +64,52 @@ AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编
 需求 / 问题 / 异常
         │
         ▼
-   创建主 Issue
+创建主 Issue
         │
         ▼
-Research / PRD
+PM 澄清问题
+每轮讨论必须 Comment 到 Issue
         │
         ▼
-Tech Spec + QA Case Design
+PRD
+不含技术实现
+        │
+        ▼
+Tech Review + QA Gate
+        │
+        ▼
+QA Case Design
+        │
+        ▼
+文档 PR: doc-{issue}-{desc}
+内容: PRD + Tech + QA Case Design
         │
         ▼
 Human Review #1
-设计确认 / 退回重审
+合并 = 设计确认
         │
         ▼
-Implementation
+开发与测试
+代码 + 测试报告
         │
         ▼
-QA Validation + 测试报告
+代码 PR: feature-{issue}-{desc}
+必须附文档 PR 链接
         │
         ▼
 Human Review #2
-代码/交付确认
+合并 = 实现确认
         │
         ▼
-Release Decision
+Issue Comment Gate
+产物与结论必须真实回链
         │
         ▼
-Todo Closure / Weekly Review / Monthly Review
+Release / 验收 / Human 关闭 Issue
+        │
+        ▼
+PMO 按 PR 主动检查
+日汇总 / 周复盘 / 月复盘
 ```
 
 ## 三层保障体系
@@ -101,7 +121,7 @@ Todo Closure / Weekly Review / Monthly Review
    Issue Comment、Memo、Review Record、Change Record、Todo Registry 负责把关键结论正式落地。
 
 3. 平台检查层  
-   PR、Issue、CI、自动化脚本等负责检查状态一致性、产物完整性和 Gate 条件是否满足。
+   PR、Issue、CI、自动化脚本等负责检查文档 PR / 代码 PR 前置条件、Comment 成功落地、状态一致性和产物完整性。
 
 ## 角色与结构
 
@@ -193,9 +213,9 @@ Todo Closure / Weekly Review / Monthly Review
 
 ## 现在还缺什么
 
-- 还缺更严格的逐文档覆盖检查
 - 还缺把插件入口文档写完整
-- 还缺把已迁移资产继续按源文件逐项复核
+- 还缺把已迁移资产继续按源文件逐项收紧到插件入口
+- 还缺把依赖与复用策略单独收口
 
 当前第一优先级不是继续发明新机制，而是把 hedge-ai 的可迁移研发机制拆干净、落准确。
 
