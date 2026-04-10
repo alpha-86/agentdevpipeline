@@ -69,25 +69,25 @@
 
 - `prompts/discuss/015_2026-04-10_围绕独立插件目标的总复核与纠偏.md`
 - `prompts/discuss/016_2026-04-10_hedge_ai研发机制独立插件拆解执行计划.md`
-- `prompts/discuss/017_2026-04-10_phase1_1_README与CHANGELOG复核.md`
-- `prompts/discuss/018_2026-04-10_phase1_2_主文档001_016_019复核.md`
-- `prompts/discuss/019_2026-04-10_phase1_3_change_record复核.md`
-- `prompts/discuss/020_2026-04-10_phase1_4_skills顶层协议复核.md`
-- `prompts/discuss/021_2026-04-10_phase1_5_agents复核.md`
-- `prompts/discuss/022_2026-04-10_phase1_6_evaluation_checkers复核.md`
-- `prompts/discuss/023_2026-04-10_phase1_7_workflows复核.md`
-- `prompts/discuss/024_2026-04-10_phase1_8_逐文档迁移矩阵最终版收口.md`
-- `prompts/discuss/025_2026-04-10_phase2_1_issue机制复核.md`
-- `prompts/discuss/026_2026-04-10_phase2_2_双阶段PR机制复核.md`
-- `prompts/discuss/027_2026-04-10_phase2_3_issue_comment_gate复核.md`
-- `prompts/discuss/028_2026-04-10_phase2_4_PMO主动检查机制复核.md`
-- `prompts/discuss/029_2026-04-10_phase2_5_core_principles复核.md`
-- `prompts/discuss/030_2026-04-10_phase2_6_README流程图复核.md`
-- `prompts/discuss/031_2026-04-10_phase3_1_根README插件定位收口.md`
-- `prompts/discuss/032_2026-04-10_phase3_2_插件README收口.md`
-- `prompts/discuss/033_2026-04-10_phase3_3_plugin_json复核.md`
-- `prompts/discuss/034_2026-04-10_phase3_4_shared_skills核心资产复核.md`
-- `prompts/discuss/035_2026-04-10_phase3_5_zh_prompt规则层复核.md`
+- `prompts/discuss/016_phase_1_1_2026-04-10_README与CHANGELOG复核.md`
+- `prompts/discuss/016_phase_1_2_2026-04-10_主文档001_016_019复核.md`
+- `prompts/discuss/016_phase_1_3_2026-04-10_change_record复核.md`
+- `prompts/discuss/016_phase_1_4_2026-04-10_skills顶层协议复核.md`
+- `prompts/discuss/016_phase_1_5_2026-04-10_agents复核.md`
+- `prompts/discuss/016_phase_1_6_2026-04-10_evaluation_checkers复核.md`
+- `prompts/discuss/016_phase_1_7_2026-04-10_workflows复核.md`
+- `prompts/discuss/016_phase_1_8_2026-04-10_逐文档迁移矩阵最终版收口.md`
+- `prompts/discuss/016_phase_2_1_2026-04-10_issue机制复核.md`
+- `prompts/discuss/016_phase_2_2_2026-04-10_双阶段PR机制复核.md`
+- `prompts/discuss/016_phase_2_3_2026-04-10_issue_comment_gate复核.md`
+- `prompts/discuss/016_phase_2_4_2026-04-10_PMO主动检查机制复核.md`
+- `prompts/discuss/016_phase_2_5_2026-04-10_core_principles复核.md`
+- `prompts/discuss/016_phase_2_6_2026-04-10_README流程图复核.md`
+- `prompts/discuss/016_phase_3_1_2026-04-10_根README插件定位收口.md`
+- `prompts/discuss/016_phase_3_2_2026-04-10_插件README收口.md`
+- `prompts/discuss/016_phase_3_3_2026-04-10_plugin_json复核.md`
+- `prompts/discuss/016_phase_3_4_2026-04-10_shared_skills核心资产复核.md`
+- `prompts/discuss/016_phase_3_5_2026-04-10_prompt规则层复核.md`
 
 ## 0.3.0 - 2026-04-09
 
