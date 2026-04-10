@@ -68,4 +68,4 @@ python scripts/send_telegram.py --test
 
 - `scripts/telegram_bot.service` - systemd service 文件
 - `scripts/send_telegram.py` - 发送消息 CLI 工具
-- `hedge_ai/telegram/bot_server.py` - Bot 服务端实现
+- `channels/telegram/bot_server.py` - Bot 服务端实现

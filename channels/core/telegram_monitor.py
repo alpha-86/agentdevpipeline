@@ -1,7 +1,7 @@
 """
 Telegram 消息监控模块
 
-从 hedge-ai/hedge_ai/core/telegram_monitor.py 迁移
+从 hedge-ai/channels/core/telegram_monitor.py 迁移
 保留：TelegramMonitor、TelegramHealthChecker、消息状态跟踪、重试机制
 剥离：业务相关的特定消息类型
 """
@@ -22,7 +22,7 @@ import requests
 
 AGENTDEVFLOW_ROOT = os.environ.get(
     "AGENTDEVFLOW_ROOT",
-    str(__file__.rsplit("/hedge_ai/", 1)[0] if "/hedge_ai/" in __file__ else os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    str(__file__.rsplit("/channels/", 1)[0] if "/channels/" in __file__ else os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 )
 
 logger = logging.getLogger(__name__)

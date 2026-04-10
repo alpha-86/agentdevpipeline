@@ -1,7 +1,7 @@
 """
 Telegram 机器人服务器（通用版）
 
-从 hedge-ai/hedge_ai/telegram/bot_server.py 迁移
+从 hedge-ai/channels/telegram/bot_server.py 迁移
 剥离：交易信号推送、策略推送、回测报告推送等业务逻辑
 保留：通用消息收发、健康检查、重试机制、轮询循环
 """

@@ -162,7 +162,7 @@ AgentDevFlow 支持通过 Telegram Bot 向用户发送状态通知。
 
 - `scripts/telegram_bot.service` - systemd service 配置
 - `scripts/send_telegram.py` - 消息发送 CLI 工具
-- `hedge_ai/telegram/` - Bot 服务端实现
+- `channels/telegram/` - Bot 服务端实现
 
 ## 资产结构
 
