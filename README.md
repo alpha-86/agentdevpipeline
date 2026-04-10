@@ -1,33 +1,33 @@
 # AgentDevFlow
 
-AgentDevFlow 是一套面向软件研发交付的多 Agent 流程资产包。它解决的不是“单个 Agent 会不会写代码”，而是多角色协作时经常失控的那部分：需求澄清、方案评审、实现、测试、发布、留痕、恢复和人机协同 Gate。
+AgentDevFlow 是一套面向软件研发交付的多 Agent 流程资产包。它关注的不是“单个 Agent 会不会写代码”，而是多人、多 Agent、多轮迭代下，如何把需求澄清、方案评审、实现、测试、发布、留痕、恢复和人机协同 Gate 串成一个可执行闭环。
 
 ## 它解决什么问题
 
-很多团队已经在用 Claude、Codex 或其他 Agent 工具，但真正容易失控的是流程层：
+很多团队已经在用 Claude、Codex 或其他 Agent 工具，但真正容易失控的往往不是编码本身，而是协作过程：
 
-- 需求、方案、实现、测试之间断链
-- 评审靠聊天推进，没有正式 Gate
-- 问题并行时 owner、状态、证据混乱
-- 会话切换后上下文恢复成本高
-- 不同平台各写一套编排规则，重复造轮子
+- 需求、方案、实现、测试各做各的，缺少统一主线
+- Agent 能持续产出，但关键节点缺少人工确认与签核
+- Issue、PR、评论、Todo、Memo 分散，责任人和证据对不上
+- 多个问题并行推进时，状态、优先级和上下文恢复成本很高
+- 不同平台各写一套规则，流程越做越碎，重复造轮子
 
-AgentDevFlow 提供的是一套可复用的共享角色、workflow、template 和平台入口约束，让这些问题可以被系统化处理。
+AgentDevFlow 的目标，是把这些问题沉淀成一套可复用的共享角色、workflow、template 和平台入口约束，让团队既能利用多 Agent 提速，也能保留人类在关键 Gate 上的判断权。
 
-## 主线机制
+## 它怎么工作
 
-AgentDevFlow 当前的主干机制是：
+AgentDevFlow 的主线不是“让 Agent 自己跑完一切”，而是建立一条明确的人机协同研发链路：
 
-- Issue First
-- 问题先于方案
-- 双阶段 PR
-- Human Review #1 / #2
-- Issue Comment Gate
-- Todo / Memo / Change Record 正式留痕
-- Process Auditor 主动检查
-- 上下文恢复优先从 issue / gate / todo / risk 开始
+- `Issue First`：所有正式工作先挂到主 Issue，再进入后续阶段
+- `问题先于方案`：先澄清目标、边界、约束，再写 PRD
+- `双阶段 PR`：文档 PR 先确认设计，代码 PR 再确认实现
+- `Human Review #1 / #2`：设计确认和实现确认都必须有人类显式签核
+- `Issue Comment Gate`：关键结论必须真正回写到 Issue，而不是停留在聊天里
+- `正式留痕`：PRD、Tech、QA、Memo、Todo、Release、Change Record 都有明确落点
+- `Process Auditor`：把流程合规检查作为独立职责，而不是靠参与者自觉
+- `优先复用现成能力`：Claude、Codex、Git、Issue、PR、CI 已有能力优先复用，本仓库只补流程约束和共享资产
 
-完整定义见 [核心原则](./docs/governance/core-principles.md)。
+完整原则见 [核心原则](./docs/governance/core-principles.md)。
 
 ## 完整流程
 
@@ -38,12 +38,11 @@ AgentDevFlow 当前的主干机制是：
 创建主 Issue
         │
         ▼
-PM 澄清问题
-每轮讨论必须回链
+PM 澄清问题与边界
         │
         ▼
 PRD
-不含技术实现
+不写技术实现
         │
         ▼
 架构评审 + QA Gate
@@ -64,7 +63,7 @@ Human Review #1
         │
         ▼
 代码 PR
-代码 + 测试报告
+代码 + 测试证据
         │
         ▼
 Human Review #2
@@ -95,12 +94,12 @@ Release / 验收 / Human 关闭
 
 说明：
 
-- `架构师` 是 1.0 的正式角色口径，对应 `skills/shared/agents/architect.md`
-- 遗留的 `tech-lead` 文件已标记为兼容层，仅供遗留引用
+- `架构师` 是当前正式角色口径，对应 `skills/shared/agents/architect.md`
+- `Researcher` 不再是默认角色，只在确有调研任务时启用
 
-## 如何开始
+## 快速开始
 
-如果你要在当前仓库里直接启动 AgentDevFlow，按这个顺序读：
+如果你要在当前仓库里直接启动 AgentDevFlow，建议按这个顺序进入：
 
 1. [插件入口](./plugins/agentdevflow/README.md)
 2. [文档总览](./docs/README.md)
@@ -111,84 +110,58 @@ Release / 验收 / Human 关闭
 7. [启动团队](./skills/shared/start-agent-team.md)
 8. [创建角色实例](./skills/shared/create-agent.md)
 
-## Telegram Bot 部署
+如果你只想先理解这套机制，至少先读：
 
-AgentDevFlow 支持通过 Telegram Bot 向用户发送状态通知。
+1. [核心原则](./docs/governance/core-principles.md)
+2. [交付 Gate](./prompts/004_delivery_gates.md)
+3. [Issue 与评审评论机制](./prompts/013_github_issue_and_review_comments.md)
+4. [双阶段 PR 与三层保障](./prompts/019_dual_stage_pr_and_three_layer_safeguard.md)
 
-### 配置步骤
+## 仓库交付什么
 
-1. **获取 Bot Token**
-   - 在 Telegram 中搜索 @BotFather
-   - 发送 `/newbot` 创建新 Bot
-   - 复制获得的 Bot Token
-
-2. **配置环境变量**
-
-   ```bash
-   export TELEGRAM_BOT_TOKEN=<your-bot-token>
-   export TELEGRAM_CHAT_ID=<your-chat-id>
-   ```
-
-3. **部署 systemd Service**
-
-   ```bash
-   # 复制 service 文件
-   sudo cp scripts/telegram_bot.service /etc/systemd/system/
-
-   # 编辑 token
-   sudo vim /etc/systemd/system/telegram_bot.service
-   # 在 [Service] 段的 Environment= 中设置 TELEGRAM_BOT_TOKEN
-
-   # 启用并启动
-   sudo systemctl daemon-reload
-   sudo systemctl enable telegram_bot
-   sudo systemctl start telegram_bot
-   ```
-
-4. **验证连接状态**
-
-   ```bash
-   # 检查服务状态
-   sudo systemctl status telegram_bot
-
-   # 查看日志
-   journalctl -u telegram_bot -f
-
-   # 发送测试消息
-   python scripts/send_telegram.py --test
-   ```
-
-### 相关文件
-
-- `scripts/telegram_bot.service` - systemd service 配置
-- `scripts/send_telegram.py` - 消息发送 CLI 工具
-- `channels/telegram/` - Bot 服务端实现
-
-## 资产结构
+这个仓库当前交付的是五类资产：
 
 - `plugins/agentdevflow/`
-  平台入口与插件装载说明
+  插件入口与平台装载说明
 - `skills/shared/`
   共享角色、workflow、template、启动协议
 - `prompts/`
-  规则层和阶段机制
+  流程规则、Gate、Issue、变更与审计机制
 - `docs/`
-  说明、治理、示例、验收与审计
+  治理说明、迁移审计、接入与示例文档
 - `adapters/`
   平台适配入口
 
-## 复用原则
+换句话说，AgentDevFlow 交付的是“研发协同机制包”，而不是某个单一平台上的黑盒自动化脚本。
+
+## 依赖与复用边界
 
 AgentDevFlow 不重复实现平台已经具备的能力。
 
 优先复用：
 
-- Claude 现有 Agent Team 能力
-- Codex 现有多 agent 调度能力
+- Claude 的 Agent Team 能力
+- Codex 的多 agent 调度能力
 - Git / Issue / PR / CI / `gh`
-- 已有 skills、plugin、agents 包
+- 团队已有的 skills、plugin、agents 包
 
-只有当现成能力不能承载主干机制时，才在本仓库补充自己的入口或约束。
+只有当现成能力不能承载主干机制时，才在本仓库补充自己的入口或约束。完整说明见 [依赖清单](./docs/reference/dependencies.md)。
+
+## Telegram Bot 部署
+
+如果你需要把流程状态通知发给用户，可以接入 Telegram Bot。最小配置如下：
+
+```bash
+export TELEGRAM_BOT_TOKEN=<your-bot-token>
+export TELEGRAM_CHAT_ID=<your-chat-id>
+```
+
+部署与验证可参考：
+
+- `scripts/telegram_bot.service`
+- `scripts/send_telegram.py`
+- `channels/telegram/`
+- `channels/core/telegram_monitor.py`
 
 ## 问题反馈
 
