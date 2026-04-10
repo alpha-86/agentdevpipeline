@@ -59,3 +59,19 @@
 - 角色文件必须明确：必读文档、初始化动作、上下文恢复、Issue/Gate 责任、禁止行为、输出格式。
 - 主持会议或执行评审前，必须先读取对应 workflow。
 - 团队启动、Agent 创建、事件分发都必须优先复用共享入口，而不是在平台层各写一套。
+
+## 当前判定
+
+`skills/shared/` 现在已经基本构成插件核心资产层，原因是它已经具备：
+
+- 共享启动入口：`team-setup.md`、`start-agent-team.md`、`create-agent.md`
+- 共享协议：`skill-protocol.md`
+- 共享角色：主角色 + playbook
+- 共享 workflow：PRD / Tech / Human Review / 日会 / Todo / 周月复盘
+- 共享 template：PRD、Tech、QA、Release、Memo、Todo、Review Comment 等正式留痕模板
+
+但它还不是完全收口状态，当前主要缺口仍然是：
+
+- `github-issue/SKILL.md` 对应的共享入口还不够明确
+- `review-org/SKILL.md` 对应的共享入口还不够明确
+- evaluation checker 还没有沉到 `skills/shared/` 形成更独立的检查子能力
