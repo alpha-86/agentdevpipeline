@@ -23,6 +23,9 @@
 | `.claude/skills/SKILL_PROTOCOL.md` | 角色 / workflow / template 使用顺序、状态机、失败恢复 | 可迁移 | `skills/shared/skill-protocol.md` | 插件共享协议主干 | 已复核；属于插件协议主干 |
 | `.claude/skills/EVENT_BUS.md` | 事件总线架构、事件格式、触发与订阅 | 可迁移 | `skills/shared/event-bus.md` | 插件共享编排协议 | 已复核；只能保留抽象结构 |
 | `.claude/skills/ANOMALY_LOOP.md` | 异常闭环、优先级、case 状态机 | 部分迁移 | `prompts/zh-cn/012_anomaly_and_escalation_loop.md`、`skills/shared/workflows/anomaly-response.md` | 插件异常闭环能力 | 已复核；需持续去业务语义 |
+| `.claude/skills/github-issue.md` | GitHub Issue 流程约束、字段要求、流转规范 | 可迁移 | `prompts/zh-cn/007_issue_driven_orchestration.md`、`013_github_issue_and_review_comments.md` | 插件 Issue 主线规则 | 已复核；Phase 2 深化 |
+| `.claude/skills/github-issue/SKILL.md` | Issue skill 调用入口、执行顺序、约束包装 | 可迁移 | 当前缺严格对应共享入口 | 插件 Issue skill 入口说明 | 已复核；Phase 3 需要明确插件承载位置 |
+| `.claude/skills/review-org/SKILL.md` | 组织化评审入口、全量阅读、系统性输出约束 | 可迁移 | `prompts/discuss/` 当前执行口径、`prompts/zh-cn/009_review_rigor_and_context_recovery.md` | 插件评审入口约束 | 已复核；Phase 3 需要明确插件承载位置 |
 
 ## A1. 主文档 001-016, 019
 
@@ -119,8 +122,15 @@
 
 ## 当前最关键缺口
 
-1. 根 `README.md` 仍未完全达到 hedge-ai 顶层启动指南的插件化强度。
+1. Phase 1 覆盖核对后，根 `README.md` 仍未完全达到 hedge-ai 顶层启动指南的插件化强度。
 2. `plugins/agentdevpipeline/README.md` 太薄，尚未成为真正的插件入口。
 3. 根 `CHANGELOG.md` 尚未建立，无法对应 hedge-ai 的版本变更主索引机制。
-4. 还缺更严格的“逐源文件 -> 当前文件”映射覆盖检查。
-5. 个别迁移资产已经存在，但需要回到源文件逐项复核，防止混入自我发挥。
+4. `github-issue/SKILL.md` 与 `review-org/SKILL.md` 已纳入矩阵，但当前仓库仍缺更明确的插件落点。
+5. evaluation checker 当前仍只是评审维度说明，尚未形成更接近 hedge-ai 的独立检查子能力。
+
+## Phase 1 收口结论
+
+- `hedge-ai/prompts/V3.0` 顶层文档、`change_record/`、`.claude/skills` 顶层协议、`AGENTS/`、`AGENTS/evaluation/`、`WORKFLOWS/` 已完成逐组复核。
+- 本阶段已经明确哪些内容属于插件主干，哪些只能部分迁移，哪些必须禁止迁移。
+- 本阶段未做“补新机制”扩展，只做源覆盖、迁移判定、当前落点与插件落点的收口。
+- 下一阶段进入 `Phase 2`，只围绕双阶段 PR、Issue First、Issue Comment Gate、PMO 合规检查和 README 流程图继续深化。
