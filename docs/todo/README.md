@@ -1,9 +1,9 @@
-# Todo 目录
+# 待办目录
 
-本目录存放行动项总表和拆分后的 Todo 文档。
+本目录存放行动项总表和拆分后的待办文档。
 
 ## 规则
 
-- 所有关键 action item 都必须进入 `TODO_REGISTRY.md`
-- Todo 至少要有 owner、due、source、issue、gate
-- 没有关闭证据的 Todo 不应标记为完成
+- 所有关键行动项都必须进入 `TODO_REGISTRY.md`
+- 待办至少要有负责人、到期时间、来源、Issue、阶段门
+- 没有关闭证据的待办不应标记为完成

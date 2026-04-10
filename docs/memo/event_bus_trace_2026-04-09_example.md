@@ -10,7 +10,7 @@
 - trigger_reason: `新 PRD 文档已创建并进入正式评审`
 - related_artifacts:
   - `docs/prd/001_user_notification_center_prd.md`
-  - `docs/memo/kickoff_2026-04-09_agentdevpipeline_execution_example.md`
+  - `docs/memo/启动会_2026-04-09_agentdevpipeline_execution_example.md`
 - required_checks:
   - `PRD 模板字段完整`
   - `issue comment 已创建`
@@ -18,7 +18,7 @@
 - status: `completed`
 - result_summary: `PRD 评审已触发，等待 Tech Lead 与 Product Manager 完成评审结论`
 - follow_up_action: `创建 review.requested 事件，并把 issue 状态维持在 in_prd`
-- owner: `product-manager`
+- 负责人: `product-manager`
 - created_at: `2026-04-09T10:20:00Z`
 
 ---
@@ -39,5 +39,5 @@
 - status: `blocked`
 - result_summary: `下游 implementation 被阻断，直到补齐 Gate 评论`
 - follow_up_action: `由 tech-lead 补充正式评论后重试`
-- owner: `tech-lead`
+- 负责人: `tech-lead`
 - created_at: `2026-04-09T11:15:00Z`

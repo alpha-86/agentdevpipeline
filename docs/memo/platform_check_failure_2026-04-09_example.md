@@ -3,37 +3,37 @@
 **平台**: Codex
 **日期**: 2026-04-09
 **Issue**: #0
-**当前 Gate**: Release
+**当前阶段门**: 发布
 **结论**: fail
-**执行人**: Platform/SRE
+**执行人**: 平台与发布负责人
 
 ## 检查项结果
 
-- Gate 前置检查: pass
+- 阶段门前置检查: pass
 - Issue 检查: warning
 - 产物关联检查: fail
 - 状态一致性检查: pass
 
 ## 失败原因
 
-- Release Record 已存在，但主 Issue 下缺少对应 release 决策 comment
-- 产物关联表缺少 PR / merge 链接与 release comment 链接
+- 发布记录已存在，但主 Issue 下缺少对应发布决策评论
+- 产物关联表缺少 PR / merge 链接与发布评论链接
 
 ## 阻断范围
 
-- 当前 release 不能继续推进
+- 当前发布不能继续推进
 - issue 不能进入 `done`
 
-## 修复 Owner
+## 修复负责人
 
-- Platform/SRE：补 release 决策 comment
-- Team Lead：确认 issue 状态未被提前关闭
+- 平台与发布负责人：补发布决策评论
+- 团队负责人：确认 Issue 状态未被提前关闭
 
 ## 重试条件
 
-- 主 Issue 已补齐 release 决策 comment
+- 主 Issue 已补齐发布决策评论
 - 产物关联表已补齐缺失链接
-- Release 状态与 QA 结论保持一致
+- 发布状态与 QA 结论保持一致
 
 ## 重试结果
 

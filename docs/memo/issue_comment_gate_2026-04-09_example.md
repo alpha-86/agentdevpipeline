@@ -1,10 +1,10 @@
 # Issue Comment Gate 示例
 
-**Gate**: Tech
+**阶段门**: Tech
 **Issue**: #0
-**Reviewer**: Tech Lead
-**Decision**: Conditional
-**Date**: 2026-04-09
+**评审人**: 技术负责人
+**结论**: 附条件通过
+**日期**: 2026-04-09
 
 ## 证据链接
 
@@ -14,16 +14,16 @@
 ## 关键意见
 
 - 技术方案主体完整
-- rollout / rollback 已存在
-- 仍需补一份独立 QA report 模板后，才可视为执行层更完整
+- 发布推进 / 回滚说明已存在
+- 仍需补一份独立 QA 报告模板后，才可视为执行层更完整
 
-## Action Items
+## 行动项
 
-- QA Engineer：补独立测试报告模板
-- Process Auditor：检查 workflow 与 template 绑定是否已落地
+- 质量工程师：补独立测试报告模板
+- 流程审计员：检查工作流与模板绑定是否已落地
 
-## 下一 Gate 准入条件
+## 下一阶段门准入条件
 
-- Action Items 关闭
+- 行动项关闭
 - 关联产物链接补齐
-- issue 状态更新为与当前 Gate 一致
+- Issue 状态更新为与当前阶段门一致

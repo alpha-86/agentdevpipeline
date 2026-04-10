@@ -12,7 +12,7 @@
 | Tech | `docs/tech/000_user_notification_center_tech_2026-04-09.md` | Draft Example | N/A | Tech Lead | 示例文档 |
 | QA Case | `docs/qa/000_user_notification_center_qa_2026-04-09.md` | Draft Example | N/A | QA Engineer | 示例文档 |
 | Test Report | `docs/qa/000_user_notification_center_qa_2026-04-09.md` | Pending | N/A | QA Engineer | 需拆分独立报告时优先用模板 |
-| Release Record | `docs/release/000_release_record_2026-04-09.md` | Draft Example | N/A | Platform/SRE | 示例文档 |
+| Release Record | `docs/release/000_发布_record_2026-04-09.md` | Draft Example | N/A | Platform/SRE | 示例文档 |
 | Change Record | N/A | Missing | N/A | Team Lead | 本例暂未触发 |
 | PR / Merge | N/A | Missing | N/A | Engineer | 本例暂未触发 |
 

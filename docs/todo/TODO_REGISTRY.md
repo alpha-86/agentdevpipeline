@@ -1,15 +1,15 @@
-# Todo Registry
+# 待办总表
 
-> Updated: 2026-04-09
+> 更新日期：2026-04-09
 
-## Open
+## 未完成
 
-| ID | Title | Source | Issue | Gate | Priority | Owner | Due | State | Closure Evidence | Escalation |
+| ID | 标题 | 来源 | Issue | 阶段门 | 优先级 | 负责人 | 到期时间 | 状态 | 关闭证据 | 升级路径 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| TODO-20260409-001 | 补齐 kickoff 示例资产 | Kickoff internalization | #0 | Kickoff | P1 | Team Lead | 2026-04-10 | Open | Pending | Team Lead |
-| TODO-20260409-002 | 补 workflow 与 template 绑定示例 | Agent gap review | #0 | Governance | P1 | Process Auditor | 2026-04-10 | Open | Pending | Team Lead |
+| TODO-20260409-001 | 补齐 启动会 示例资产 | 启动会样例内化 | #0 | 启动会 | P1 | 团队负责人 | 2026-04-10 | 未完成 | 待补充 | 团队负责人 |
+| TODO-20260409-002 | 补 workflow 与 template 绑定示例 | Agent 差距复核 | #0 | 治理 | P1 | 流程审计员 | 2026-04-10 | 未完成 | 待补充 | 团队负责人 |
 
-## Done
+## 已完成
 
-| ID | Title | Source | Issue | Gate | Priority | Owner | Due | State | Closure Evidence | Escalation |
+| ID | 标题 | 来源 | Issue | 阶段门 | 优先级 | 负责人 | 到期时间 | 状态 | 关闭证据 | 升级路径 |
 |---|---|---|---|---|---|---|---|---|---|---|

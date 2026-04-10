@@ -1,30 +1,30 @@
-# Round 3 Internalization Sync
+# 第三轮内化同步会
 
-**Type**: Daily Sync
-**Date**: 2026-04-09
-**Owner**: Team Lead
-**Participants**: Team Lead, Product Manager, Tech Lead, QA Engineer
+**类型**: 日会
+**日期**: 2026-04-09
+**负责人**: 团队负责人
+**参与人**: 团队负责人、产品经理、技术负责人、质量工程师
 
-## Summary
+## 摘要
 
-Round-three work converts AgentDevPipeline from a specification repository into a ready-to-use starter pack.
+第三轮工作把 AgentDevPipeline 从规范仓库推进成更接近可直接使用的起步包。
 
-## Decisions
+## 决策
 
-- create operational docs directories inside the repository
-- provide example PRD, Tech, and QA artifacts
-- expand role files into playbooks
+- 在仓库内建立实际运行所需的交付目录
+- 提供 PRD、Tech 和 QA 示例产物
+- 把角色文件扩展成执行手册
 
-## Action Items
+## 行动项
 
-- finalize platform starter docs
-- add release record example
+- 收口平台接入起步文档
+- 补充发布记录示例
 
-## Risks
+## 风险
 
-- example artifacts may need refinement once a real host project uses them
+- 示例产物在真实宿主项目接入后仍可能需要继续细化
 
-## Follow-up Links
+## 后续链接
 
 - `docs/prd/`
 - `docs/tech/`
