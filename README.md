@@ -4,6 +4,14 @@
 
 AgentDevPipeline 的核心目标，是把 `hedge-ai` 中可迁移的研发工作机制拆出来，沉淀成一个独立的研发流程插件包。它不是量化交易项目，也不应该继续携带 hedge-ai 的业务语义；它应该只保留可复用的研发编排机制。
 
+这个仓库当前最重要的产物，不是单篇 prompt，也不是零散流程文档，而是一个中文优先的插件资产集合：
+
+- 根 `README.md` 负责告诉用户插件解决什么问题、主线机制是什么
+- `plugins/agentdevpipeline/` 负责承载插件入口
+- `skills/shared/` 负责承载可复用的角色、workflow、template
+- `prompts/zh-cn/` 负责承载中文规则层
+- `docs/zh-cn/` 负责承载中文说明、迁移矩阵和治理边界
+
 ## 这个项目解决什么问题
 
 很多团队已经能用 Agent 写代码、查资料、做评审，但真正卡住交付的往往不是“单点能力”，而是流程失控：
@@ -25,6 +33,27 @@ AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编
 - 让这些资产能被 `plugins/agentdevpipeline/` 作为独立插件承载
 
 不是所有“看起来合理”的流程概念都应该进入这个仓库。只有能从 hedge-ai 源文档中明确拆出来、且去掉业务语义后仍成立的机制，才应该保留。
+
+## 这个仓库最终交付什么
+
+对用户来说，这个仓库最终应该交付的是一个可装载、可阅读、可继续迭代的插件包，而不是一堆散落文档。
+
+当前应按下面这条链理解它：
+
+1. 根 `README.md`
+   说明插件定位、问题、方法、主流程和阅读入口。
+
+2. `plugins/agentdevpipeline/`
+   说明插件自身入口、插件资产组成、插件如何装载共享资产。
+
+3. `skills/shared/`
+   提供真正可复用的角色定义、workflow、template 和共享协议。
+
+4. `prompts/zh-cn/`
+   提供中文规则层，约束角色、Gate、Issue、双阶段 PR、Comment Gate、PMO 主动检查等机制。
+
+5. `docs/zh-cn/migration/hedge-ai-plugin-migration-matrix.md`
+   提供“源文档 -> 当前落点 -> 插件落点”的审计依据。
 
 ## 内部逻辑
 
@@ -184,14 +213,21 @@ PMO 按 PR 主动检查
 
 这里的目标不是扩展一堆平台私有机制，而是让插件资产可以被不同入口装载。
 
+其中当前最重要的是：
+
+- `plugins/agentdevpipeline/`
+- `skills/shared/`
+- `prompts/zh-cn/`
+
 ## 从哪里开始读
 
-1. [中文总览](./docs/zh-cn/README.md)
-2. [Prompt 索引](./prompts/zh-cn/README.md)
-3. [仓库结构图](./docs/zh-cn/architecture/repository-map.md)
+1. [根 README](./README.md)
+2. [插件入口说明](./plugins/agentdevpipeline/README.md)
+3. [中文总览](./docs/zh-cn/README.md)
 4. [核心原则](./docs/zh-cn/governance/core-principles.md)
-5. `skills/shared/`
-6. [hedge-ai 迁移矩阵](./docs/zh-cn/migration/hedge-ai-plugin-migration-matrix.md)
+5. [hedge-ai 迁移矩阵](./docs/zh-cn/migration/hedge-ai-plugin-migration-matrix.md)
+6. [Prompt 索引](./prompts/zh-cn/README.md)
+7. `skills/shared/`
 
 ## 最小可运行示例
 
