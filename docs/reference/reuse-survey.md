@@ -74,8 +74,36 @@
 - 在依赖层声明“支持 git-stack / gstack 等价工作流”
 - 在具体接入项目中，由团队选定一种命令约定
 
+### `gstack` 当前建议接入范围
+
+优先作为“可选宿主能力”接入的有：
+
+- `gstack-review`
+  - 适合承接代码阶段的预落地评审
+- `gstack-ship`
+  - 适合承接双阶段 PR 后半段的提交、推送和 PR 创建
+- `gstack-document-release`
+  - 适合承接发布后的文档同步
+- `gstack-qa` / `gstack-qa-only`
+  - 适合承接 QA Gate 前后的质量验证
+- `gstack-health`
+  - 适合承接仓库健康检查
+
+不应进入插件主干依赖的有：
+
+- 浏览器控制类能力
+- 视觉设计类能力
+- 部署平台类能力
+- 安全深审类能力
+
+### Phase 5.3 结论
+
+- `gstack` 适合作为可选宿主环境，不适合作为插件唯一运行前提
+- 本项目只应声明与研发主流程直接相关的 `gstack` 能力
+- 其余能力保持“可扩展接入”，不进入核心依赖清单
+
 ## 3. 结论
 
 - `Superpowers` 适合作为执行方法与结构组织参考
-- `gitstack/spr/gstack` 适合作为 stacked PR 协作依赖
+- `gitstack/spr/gstack` 适合作为 stacked PR 和研发协作宿主依赖
 - AgentDevPipeline 应专注于“产研组织能力”和“交付流程契约”，避免与这些项目功能重叠
