@@ -1,11 +1,11 @@
 {
   "name": "agentdevpipeline",
-  "version": "0.1.0",
-  "description": "Independent product-engineering agent workflow package.",
+  "version": "0.3.0",
+  "description": "Plugin package for extracting reusable R&D workflow mechanisms from hedge-ai into a standalone agent development pipeline.",
   "interface": {
     "displayName": "AgentDevPipeline"
   },
   "author": {
-    "name": "[TODO: maintainer]"
+    "name": "alpha-86"
   }
 }
