@@ -1,4 +1,4 @@
-# 实现 Workflow
+# 实现 工作流
 
 ## 目标
 
@@ -18,11 +18,11 @@
 - 已批准的 Tech Spec
 - 已切分的 todo items
 - 关联 issue 记录
-- 文档阶段 Human Review 已完成的证据
+- 文档阶段 人工评审 已完成的证据
 
 ## 推荐模板与输出目录
 
-- Review Comment：`skills/shared/templates/review-comment-template.md`
+- 评审评论：`skills/shared/templates/review-comment-template.md`
 - Artifact Linkage：`skills/shared/templates/artifact-linkage-template.md`
 - 推荐输出目录：代码仓库实现位置、`docs/memo/`
 
@@ -31,7 +31,7 @@
 1. Engineer 校验已批准输入。
 2. Engineer 实现本次范围内的改动。
 3. Engineer 补充单元测试和变更说明。
-4. Engineer 记录偏差或 blocker。
+4. Engineer 记录偏差或 阻塞项。
 5. Engineer 在 issue 中更新实现证据。
 6. Engineer 把可追溯证据交接给 QA。
 
@@ -39,8 +39,8 @@
 
 - 实现代码
 - 测试证据
-- implementation 交接摘要
-- issue comment 中的实现证据链接
+- 实现阶段 交接摘要
+- Issue 评论 中的实现证据链接
 
 ## 退出条件
 
@@ -48,15 +48,15 @@
 - 单元测试已存在
 - 实现说明已存在
 - 已具备 QA 交接条件
-- 文档阶段 Human Review 已明确允许进入实现
+- 文档阶段 人工评审 已明确允许进入实现
 
 ## 必需签字
 
 - Engineer：必需
-- Tech Lead：实现一致性检查必需
+- 技术负责人：实现一致性检查必需
 
 ## 回退规则
 
-- 若实现偏离已批准 tech spec：回到 tech review
-- 若验收映射断裂：回到 PRD review
-- 若发现文档阶段 Human Review 未完成：停止实现并回到对应上游 Gate
+- 若实现偏离已批准 tech spec：回到 tech 评审
+- 若验收映射断裂：回到 PRD 评审
+- 若发现文档阶段 人工评审 未完成：停止实现并回到对应上游 Gate

@@ -1,7 +1,7 @@
-# Issue Comment Gate 检查清单
+# Issue 评论阶段门检查清单
 
 **Issue**: {#N}
-**Gate**: {PRD / Tech / QA / Release}
+**阶段门**: {PRD / Tech / QA / Release}
 **日期**: {YYYY-MM-DD}
 **检查人**: {Name}
 
@@ -11,20 +11,20 @@
 - [ ] 决策人
 - [ ] 结论
 - [ ] 证据链接
-- [ ] Action Items
+- [ ] 行动项
 - [ ] 下游是否允许推进
-- [ ] comment 已真实写入目标 issue
+- [ ] 评论 已真实写入目标 issue
 
 ## 一致性检查
 
-- [ ] comment 结论与正式文档状态一致
-- [ ] comment 结论与 issue 当前阶段一致
+- [ ] 评论 结论与正式文档状态一致
+- [ ] 评论 结论与 issue 当前阶段一致
 - [ ] 若为 conditional，条件项和复核人已写明
-- [ ] 若为代码 PR 前置检查，上游必需 comment 已存在
+- [ ] 若为代码 PR 前置检查，上游必需 评论 已存在
 
 ## 失败处理
 
 - [ ] 缺失时会阻断当前阶段
-- [ ] 已指定修复 owner
+- [ ] 已指定修复 负责人
 - [ ] 已写明重试条件
 - [ ] 自动投递失败时返回非成功状态

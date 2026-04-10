@@ -2,7 +2,7 @@
 
 **ID**: {ID}
 **状态**: Draft
-**Owner**: Tech Lead
+**负责人**: 技术负责人
 **日期**: {YYYY-MM-DD}
 **更新日期**: {YYYY-MM-DD}
 
@@ -18,11 +18,11 @@
 
 ## 风险
 
-## Rollout
+## 发布推进
 
-## Rollback
+## 回滚
 
-## Review Record
+## 评审记录
 
-| 日期 | Reviewer | 备注 | 决策 |
+| 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|

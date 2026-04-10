@@ -3,8 +3,8 @@
 **异常 ID**: ANOM-{YYYYMMDD}-{NNN}
 **等级**: A1 | A2 | A3
 **Issue**: {Issue ID}
-**Gate**: {Gate}
-**Owner**: {Name}
+**阶段门**: {Gate}
+**负责人**: {Name}
 **发现时间**: {YYYY-MM-DD HH:MM}
 
 ## 现象

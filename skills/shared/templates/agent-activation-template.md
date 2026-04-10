@@ -1,4 +1,4 @@
-# Agent 激活记录
+# 角色激活记录
 
 **角色**: {Role}
 **日期**: {YYYY-MM-DD}
@@ -9,7 +9,7 @@
 
 - 角色主规范
 - 角色 playbook
-- 当前 workflow
+- 当前 工作流
 - 当前 template
 
 ## 初始化检查

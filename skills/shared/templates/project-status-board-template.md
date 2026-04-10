@@ -3,20 +3,20 @@
 **项目 ID**: {Project ID}
 **项目名称**: {Project Name}
 **日期**: {YYYY-MM-DD}
-**负责人**: {Owner}
+**负责人**: {负责人}
 
 ## 当前阶段
 
-## 活跃 Issues
+## 活跃 Issue
 
-## Blockers
+## 阻塞项
 
-## 当前 Gate 队列
+## 当前阶段门队列
 
-## Human Review 队列
+## 人工评审 队列
 
 ## 平台检查状态
 
-## Todo 概览
+## 待办 概览
 
 ## 下一步动作

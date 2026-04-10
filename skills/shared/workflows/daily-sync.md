@@ -1,4 +1,4 @@
-# 日会 Workflow
+# 日会 工作流
 
 ## 目标
 
@@ -8,7 +8,7 @@
 
 - 每个工作日开始时
 - 关键 Gate 前
-- 出现 blocker、范围变更或状态漂移时
+- 出现 阻塞项、范围变更或状态漂移时
 - 上下文恢复后重新接手时
 
 ## 输入
@@ -24,35 +24,35 @@
 
 1. 昨日进展
 2. 今日计划
-3. blockers
-4. gate 或 review 风险
+3. 阻塞项
+4. gate 或 评审 风险
 5. todo 跟进
 6. 当日需要决策的事项
 
 ## 输出
 
-- 日会 memo
-- 更新后的 owner 和 due date
+- 日会 纪要
+- 更新后的 负责人 和 到期日
 - 必要的升级动作
-- 必要的 issue comment 或 gate 纠偏动作
+- 必要的 Issue 评论 或 gate 纠偏动作
 
-## 日会 Memo 必填字段
+## 日会纪要必填字段
 
 - project_id
 - 关联 issue IDs
 - 每个 issue 当前 gate
-- blocker owner 和升级路径
-- 下一次 review 或 gate 准入条件
+- 阻塞项 负责人 和升级路径
+- 下一次 评审 或 gate 准入条件
 
 ## 会前必做
 
-1. 读取本 workflow。
+1. 读取本 工作流。
 2. 检查主 issue 与项目状态板是否一致。
-3. 检查最近一次 memo、todo registry 和 blocker。
-4. 检查是否有 overdue review、缺失 comment、缺失 signoff。
+3. 检查最近一次 纪要、todo registry 和 阻塞项。
+4. 检查是否有 overdue 评审、缺失 评论、缺失 signoff。
 
 ## 禁止行为
 
-- 不读取 workflow 就主持日会
+- 不读取 工作流 就主持日会
 - 只汇报进展，不同步 gate 风险和阻断项
 - 发现 issue / gate / todo 状态漂移却不纠正

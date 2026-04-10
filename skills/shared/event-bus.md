@@ -1,4 +1,4 @@
-# Event Bus
+# 事件总线
 
 ## 目标
 
@@ -11,12 +11,12 @@
 
 ## 核心组件
 
-- `Event Source`
+- `Event 来源`
   角色动作、文档更新、Issue 更新、评论更新、PR 状态变化、检查任务结果。
 - `Event Bus`
   统一分发事件，驱动下游检查、通知、升级和留痕。
-- `Workflow Engine`
-  根据事件触发共享 workflow 的某一步或整条流程。
+- `工作流 Engine`
+  根据事件触发共享 工作流 的某一步或整条流程。
 - `State Store`
   持久化 issue、gate、artifact linkage、todo、platform checks 的最近状态。
 - `Audit Layer`
@@ -46,7 +46,7 @@
 - `issue.created`
 - `issue.routed`
 - `issue.stage_changed`
-- `issue.blocked`
+- `issue.阻塞`
 - `issue.comment_posted`
 - `issue.comment_missing`
 - `issue.closed_requested`
@@ -57,16 +57,16 @@
 - `issue_id`
 - `issue_type`
 - `current_stage`
-- `owner`
+- `负责人`
 - `blocking_reason`
 - `required_artifacts`
 
-### 3. Review / Gate 事件
+### 3. 评审与阶段门事件
 
-- `review.requested`
-- `review.approved`
-- `review.conditional`
-- `review.rejected`
+- `评审.requested`
+- `评审.通过`
+- `评审.conditional`
+- `评审.退回`
 - `gate.enter_requested`
 - `gate.enter_blocked`
 - `gate.enter_approved`
@@ -81,11 +81,11 @@
 - `required_comments`
 - `artifact_links`
 
-### 4. Human Review 事件
+### 4. 人工评审 事件
 
 - `human_review.requested`
 - `human_review.completed`
-- `human_review.rejected`
+- `human_review.退回`
 - `human_review.timeout`
 
 最小字段：
@@ -116,15 +116,15 @@
 
 ## 共享状态机
 
-### Workflow 状态
+### 工作流 状态
 
-`pending -> in_progress -> blocked -> completed`
+`pending -> in_progress -> 阻塞 -> completed`
 
-### Review 状态
+### 评审状态
 
-`requested -> approved | conditional | rejected | timeout`
+`requested -> 通过 | conditional | 退回 | timeout`
 
-### Platform Check 状态
+### 平台检查 状态
 
 `pending -> running -> pass | fail -> retried -> pass | fail`
 
@@ -134,7 +134,7 @@
 
 - PRD 创建后：
   - 触发 `document.created`
-  - 触发 `review.requested`
+  - 触发 `评审.requested`
   - 进入 `prd_review`
 
 - Tech Spec 更新后：
@@ -144,9 +144,9 @@
 
 ### 实现阶段
 
-- Implementation 交付后：
+- 实现阶段 交付后：
   - 触发 `issue.stage_changed`
-  - 触发 `review.requested`
+  - 触发 `评审.requested`
   - 触发 `platform_check.started`
   - 自动要求 QA 接手
 
@@ -154,7 +154,7 @@
 
 - Gate 结论发出后：
   - 触发 `issue.comment_posted`
-  - 校验 comment 是否包含最小字段和链接
+  - 校验 评论 是否包含最小字段和链接
   - 缺失时触发 `issue.comment_missing`
   - 阻断进入下游阶段
 
@@ -162,9 +162,9 @@
 
 - 主 issue 缺失时，不允许进入任何正式 Gate。
 - 必需文档链接缺失时，不允许进入下游阶段。
-- Human Review 必需但未完成时，不允许进入 implementation 或 release。
+- 人工评审 必需但未完成时，不允许进入 实现阶段 或 release。
 - QA 未完成时，不允许进入 release。
-- Issue comment 缺字段时，不允许把 gate 标为已完成。
+- Issue 评论 缺字段时，不允许把 gate 标为已完成。
 
 ## 失败与升级
 
@@ -180,23 +180,23 @@
 ### 处理顺序
 
 1. 记录失败结果。
-2. 标记当前 issue 为 `blocked` 或 `needs_revalidation`。
-3. 生成待办并指定 owner。
-4. 必要时升级给 Team Lead 或 Process Auditor。
+2. 标记当前 issue 为 `阻塞` 或 `needs_revalidation`。
+3. 生成待办并指定 负责人。
+4. 必要时升级给 团队负责人 或 流程审计员。
 5. 只有补齐缺口后才允许重试。
 
 ## 平台实现要求
 
-- 平台适配层至少要能观察 issue、comment、artifact linkage、gate 状态。
+- 平台适配层至少要能观察 issue、评论、artifact linkage、gate 状态。
 - 无法自动执行的步骤，也必须有结果模板和人工补录路径。
-- 平台自动化只能推进状态，不能绕过人工签字和 Human Review。
+- 平台自动化只能推进状态，不能绕过人工签字和 人工评审。
 
 ## 推荐落地映射
 
 - `issue.created` / `issue.routed`
   对应 `workflows/issue-routing.md`
-- `review.requested` / `gate.enter_requested`
-  对应 `workflows/prd-review.md`、`workflows/tech-review.md`
+- `评审.requested` / `gate.enter_requested`
+  对应 `workflows/prd-评审.md`、`workflows/tech-评审.md`
 - `human_review.requested`
   对应 `workflows/human-review.md`
 - `platform_check.*`

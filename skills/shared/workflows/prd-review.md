@@ -1,4 +1,4 @@
-# PRD Review Workflow
+# PRD 评审 工作流
 
 ## 目标
 
@@ -8,8 +8,8 @@
 
 - 关联 issue id
 - PRD 文档 id 和状态
-- review memo 链接
-- todo registry 中的 action items
+- 评审 纪要 链接
+- todo registry 中的 行动项
 
 ## 输入
 
@@ -17,33 +17,33 @@
 - PRD 草稿
 - 已知约束或依赖
 - 关联 issue 记录
-- 必要时的 Human Review 安排
+- 必要时的 人工评审 安排
 
 ## 推荐模板与输出目录
 
 - PRD：`skills/shared/templates/prd-template.md`
-- Review Comment：`skills/shared/templates/review-comment-template.md`
+- 评审评论：`skills/shared/templates/review-comment-template.md`
 - Memo：`skills/shared/templates/memo-template.md`
 - 推荐输出目录：`docs/prd/`、`docs/memo/`
 
 ## 步骤
 
 1. PM 准备 PRD 和验收标准。
-2. Tech Lead 评估可行性、依赖和风险。
+2. 技术负责人 评估可行性、依赖和风险。
 3. 必要时由领域 reviewer 验证业务匹配。
-4. PM 和 Tech Lead 在 PRD review record 中记录签字结论。
-5. 若本次 PRD 属于关键需求或高风险需求，执行 Human Review。
-6. 在 memo 和关联 issue comment 中记录 review 结论。
-7. 把 action items 写入 todo 跟踪，并补充 owner 和 due date。
+4. PM 和 技术负责人 在 PRD 评审 record 中记录签字结论。
+5. 若本次 PRD 属于关键需求或高风险需求，执行 人工评审。
+6. 在 纪要 和关联 Issue 评论 中记录 评审 结论。
+7. 把 行动项 写入 todo 跟踪，并补充 负责人 和 到期日。
 
 ## 阶段最小产物集合
 
 - 一份 PRD 文档
-- 一份 review 结论
-- 必要时的一份 Human Review 结论
-- 一份 memo 或等价纪要
+- 一份 评审 结论
+- 必要时的一份 人工评审 结论
+- 一份 纪要 或等价纪要
 
-## Review 检查清单
+## 评审检查清单
 
 - 范围是否明确
 - 非目标是否明确
@@ -54,23 +54,23 @@
 ## 必需签字
 
 - PM：必需
-- Tech Lead：必需
+- 技术负责人：必需
 
-## Human Review 规则
+## 人工评审规则
 
-- 高风险或关键需求的 PRD，必须进入 Human Review。
-- Human Review 未完成时，不得进入 Tech Review。
-- Human Review 结论必须写回 issue comment 或 review record。
+- 高风险或关键需求的 PRD，必须进入 人工评审。
+- 人工评审 未完成时，不得进入 技术评审。
+- 人工评审 结论必须写回 Issue 评论 或 评审 record。
 
 ## 结果
 
-- approved
-- conditionally approved
-- rejected with rework items
+- 通过
+- conditionally 通过
+- 退回并附返工项
 
 ## 回退规则
 
-- conditionally approved：所有条件关闭并补齐证据后，才能进入 tech review
-- rejected：PRD 必须修订后重新 review
-- blocked：升级给 Team Lead，并把 issue 状态保持为 `blocked`
-- 若 Human Review 退回：PRD 必须修订后重新执行当前阶段 review
+- conditionally 通过：所有条件关闭并补齐证据后，才能进入 tech 评审
+- 退回：PRD 必须修订后重新 评审
+- 阻塞：升级给 团队负责人，并把 issue 状态保持为 `阻塞`
+- 若 人工评审 退回：PRD 必须修订后重新执行当前阶段 评审

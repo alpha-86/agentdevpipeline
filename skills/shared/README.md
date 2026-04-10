@@ -1,11 +1,11 @@
-# Shared Skills 目录
+# 共享技能目录
 
 `skills/shared/` 是 AgentDevPipeline 的平台无关执行资产层。
 
 ## 结构
 
 - `team-setup.md`
-  团队启动与 kickoff 共享入口。
+  团队启动与 启动会 共享入口。
 
 - `start-agent-team.md`
   更接近执行入口的团队启动步骤，约束项目骨架、角色加载和首轮检查。
@@ -49,15 +49,15 @@
 - `templates/platform-checklist-template.md`
 - `templates/platform-check-result-template.md`
 - `templates/agent-creation-log-template.md`
-- `templates/review-comment-checklist-template.md`
+- `templates/评审-评论-checklist-template.md`
 - `templates/project-status-board-template.md`
 
 ## 使用原则
 
 - 平台适配层只能包装入口，不得改写这里的核心语义。
-- 角色、workflow、template 必须与中文主版本规则保持一致。
+- 角色、工作流、template 必须与中文主版本规则保持一致。
 - 角色文件必须明确：必读文档、初始化动作、上下文恢复、Issue/Gate 责任、禁止行为、输出格式。
-- 主持会议或执行评审前，必须先读取对应 workflow。
+- 主持会议或执行评审前，必须先读取对应 工作流。
 - 团队启动、Agent 创建、事件分发都必须优先复用共享入口，而不是在平台层各写一套。
 
 ## 当前判定
@@ -67,8 +67,8 @@
 - 共享启动入口：`team-setup.md`、`start-agent-team.md`、`create-agent.md`
 - 共享协议：`skill-protocol.md`
 - 共享角色：主角色 + playbook
-- 共享 workflow：PRD / Tech / Human Review / 日会 / Todo / 周月复盘
-- 共享 template：PRD、Tech、QA、Release、Memo、Todo、Review Comment 等正式留痕模板
+- 共享 工作流：PRD / Tech / 人工评审 / 日会 / 待办 / 周月复盘
+- 共享 template：PRD、Tech、QA、Release、Memo、待办、评审评论 等正式留痕模板
 
 但它还不是完全收口状态，当前主要缺口仍然是：
 

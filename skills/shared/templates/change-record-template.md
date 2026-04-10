@@ -3,7 +3,7 @@
 **变更 ID**: CR-{YYYYMMDD}-{NNN}
 **级别**: Minor | Major | Breaking
 **Issue**: {Issue ID}
-**Owner**: {Name}
+**负责人**: {Name}
 **日期**: {YYYY-MM-DD}
 **决策日期**: {YYYY-MM-DD}
 
@@ -15,12 +15,12 @@
 - Tech:
 - QA:
 - Release:
-- Todo:
+- 待办:
 
 ## 需要重审
 
 - Gate:
-- Reviewer:
+- 评审人:
 - Due:
 
 ## 决策

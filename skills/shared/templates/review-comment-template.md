@@ -1,15 +1,15 @@
-# {Gate Review Comment}
+# {阶段门评审评论}
 
-**Gate**: PRD | Tech | QA | Release
+**阶段门**: PRD | Tech | QA | Release
 **Issue**: {Issue ID}
-**Reviewer**: {Name}
-**Decision**: Approved | Conditional | Rejected
-**Date**: {YYYY-MM-DD}
+**评审人**: {Name}
+**结论**: 通过 | 附条件通过 | 退回
+**日期**: {YYYY-MM-DD}
 
 ## 证据链接
 
 ## 关键意见
 
-## Action Items
+## 行动项
 
-## 下一 Gate 准入条件
+## 下一阶段门准入条件

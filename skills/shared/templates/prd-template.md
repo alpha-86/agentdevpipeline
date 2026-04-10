@@ -2,7 +2,7 @@
 
 **ID**: {ID}
 **状态**: Draft
-**Owner**: Product Manager
+**负责人**: 产品经理
 **日期**: {YYYY-MM-DD}
 **更新日期**: {YYYY-MM-DD}
 
@@ -24,7 +24,7 @@
 
 ## 依赖
 
-## Review Record
+## 评审记录
 
-| 日期 | Reviewer | 备注 | 决策 |
+| 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|

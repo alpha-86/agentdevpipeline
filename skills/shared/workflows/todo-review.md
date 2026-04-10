@@ -1,4 +1,4 @@
-# Todo Review Workflow
+# 待办评审工作流
 
 ## 目标
 
@@ -6,24 +6,24 @@
 
 ## 规则
 
-- 每次 review 或讨论都必须产生可跟踪 action
-- 每个 todo 都必须有 issue id、gate、owner、priority、due date 和 state
-- blocked 项必须包含升级路径
+- 每次 评审 或讨论都必须产生可跟踪 action
+- 每个 todo 都必须有 issue id、gate、负责人、priority、到期日 和 state
+- 阻塞 项必须包含升级路径
 - 已关闭项必须包含证据
 
 ## 状态模型
 
 - open
 - in_progress
-- blocked
+- 阻塞
 - done
 - canceled
 
 ## 必需关闭证据
 
 - 已合并改动链接或文档更新链接
-- 验证记录链接（测试报告、review memo 或 release record）
+- 验证记录链接（测试报告、评审 纪要 或 release record）
 
 ## 升级规则
 
-- 若 item 被阻塞超过一个工作日，必须在日会中升级并指定升级 owner
+- 若 item 被阻塞超过一个工作日，必须在日会中升级并指定升级 负责人

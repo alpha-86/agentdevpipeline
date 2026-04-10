@@ -2,14 +2,14 @@
 
 **类型**: {Daily Sync | Review | Release}
 **日期**: {YYYY-MM-DD}
-**Owner**: {Name}
+**负责人**: {Name}
 **参与人**: {Names}
 
 ## 摘要
 
 ## 决策
 
-## Action Items
+## 行动项
 
 ## 风险
 

@@ -1,4 +1,4 @@
-# Human Review Workflow
+# 人工评审 工作流
 
 ## 目标
 
@@ -11,11 +11,11 @@
 - 发布决策
 - Major / Breaking 变更
 
-## Review 形式
+## 评审形式
 
-- 文档 review
-- Pull Request review
-- Issue comment confirm
+- 文档 评审
+- Pull Request 评审
+- Issue 评论 confirm
 - 发布放行确认
 - 例外审批确认
 
@@ -30,23 +30,23 @@
 
 ## 推荐模板与输出目录
 
-- Review Comment：`skills/shared/templates/review-comment-template.md`
+- 评审评论：`skills/shared/templates/review-comment-template.md`
 - Memo：`skills/shared/templates/memo-template.md`
 - 推荐输出目录：`docs/memo/` 或关联 PR / issue
 
 ## 步骤
 
-1. 明确本次 review 的对象、目的和通过条件。
-2. 准备结构化 review 摘要和交付物链接。
+1. 明确本次 评审 的对象、目的和通过条件。
+2. 准备结构化 评审 摘要和交付物链接。
 3. 若为文档 PR，确认 PRD、Tech、QA Case Design 是否齐备。
 4. 若为代码 PR，确认文档 PR 已合并且测试报告已附齐。
-5. 由 Human 给出 `approved`、`conditional` 或 `rejected`。
-6. 在 issue、memo 或 PR 中留下正式结论。
-7. 若为 `conditional` 或 `rejected`，生成 action items 和回退路径。
+5. 由 Human 给出 `通过`、`conditional` 或 `退回`。
+6. 在 issue、纪要 或 PR 中留下正式结论。
+7. 若为 `conditional` 或 `退回`，生成 行动项 和回退路径。
 
 ## 阶段最小产物集合
 
-- 一份结构化 review 结论
+- 一份结构化 评审 结论
 - reviewer 身份
 - 证据链接
 - 是否允许进入下游阶段
@@ -65,6 +65,6 @@
 - 没有明确 reviewer
 - 只有口头结论，没有正式留痕
 - 没有条件项却标记为条件通过
-- Human Review 未完成却继续推进下游阶段
+- 人工评审 未完成却继续推进下游阶段
 - 文档 PR 缺 PRD / Tech / QA Case Design
 - 代码 PR 缺文档 PR 链接或测试报告

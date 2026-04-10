@@ -1,4 +1,4 @@
-# Issue 路由与项目组合管理 Workflow
+# Issue 路由与项目组合管理工作流
 
 ## 目标
 
@@ -21,18 +21,18 @@
 
 ## 默认角色路由
 
-- `feature` -> Product Manager
+- `feature` -> 产品经理
 - `bug` -> Engineer
-- `research` -> Researcher
-- `process` -> Team Lead
-- `release` -> Platform/SRE 或 Team Lead
-- `anomaly` -> 当前阶段 owner，必要时升级 Team Lead
+- `research` -> 研究员
+- `process` -> 团队负责人
+- `release` -> 平台与发布负责人 或 团队负责人
+- `anomaly` -> 当前阶段 负责人，必要时升级 团队负责人
 
 ## 项目组合字段
 
 - project id
 - issue type
-- current owner
+- current 负责人
 - current gate
 - priority
 - linked artifacts
@@ -46,26 +46,26 @@
 ## 路由步骤
 
 1. 创建 issue 时补齐项目组合字段。
-2. 按 issue type 指派默认 owner。
-3. 由 Team Lead 在日会或周度复盘中检查 owner 和优先级是否合理。
-4. 若 issue 需要跨角色协同，记录次级 owner 和 handoff 计划。
+2. 按 issue type 指派默认 负责人。
+3. 由 团队负责人 在日会或周度复盘中检查 负责人 和优先级是否合理。
+4. 若 issue 需要跨角色协同，记录次级 负责人 和 交接 计划。
 
 ## 阶段最小产物集合
 
 - 一份项目组合视图或等价状态表
-- 当前 owner 和 current gate 记录
+- 当前 负责人 和 current gate 记录
 - 必要时的一份审计结论
 
 ## 组合管理检查点
 
 - 每个项目当前打开 issue 数量
-- 每个 owner 当前活跃 issue 数量
-- blocked issue 数量
+- 每个 负责人 当前活跃 issue 数量
+- 阻塞 issue 数量
 - 超期 issue 数量
 
 ## 失败信号
 
 - issue 无法归类
-- owner 不明确
+- 负责人 不明确
 - 多项目并行时缺少 project id
 - issue 已跨阶段推进，但 route 未更新

@@ -1,4 +1,4 @@
-# Event Record Template
+# 事件记录模板
 
 - event_id:
 - event_type:
@@ -13,5 +13,5 @@
 - status:
 - result_summary:
 - follow_up_action:
-- owner:
+- 负责人:
 - created_at:
