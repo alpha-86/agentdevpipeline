@@ -22,6 +22,29 @@
 | `.claude/skills/create-agent/SKILL.md` | 角色统一创建入口 | 可迁移 | `skills/shared/create-agent.md` | 插件内角色激活入口 | 已初步落地 |
 | `.claude/skills/SKILL_PROTOCOL.md` | 角色 / workflow / template 使用顺序 | 可迁移 | `skills/shared/skill-protocol.md` | 插件共享协议 | 已初步落地 |
 
+## A1. 主文档 001-016, 019
+
+| 源文件 | 机制摘要 | 判定 | 当前仓库落点 | 插件落点 | 状态 |
+|---|---|---|---|---|---|
+| `001_Agent团队架构.md` | 团队协作结构、评审链路、人机协作关系 | 部分迁移 | `prompts/zh-cn/001_team_topology.md` | 插件组织结构规则 | 已复核；需持续去业务语义 |
+| `002_Agent工具设计.md` | 量化数据/研究/回测工具接口 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
+| `003_产品工程师Agent.md` | PM / Engineer 职责、PRD 生命周期、需求到开发主链路 | 可迁移 | `prompts/zh-cn/002_product_engineering_roles.md`、`skills/shared/agents/product-manager.md`、`skills/shared/agents/engineer.md` | 插件角色主干 | 已复核；仍需逐项细化 |
+| `004_工作流程规范.md` | 工作流节奏、评审与异常处理主链路 | 部分迁移 | `prompts/zh-cn/004_delivery_gates.md`、`005_meeting_and_todo.md` | 插件 workflow 主干 | 已复核；需持续去交易节奏 |
+| `005_人机交互规范.md` | 人与 Agent 协作约束 | 部分迁移 | `prompts/zh-cn/006_agent_creation_contract.md`、`013_github_issue_and_review_comments.md` | 插件交互约束 | 已复核；需排除 Telegram 语义 |
+| `006_辩论机制与案例.md` | 对抗式评审方法 | 部分迁移 | `prompts/zh-cn/015_review_evaluation_dimensions.md` | 插件评审补充能力 | 已复核；方法可保留，案例不迁移 |
+| `007_策略研究指南.md` | 量化策略研究 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
+| `008_因子研究与因子库.md` | 因子研究体系 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
+| `009_回测报告设计.md` | 回测设计与指标 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
+| `010_日报迭代规范.md` | 日报与迭代复盘结构 | 部分迁移 | `prompts/zh-cn/005_meeting_and_todo.md` | 插件进展日报结构 | 已复核；只保留通用日报机制 |
+| `011_文档规范.md` | 文档契约、命名、状态、变更等级 | 可迁移 | `prompts/zh-cn/003_document_contracts.md` | 插件规则主干 | 已复核 |
+| `012_交付物Checklist.md` | 交付检查与 Gate 检查思路 | 部分迁移 | `prompts/zh-cn/004_delivery_gates.md` | 插件交付检查能力 | 已复核；需持续去业务口径 |
+| `013_ai_driving_ai.md` | 多 agent 编排与自动协作方法 | 部分迁移 | `prompts/zh-cn/011_event_bus_and_handoff.md`、`014_process_compliance_and_audit.md` | 插件编排方法 | 已复核；需持续去业务上下文 |
+| `014_ClaudeSkills与Agent依赖.md` | Skills 依赖治理 | 可迁移 | `docs/zh-cn/reference/dependencies.md` | 插件依赖说明 | 已复核；Phase 4 深化 |
+| `014_回测报告模板.md` | 回测模板 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
+| `015_会议记录规范.md` | Memo 强制留痕、目录与命名规则 | 可迁移 | `prompts/zh-cn/005_meeting_and_todo.md`、`docs/memo/README.md` | 插件会议留痕主干 | 已复核 |
+| `016_Todo管理机制.md` | Todo 闭环与 Review | 可迁移 | `prompts/zh-cn/005_meeting_and_todo.md`、`docs/todo/TODO_REGISTRY.md` | 插件 Todo 主干 | 已复核 |
+| `019_TeamLead职责边界.md` | Team Lead 边界、AI 驱动 AI、Agent 创建规范 | 可迁移 | `skills/shared/agents/team-lead.md`、`prompts/zh-cn/006_agent_creation_contract.md` | 插件协调与创建主干 | 已复核 |
+
 ## B. 角色机制
 
 | 源文件 | 机制摘要 | 判定 | 当前仓库落点 | 插件落点 | 状态 |
