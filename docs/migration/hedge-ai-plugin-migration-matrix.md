@@ -68,7 +68,7 @@
 | `.claude/skills/AGENTS/bull-agent.md` | 策略辩论看多方 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
 | `.claude/skills/AGENTS/bear-agent.md` | 策略辩论看空方 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
 | `.claude/skills/AGENTS/cro.md` | 交易风险负责人角色 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
-| `.claude/skills/AGENTS/evaluation/*.md` | 完整性 / 一致性 / 逻辑 / 证据检查 | 可迁移 | `prompts/015_review_evaluation_dimensions.md` | 插件评审子能力 | 已复核；当前仅为维度说明，尚未形成更明确的独立检查子能力 |
+| `.claude/skills/AGENTS/evaluation/*.md` | 完整性 / 一致性 / 逻辑 / 证据检查 | 可迁移 | `prompts/015_review_evaluation_dimensions.md`、`skills/shared/templates/review-comment-checklist-template.md`、`skills/shared/templates/audit-report-template.md` | 插件评审子能力 | 已复核；已从维度说明推进到更明确的检查器类型与模板字段 |
 
 ## C. Workflow 机制
 
@@ -126,7 +126,7 @@
 2. `plugins/agentdevpipeline/README.md` 太薄，尚未成为真正的插件入口。
 3. 根 `CHANGELOG.md` 尚未建立，无法对应 hedge-ai 的版本变更主索引机制。
 4. `github-issue/SKILL.md` 与 `review-org/SKILL.md` 已纳入矩阵，但当前仓库仍缺更明确的插件落点。
-5. evaluation checker 当前仍只是评审维度说明，尚未形成更接近 hedge-ai 的独立检查子能力。
+5. evaluation checker 已从评审维度说明推进到检查器类型与模板字段，但仍未形成更完整的独立子入口。
 
 ## Phase 1 收口结论
 

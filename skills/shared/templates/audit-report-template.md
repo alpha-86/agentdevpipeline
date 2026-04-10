@@ -3,7 +3,10 @@
 **日期**: {YYYY-MM-DD}
 **审计范围**: {Issue / Project / Portfolio}
 **审计人**: {Name}
+**检查器类型**: {完整性 / 一致性 / 逻辑性 / 证据充分性 / 组合检查}
 **结论级别**: {pass / warning / fail}
+
+## 失败维度
 
 ## 发现的问题
 
