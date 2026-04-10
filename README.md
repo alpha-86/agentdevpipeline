@@ -2,7 +2,7 @@
 
 中文主版本
 
-AgentDevPipeline 是一个独立的研发全流程编排项目。它不是单个 Agent 的 prompt 包，也不是某个业务系统的脚手架，而是一套把“需求、设计、开发、测试、发布、复盘”串成闭环的通用研发流程系统。
+AgentDevPipeline 的核心目标，是把 `hedge-ai` 中可迁移的研发工作机制拆出来，沉淀成一个独立的研发流程插件包。它不是量化交易项目，也不应该继续携带 hedge-ai 的业务语义；它应该只保留可复用的研发编排机制。
 
 ## 这个项目解决什么问题
 
@@ -18,16 +18,13 @@ AgentDevPipeline 要解决的，是这些跨角色、跨阶段、跨工具的编
 
 ## 它如何解决
 
-项目把完整研发流程拆成一组可复用的通用机制：
+当前仓库主要在做三件事：
 
-- 角色层：定义 Team Lead、PM、Tech Lead、Engineer、QA、Researcher、Platform/SRE、Process Auditor 的职责边界、禁止越权规则和交付物
-- 流程层：定义 PRD、Tech、Implementation、QA、Release 的阶段 Gate，以及日会、周会、月会、Todo Review 等节奏机制
-- 留痕层：统一 PRD、Tech Spec、QA Case、Memo、Todo、Change Record、Review Comment、Release Record 的结构
-- 编排层：用 Issue 驱动整个流程，把文档、评审结论、阻塞、异常、恢复动作全部串起来
-- 运行态层：用团队启动入口、统一 Agent 创建入口、事件总线和项目状态板把流程变成持续运行的系统
-- 适配层：把共享角色、workflow、template 封装成平台无关资产，再由 Claude/Codex/OpenCode 入口接入
+- 从 `hedge-ai/prompts/V3.0` 和 `.claude/skills` 逐文档拆出可迁移的研发机制
+- 把这些机制重组为独立的角色、workflow、template 和治理规则
+- 让这些资产能被 `plugins/agentdevpipeline/` 作为独立插件承载
 
-项目的目标不是让 Agent “更聪明”，而是让 Agent 参与的研发过程更稳定、更可控、更可审计。
+不是所有“看起来合理”的流程概念都应该进入这个仓库。只有能从 hedge-ai 源文档中明确拆出来、且去掉业务语义后仍成立的机制，才应该保留。
 
 ## 内部逻辑
 
@@ -160,13 +157,12 @@ Todo Closure / Weekly Review / Monthly Review
 - `docs/research/`
 - `docs/release/`
 
-### 4. 平台适配层
+### 4. 插件与适配层
 
 - `adapters/`
-- `adapters/examples/`
 - `plugins/`
 
-平台适配层至少应落地一份平台最小检查清单，而不是只写接入说明。
+这里的目标不是扩展一堆平台私有机制，而是让插件资产可以被不同入口装载。
 
 ## 从哪里开始读
 
@@ -175,7 +171,7 @@ Todo Closure / Weekly Review / Monthly Review
 3. [仓库结构图](./docs/zh-cn/architecture/repository-map.md)
 4. [核心原则](./docs/zh-cn/governance/core-principles.md)
 5. `skills/shared/`
-6. `skills/shared/start-agent-team.md` / `skills/shared/create-agent.md`
+6. [hedge-ai 迁移矩阵](./docs/zh-cn/migration/hedge-ai-plugin-migration-matrix.md)
 
 ## 最小可运行示例
 
@@ -190,21 +186,18 @@ Todo Closure / Weekly Review / Monthly Review
 - [Issue Comment Gate 示例](./docs/memo/issue_comment_gate_2026-04-09_example.md)
 - [Issue Comment 缺失阻断示例](./docs/memo/issue_comment_failure_2026-04-09_example.md)
 - [项目状态板示例](./docs/memo/project_status_board_2026-04-09_example.md)
-- [事件总线追踪示例](./docs/memo/event_bus_trace_2026-04-09_example.md)
-- [Gate Queue 示例](./docs/memo/gate_queue_2026-04-09_example.md)
 - [平台检查清单示例](./docs/memo/platform_checklist_2026-04-09_example.md)
 - [QA Report 示例](./docs/qa/001_user_notification_center_qa_report_2026-04-09.md)
 - [Release Record 示例](./docs/release/001_release_record_example_2026-04-09.md)
 - [Todo Registry](./docs/todo/TODO_REGISTRY.md)
-- `adapters/examples/` 下的跨平台自动化检查骨架
 
 ## 现在还缺什么
 
-- 还缺真正可运行的 CI / Bot / Webhook 级自动化实现
-- 还缺把事件总线映射成平台脚本或检查器的执行样例
-- 还缺更强的实时状态同步，而不只是文档模板和示例
+- 还缺更严格的逐文档覆盖检查
+- 还缺把插件入口文档写完整
+- 还缺把已迁移资产继续按源文件逐项复核
 
-这也是当前项目仍在持续迭代的重点方向。
+当前第一优先级不是继续发明新机制，而是把 hedge-ai 的可迁移研发机制拆干净、落准确。
 
 ## 适用场景
 

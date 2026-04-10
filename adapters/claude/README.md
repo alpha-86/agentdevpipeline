@@ -36,4 +36,3 @@
 - `skills/shared/templates/platform-checklist-template.md`
 - `skills/shared/templates/platform-check-result-template.md`
 - `adapters/claude/platform-check-example.md`
-- `adapters/claude/event-automation-example.md`
