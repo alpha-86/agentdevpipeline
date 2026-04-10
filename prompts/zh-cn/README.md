@@ -61,3 +61,21 @@
 - `skills/shared/workflows/context-recovery.md`
 - `skills/shared/workflows/human-review.md`
 - `skills/shared/workflows/issue-routing.md`
+
+## 当前判定
+
+`prompts/zh-cn/` 现在已经基本构成插件规则层，原因是它已经覆盖了插件主干所需的关键规则：
+
+- 团队结构与角色边界
+- 文档契约与交付 Gate
+- 会议 / Todo / Agent 创建约束
+- Issue First 与 Comment Gate
+- 流程合规主动检查
+- Human Review 与双阶段 PR
+- 平台最小检查集合
+
+但它还不是完全收口状态，当前主要缺口仍然是：
+
+- 还缺更明确的 `github-issue/SKILL.md` 插件入口映射
+- 还缺更明确的 `review-org/SKILL.md` 插件入口映射
+- `015_review_evaluation_dimensions.md` 目前更像维度说明，还不是更独立的 checker 规则层承载
