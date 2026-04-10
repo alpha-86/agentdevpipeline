@@ -115,6 +115,29 @@
 - [019_dual_stage_pr_and_three_layer_safeguard.md](/home/work/code/agentdevpipeline/prompts/019_dual_stage_pr_and_three_layer_safeguard.md)
 - [020_issue_comment_gate_and_artifact_linkage.md](/home/work/code/agentdevpipeline/prompts/020_issue_comment_gate_and_artifact_linkage.md)
 
+## 最小接入方式
+
+如果要在一个项目里最小化接入本插件，建议按这个顺序：
+
+1. 先接入本仓库自身资产
+   - 阅读 [README.md](/home/work/code/agentdevpipeline/README.md)
+   - 阅读 [docs/README.md](/home/work/code/agentdevpipeline/docs/README.md)
+   - 阅读 [prompts/README.md](/home/work/code/agentdevpipeline/prompts/README.md)
+   - 载入 `skills/shared/`
+
+2. 再接入协作环境
+   - `git`
+   - Issue 平台
+   - Pull Request 流程
+
+3. 最后按需接入增强能力
+   - `gh`
+   - `gstack`
+   - `superpowers`
+   - CI / 自动化检查
+
+完整说明见 [依赖清单](/home/work/code/agentdevpipeline/docs/reference/dependencies.md)。
+
 ## 规则边界
 
 - 不得新增 `hedge-ai` 源文档中不存在的核心流程概念

@@ -227,6 +227,15 @@ PMO 按 PR 主动检查
 6. [Prompt 索引](./prompts/README.md)
 7. `skills/shared/`
 
+## 最小接入路径
+
+如果你现在就要把它接到一个项目里，按这个顺序即可：
+
+1. 阅读 [插件入口说明](./plugins/agentdevpipeline/README.md)
+2. 阅读 [依赖清单](./docs/reference/dependencies.md)
+3. 让团队先按 `prompts/` 和 `skills/shared/` 运行手动流程
+4. 再逐步补 `gh`、stacked PR、CI 等增强能力
+
 ## 最小可运行示例
 
 - [Kickoff 示例纪要](./docs/memo/kickoff_2026-04-09_agentdevpipeline_execution_example.md)
