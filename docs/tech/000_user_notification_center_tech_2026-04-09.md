@@ -1,57 +1,56 @@
-# User Notification Center Tech Spec
+# 用户通知中心技术方案
 
 **ID**: 000
-**Status**: Draft
-**Owner**: Tech Lead
-**Date**: 2026-04-09
-**Updated**: 2026-04-09
+**状态**: 草稿
+**负责人**: 技术负责人
+**日期**: 2026-04-09
+**更新日期**: 2026-04-09
 
-## Context
+## 背景
 
-This example tech spec mirrors the example PRD and shows the minimum structure expected by AgentDevPipeline.
+这份示例技术方案对应示例需求文档，用来展示 AgentDevPipeline 期望的最小技术方案结构。
 
-## Architecture
+## 架构
 
-- notification read model stored in existing user-scoped data store
-- notification center page reads paginated items from service layer
-- mark-as-read action writes state and refreshes item state
+- 通知读取模型存放在现有的用户级数据存储中
+- 通知中心页面从服务层读取分页数据
+- 标记已读动作会写入状态并刷新条目状态
 
-## Interfaces
+## 接口
 
 - `GET /notifications?limit=20`
 - `POST /notifications/{id}/read`
 
-## Data Flow
+## 数据流
 
-1. authenticated user opens notification center
-2. service returns recent notifications
-3. user marks item as read
-4. service persists state and returns updated item
+1. 已认证用户打开通知中心
+2. 服务返回最近的通知
+3. 用户将某条通知标记为已读
+4. 服务持久化状态并返回更新后的条目
 
-## Testability
+## 可测试性
 
-- service contract can be tested at API level
-- UI state can be tested with integration and e2e coverage
+- 服务契约可以在 API 层测试
+- UI 状态可以通过集成测试和端到端测试覆盖
 
-## Risks
+## 风险
 
-- race conditions on repeated mark-as-read requests
-- inconsistent pagination ordering if source timestamps are weak
+- 重复标记已读请求可能产生竞态
+- 如果源时间戳不稳定，分页顺序可能不一致
 
-## Rollout
+## 发布推进
 
-- deploy service endpoint changes
-- deploy UI page and route
-- monitor error rate and request latency
+- 部署服务端接口变更
+- 部署 UI 页面与路由
+- 监控错误率和请求延迟
 
-## Rollback
+## 回滚
 
-- revert UI route exposure
-- revert service endpoint release if error threshold is exceeded
+- 回退 UI 路由暴露
+- 如果错误阈值被触发，回退服务端接口发布
 
-## Review Record
+## 评审记录
 
-| Date | Reviewer | Notes | Decision |
+| 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|
-| 2026-04-09 | Tech Lead | Example seed document | Draft |
-
+| 2026-04-09 | 技术负责人 | 示例种子文档 | 草稿 |

@@ -1,8 +1,8 @@
 # 用户通知中心测试报告示例
 
 **ID**: QA-REPORT-001
-**状态**: Draft Example
-**Owner**: QA Engineer
+**状态**: 示例草稿
+**负责人**: 质量工程师
 **日期**: 2026-04-09
 **Issue**: #0
 
@@ -14,9 +14,9 @@
 
 ## 输入版本
 
-- PRD: `docs/prd/000_example_user_notification_center_2026-04-09.md`
-- Tech: `docs/tech/000_user_notification_center_tech_2026-04-09.md`
-- Implementation: 示例占位
+- 需求文档: `docs/prd/000_example_user_notification_center_2026-04-09.md`
+- 技术方案: `docs/tech/000_user_notification_center_tech_2026-04-09.md`
+- 实现内容: 示例占位
 
 ## 执行结果
 
@@ -38,6 +38,6 @@
 
 ## 签字
 
-| 日期 | Reviewer | 备注 | 决策 |
+| 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|
-| 2026-04-09 | QA Engineer | 示例文件 | Conditional |
+| 2026-04-09 | 质量工程师 | 示例文件 | 附条件通过 |

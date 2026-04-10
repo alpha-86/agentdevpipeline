@@ -1,61 +1,60 @@
-# User Notification Center
+# 用户通知中心
 
 **ID**: 000
-**Status**: Draft
-**Owner**: Product Manager
-**Date**: 2026-04-09
-**Updated**: 2026-04-09
+**状态**: 草稿
+**负责人**: 产品经理
+**日期**: 2026-04-09
+**更新日期**: 2026-04-09
 
-## Background
+## 背景
 
-Projects using AgentDevPipeline need a standard example artifact to demonstrate the expected PRD structure.
+使用 AgentDevPipeline 的项目，需要一份标准示例，用来展示需求文档应该具备的结构。
 
-## Problem
+## 问题
 
-Without a concrete example, teams tend to drift back to ad hoc requirement notes.
+如果没有具体示例，团队很容易重新回到零散的需求笔记写法。
 
-## Goals
+## 目标
 
-- provide a canonical example PRD
-- demonstrate traceable acceptance criteria
-- demonstrate review record expectations
+- 提供一份标准示例 PRD
+- 展示可追溯的验收标准
+- 展示评审记录应该如何写
 
-## Scope
+## 范围
 
-- create a notification center page
-- support unread/read state
-- support in-app notification list rendering
+- 创建通知中心页面
+- 支持未读 / 已读状态
+- 支持应用内通知列表展示
 
-## Non-Goals
+## 非目标
 
-- external email delivery
-- push notification infrastructure
+- 外部邮件发送
+- 推送通知基础设施
 
-## User Stories
+## 用户故事
 
-- As an end user, I want to view my recent notifications in one place.
-- As an end user, I want to mark a notification as read.
+- 作为终端用户，我希望能在一个地方查看最近收到的通知。
+- 作为终端用户，我希望能把某条通知标记为已读。
 
-## Acceptance Criteria
+## 验收标准
 
-- Notification center page lists the 20 most recent notifications.
-- Unread items are visually distinct from read items.
-- A user can mark an unread notification as read.
-- The read state persists after refresh.
+- 通知中心页面展示最近 20 条通知。
+- 未读项与已读项有明确视觉区分。
+- 用户可以把未读通知标记为已读。
+- 刷新后已读状态仍然保留。
 
-## Risks
+## 风险
 
-- notification storage model may vary by host project
-- UI state and persistence may require migration work
+- 通知存储模型可能因宿主项目而不同
+- UI 状态与持久化可能需要迁移工作
 
-## Dependencies
+## 依赖
 
-- host project authentication context
-- host project notification persistence layer
+- 宿主项目的认证上下文
+- 宿主项目的通知持久化层
 
-## Review Record
+## 评审记录
 
-| Date | Reviewer | Notes | Decision |
+| 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|
-| 2026-04-09 | Product Manager | Example seed document | Draft |
-
+| 2026-04-09 | 产品经理 | 示例种子文档 | 草稿 |

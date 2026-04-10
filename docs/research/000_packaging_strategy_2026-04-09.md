@@ -1,25 +1,24 @@
-# Packaging Strategy Research
+# 打包方式调研
 
 **ID**: 000
-**Status**: Draft
-**Owner**: Researcher
-**Date**: 2026-04-09
+**状态**: 草稿
+**负责人**: 研究员
+**日期**: 2026-04-09
 
-## Question
+## 调研问题
 
-How should AgentDevPipeline package itself for Claude, Codex, and OpenCode while remaining self-contained?
+AgentDevPipeline 应该如何在保持自包含的前提下，为 Claude、Codex 和 OpenCode 进行打包？
 
-## Options
+## 备选方案
 
-- documentation + local skill pack + local plugin
-- platform-specific duplicated packs
-- external dependency-heavy thin layer
+- 文档 + 本地技能包 + 本地插件
+- 按平台复制的独立包
+- 依赖外部能力较重的薄层方案
 
-## Recommendation
+## 建议
 
-Use one self-contained repository with a shared core plus thin platform adapters.
+使用一个自包含仓库，核心能力共享，平台适配层保持薄而明确。
 
-## Risks
+## 风险
 
-- platform packaging formats may evolve independently
-
+- 平台打包格式可能各自演进

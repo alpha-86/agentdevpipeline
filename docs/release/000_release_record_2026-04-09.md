@@ -1,29 +1,28 @@
-# Release Record 000
+# 发布记录 000
 
 **ID**: 000
-**Status**: Draft
-**Owner**: Platform/SRE
-**Date**: 2026-04-09
+**状态**: 草稿
+**负责人**: 平台与发布负责人
+**日期**: 2026-04-09
 
-## Scope
+## 发布范围
 
-- initial self-contained AgentDevPipeline repository setup
-- round-two and round-three internalization assets
+- 仓库自包含骨架初始化
+- 第二轮和第三轮内化资产
 
-## Deployment Notes
+## 部署说明
 
-- repository-only release
-- no runtime deployment required
+- 仅仓库级发布
+- 不需要运行时部署
 
-## Rollback
+## 回滚
 
-- revert to previous git revision
+- 回退到上一个 git 版本
 
-## Known Risks
+## 已知风险
 
-- platform adapters are starter-level, not yet fully automated installers
+- 平台适配层仍是起步级，还没有完全自动化安装能力
 
-## Decision
+## 决策
 
-- ready as internal baseline
-
+- 可作为内部基线

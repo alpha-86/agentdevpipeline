@@ -1,43 +1,42 @@
-# User Notification Center QA Case
+# 用户通知中心 QA 用例
 
 **ID**: 000
-**Status**: Draft
-**Owner**: QA Engineer
-**Date**: 2026-04-09
-**Updated**: 2026-04-09
+**状态**: 草稿
+**负责人**: 质量工程师
+**日期**: 2026-04-09
+**更新日期**: 2026-04-09
 
-## Traceability
+## 追溯关系
 
-- PRD: `docs/prd/000_example_user_notification_center_2026-04-09.md`
-- Tech: `docs/tech/000_user_notification_center_tech_2026-04-09.md`
+- 需求文档: `docs/prd/000_example_user_notification_center_2026-04-09.md`
+- 技术方案: `docs/tech/000_user_notification_center_tech_2026-04-09.md`
 
-## Test Cases
+## 测试用例
 
-- list recent notifications
-- unread items are visually distinct
-- mark item as read
-- read state persists after refresh
+- 查看最近通知
+- 未读项有明显视觉区分
+- 将通知标记为已读
+- 刷新后已读状态仍然保留
 
-## Environment
+## 测试环境
 
-- staging or local integration environment
-- authenticated test user with seed data
+- 预发环境或本地集成环境
+- 带种子数据的已认证测试用户
 
-## Execution Notes
+## 执行记录
 
-- to be filled after implementation exists
+- 待实现完成后填写
 
-## Defects
+## 缺陷
 
-- none yet
+- 暂无
 
-## Residual Risks
+## 残留风险
 
-- final visual distinction standard may vary by host design system
+- 最终视觉区分标准可能因宿主设计系统不同而变化
 
-## Sign-off
+## 签字
 
-| Date | Reviewer | Notes | Decision |
+| 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|
-| 2026-04-09 | QA Engineer | Example seed document | Draft |
-
+| 2026-04-09 | 质量工程师 | 示例种子文档 | 草稿 |

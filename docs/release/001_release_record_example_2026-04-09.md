@@ -1,8 +1,8 @@
 # 发布记录示例
 
 **ID**: RELEASE-001
-**状态**: Draft Example
-**Owner**: Platform/SRE
+**状态**: 示例草稿
+**负责人**: 平台与发布负责人
 **日期**: 2026-04-09
 **Issue**: #0
 
@@ -13,9 +13,9 @@
 
 ## 输入依据
 
-- QA 结论: `docs/qa/001_user_notification_center_qa_report_2026-04-09.md`
-- Human Review #2: 示例阶段暂缺
-- Release 审批: 示例阶段暂缺
+- 质量结论: `docs/qa/001_user_notification_center_qa_report_2026-04-09.md`
+- 人工评审 #2: 示例阶段暂缺
+- 发布审批: 示例阶段暂缺
 
 ## 已知风险
 
@@ -32,10 +32,10 @@
 ## 发布结论
 
 - 是否放行: 否
-- 条件项: 需真实实现、真实 QA、真实 release comment
+- 条件项: 需真实实现、真实 QA、真实发布评论
 
 ## 签字
 
-| 日期 | Reviewer | 备注 | 决策 |
+| 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|
-| 2026-04-09 | Platform/SRE | 示例文件 | Rejected |
+| 2026-04-09 | 平台与发布负责人 | 示例文件 | 退回 |
