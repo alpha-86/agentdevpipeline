@@ -80,35 +80,40 @@ Release / 验收 / Human 关闭
 
 默认团队：
 
-- Team Lead
-- Product Manager
-- 架构师
-- Engineer
-- QA Engineer
-- Platform/SRE
-- Process Auditor
+- 团队负责人（Team Lead）
+- 产品经理（Product Manager）
+- 架构师（Architect）
+- 工程师（Engineer）
+- 测试工程师（QA Engineer）
+- 平台 / SRE（Platform / SRE）
+- 流程审计员（Process Auditor）
 
 按需启用：
 
-- 研究支持
+- 研究支持（Research Support）
+
+## 如何安装
+
+当前仓库提供安装脚本：
+
+```bash
+./scripts/install.sh --dry-run
+./scripts/install.sh --channel dev --target ~/.claude
+```
 
 说明：
 
-- `架构师` 是当前正式角色口径，对应 `skills/shared/agents/architect.md`
-- `Researcher` 不再是默认角色，只在确有调研任务时启用
+- `scripts/install.sh` 当前主要用于安装 Claude 本地技能包
+- `--channel stable` 安装稳定版本
+- `--channel dev` 安装当前仓库中的开发版本
+- 默认目标目录是 `~/.claude`
+- 如果要先预览改动，先执行 `--dry-run`
 
-## 快速开始
+安装完成后，可继续阅读：
 
-如果你要在当前仓库里直接启动 AgentDevFlow，建议按这个顺序进入：
-
-1. [插件入口](./plugins/agentdevflow/README.md)
-2. [文档总览](./docs/README.md)
-3. [核心原则](./docs/governance/core-principles.md)
-4. [依赖清单](./docs/reference/dependencies.md)
-5. [Claude 接入](./docs/platforms/claude-code.md) 或 [Codex 接入](./docs/platforms/codex.md)
-6. [共享技能目录](./skills/shared/README.md)
-7. [启动团队](./skills/shared/start-agent-team.md)
-8. [创建角色实例](./skills/shared/create-agent.md)
+1. [Claude 接入](./docs/platforms/claude-code.md)
+2. [插件入口](./plugins/agentdevflow/README.md)
+3. [共享技能目录](./skills/shared/README.md)
 
 如果你只想先理解这套机制，至少先读：
 
@@ -116,23 +121,6 @@ Release / 验收 / Human 关闭
 2. [交付 Gate](./prompts/004_delivery_gates.md)
 3. [Issue 与评审评论机制](./prompts/013_github_issue_and_review_comments.md)
 4. [双阶段 PR 与三层保障](./prompts/019_dual_stage_pr_and_three_layer_safeguard.md)
-
-## 仓库交付什么
-
-这个仓库当前交付的是五类资产：
-
-- `plugins/agentdevflow/`
-  插件入口与平台装载说明
-- `skills/shared/`
-  共享角色、workflow、template、启动协议
-- `prompts/`
-  流程规则、Gate、Issue、变更与审计机制
-- `docs/`
-  治理说明、迁移审计、接入与示例文档
-- `adapters/`
-  平台适配入口
-
-换句话说，AgentDevFlow 交付的是“研发协同机制包”，而不是某个单一平台上的黑盒自动化脚本。
 
 ## 依赖与复用边界
 
@@ -147,21 +135,32 @@ AgentDevFlow 不重复实现平台已经具备的能力。
 
 只有当现成能力不能承载主干机制时，才在本仓库补充自己的入口或约束。完整说明见 [依赖清单](./docs/reference/dependencies.md)。
 
-## Telegram Bot 部署
+## 人机沟通通道
 
-如果你需要把流程状态通知发给用户，可以接入 Telegram Bot。最小配置如下：
+AgentDevFlow 需要让人和 Agent Team 在不同场景下都能持续协作，因此 `Telegram`、`GitHub Issue`，以及未来的 `飞书 CLI`，都应被理解为沟通 channel，而不只是单点工具。
+
+其中：
+
+- `Telegram` 和未来的 `飞书 CLI` 更偏向异步或移动端的人机沟通入口，方便用户不在电脑旁时继续跟进
+- `GitHub Issue` 不只是沟通 channel，还是正式流程主线的承载体，负责挂接过程产出物、状态、评论、Gate 结论以及最终验收关闭
+
+当前仓库已经提供基于 Telegram 的通道能力，让用户即使只在手机上，也能接收状态、查看进展，并与 Agent Team 继续交互。
+
+如果你要接入 Telegram，最小配置如下：
 
 ```bash
 export TELEGRAM_BOT_TOKEN=<your-bot-token>
 export TELEGRAM_CHAT_ID=<your-chat-id>
 ```
 
-部署与验证可参考：
+当前相关实现：
 
 - `scripts/telegram_bot.service`
 - `scripts/send_telegram.py`
 - `channels/telegram/`
 - `channels/core/telegram_monitor.py`
+
+后续规划不只限于 Telegram，也会继续支持其他人机沟通通道，例如飞书 CLI，并继续强化 GitHub Issue 作为正式流程主线和产物挂载点的能力。
 
 ## 问题反馈
 
