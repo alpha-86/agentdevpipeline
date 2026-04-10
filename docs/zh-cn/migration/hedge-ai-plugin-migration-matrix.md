@@ -15,7 +15,7 @@
 | 源文件 | 机制摘要 | 判定 | 当前仓库落点 | 插件落点 | 状态 |
 |---|---|---|---|---|---|
 | `prompts/V3.0/README.md` | 启动指南、阅读顺序、角色必读分配、双阶段流程总览、恢复入口 | 可迁移 | `README.md`、`docs/zh-cn/README.md` | `plugins/agentdevpipeline/README.md` | 已复核；插件入口仍偏薄，需在 Phase 3 收口 |
-| `prompts/V3.0/CHANGELOG.md` | 版本化变更记录主索引，联动 change_record 明细 | 可迁移 | 当前缺严格对应落点 | 根 `CHANGELOG.md` | 已复核；需在 Phase 3 建立正式 CHANGELOG |
+| `prompts/V3.0/CHANGELOG.md` | 版本化变更记录主索引，联动 change_record 明细 | 可迁移 | 根 `CHANGELOG.md` | 根 `CHANGELOG.md` | 已在 Phase 3.6 建立中文主版本 CHANGELOG 方案与主索引联动 |
 | `prompts/V3.0/014_ClaudeSkills与Agent依赖.md` | 平台 Skills 依赖矩阵、角色依赖关系 | 可迁移 | `docs/zh-cn/reference/dependencies.md`、`skills/shared/README.md` | `plugins/agentdevpipeline/README.md` | 未充分插件化 |
 | `.claude/skills/TEAM_SETUP.md` | 团队初始化顺序、前置条件、恢复入口 | 可迁移 | `skills/shared/team-setup.md` | `plugins/agentdevpipeline/README.md` + 共享入口 | 已复核；属于插件启动主干 |
 | `.claude/skills/start-agent-team/SKILL.md` | 团队启动统一入口 | 可迁移 | `skills/shared/start-agent-team.md` | 插件内启动入口说明 | 已初步落地 |

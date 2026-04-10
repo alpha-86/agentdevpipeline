@@ -1,43 +1,145 @@
-# Changelog
+# 变更日志
 
-All notable changes to this project are documented here.
+本文件用于记录 AgentDevPipeline 的正式版本变更。
 
-## [0.2.0] - 2026-04-09
+## 维护规则
 
-### Added
+- 每次正式流程、插件入口、共享资产、规则层发生可追溯变更时，都必须更新本文件。
+- 每个版本至少要写清：
+  - 版本号
+  - 日期
+  - 标题
+  - 状态
+  - 变更原因
+  - 核心内容
+  - 涉及文件或落点
+  - 详细记录链接
+- 详细记录优先回链到：
+  - `prompts/discuss/`
+  - `docs/zh-cn/migration/`
+- 没有进入 `CHANGELOG.md` 的重要变更，不应视为正式版本变更完成。
+- 当前中文主版本优先，英文版后置，不在本文件中单独维护英文镜像记录。
 
-- Round-two internalization of Chinese source prompts
-- Expanded shared agent role files with critical rules, actions, and success metrics
-- Added implementation, QA validation, and release review workflows
-- Expanded shared templates with traceability, review, and rollout fields
-- Strengthened Claude adapter setup and creation rules
+## 版本主索引
 
-### Changed
+| 版本 | 日期 | 标题 | 状态 |
+|---|---|---|---|
+| `0.3.1` | 2026-04-10 | 回归 hedge-ai 独立插件拆解主线并完成 Phase 1-3.5 收口 | ✅ 已完成 |
+| `0.3.0` | 2026-04-09 | 仓库主骨架与中文主版本初步建立 | ✅ 已完成 |
+| `0.2.0` | 2026-04-09 | 中文规则层与共享执行层扩展 | ✅ 已完成 |
+| `0.1.0` | 2026-04-09 | 初始自包含仓库骨架 | ✅ 已完成 |
 
-- Clarified self-contained repository rule across documentation
-- Upgraded the English release mirror to match the richer internal source pack
+## 0.3.1 - 2026-04-10
 
-## [0.3.0] - 2026-04-09
+**标题**: 回归 hedge-ai 独立插件拆解主线并完成 Phase 1-3.5 收口
 
-### Added
+**变更原因**:
 
-- Ready-to-use delivery directories under `docs/prd`, `docs/tech`, `docs/qa`, `docs/memo`, `docs/todo`, `docs/research`, and `docs/release`
-- Example PRD, Tech, QA, memo, todo, research, and release artifacts
-- Role playbooks for Team Lead, Product Manager, Tech Lead, Engineer, QA Engineer, Researcher, and Platform/SRE
-- Root-level split README structure with `README.md` for English and `README_CN.md` for Chinese
+- 仓库一度偏向“泛化流程系统”，偏离了“从 `hedge-ai` 拆出可迁移研发机制并形成独立插件”的唯一目标。
+- 需要把源文档逐项复核、插件入口、核心原则、README、插件 README、plugin 元数据重新收口到正确主线。
 
-### Changed
+**核心内容**:
 
-- Updated repository map to reflect project-ready delivery structure
-- Pushed AgentDevPipeline closer to a starter-kit repository rather than a spec-only repository
-- Repositioned AgentDevPipeline as a standalone project focused on automated yet controllable multi-agent R&D orchestration
+- 完成 `hedge-ai/prompts/V3.0`、`.claude/skills`、`change_record/`、`AGENTS/`、`WORKFLOWS/` 的 Phase 1 逐组复核
+- 收口迁移矩阵，补齐 `github-issue.md`、`github-issue/SKILL.md`、`review-org/SKILL.md`
+- 前置固化 `Issue First`、双阶段 PR、Issue Comment Gate、PMO 主动检查、核心原则和 README 主流程图
+- 重写根 `README.md`，明确独立插件定位
+- 重写 `plugins/agentdevpipeline/README.md`，作为插件入口
+- 校准 `plugins/agentdevpipeline/.codex-plugin/plugin.json`
+- 明确 `skills/shared/` 已基本构成插件核心资产层
+- 明确 `prompts/zh-cn/` 已基本构成插件规则层
 
-## [0.1.0] - 2026-04-09
+**涉及文件 / 落点**:
 
-### Added
+- `README.md`
+- `plugins/agentdevpipeline/README.md`
+- `plugins/agentdevpipeline/.codex-plugin/plugin.json`
+- `docs/zh-cn/governance/core-principles.md`
+- `docs/zh-cn/migration/hedge-ai-plugin-migration-matrix.md`
+- `skills/shared/README.md`
+- `prompts/zh-cn/README.md`
+- `prompts/zh-cn/007_issue_driven_orchestration.md`
+- `prompts/zh-cn/013_github_issue_and_review_comments.md`
+- `prompts/zh-cn/014_process_compliance_and_audit.md`
+- `prompts/zh-cn/017_human_review_and_signoff.md`
+- `prompts/zh-cn/019_dual_stage_pr_and_three_layer_safeguard.md`
+- `prompts/zh-cn/020_issue_comment_gate_and_artifact_linkage.md`
 
-- Initial self-contained repository skeleton for AgentDevPipeline
-- Chinese-source / English-release documentation policy
-- Shared product-engineering agent roles and workflow specifications
-- Claude, Codex, and OpenCode adapter entrypoints
-- Dependency inventory and external reuse notes
+**详细记录**:
+
+- `prompts/discuss/015_2026-04-10_围绕独立插件目标的总复核与纠偏.md`
+- `prompts/discuss/016_2026-04-10_hedge_ai研发机制独立插件拆解执行计划.md`
+- `prompts/discuss/017_2026-04-10_phase1_1_README与CHANGELOG复核.md`
+- `prompts/discuss/018_2026-04-10_phase1_2_主文档001_016_019复核.md`
+- `prompts/discuss/019_2026-04-10_phase1_3_change_record复核.md`
+- `prompts/discuss/020_2026-04-10_phase1_4_skills顶层协议复核.md`
+- `prompts/discuss/021_2026-04-10_phase1_5_agents复核.md`
+- `prompts/discuss/022_2026-04-10_phase1_6_evaluation_checkers复核.md`
+- `prompts/discuss/023_2026-04-10_phase1_7_workflows复核.md`
+- `prompts/discuss/024_2026-04-10_phase1_8_逐文档迁移矩阵最终版收口.md`
+- `prompts/discuss/025_2026-04-10_phase2_1_issue机制复核.md`
+- `prompts/discuss/026_2026-04-10_phase2_2_双阶段PR机制复核.md`
+- `prompts/discuss/027_2026-04-10_phase2_3_issue_comment_gate复核.md`
+- `prompts/discuss/028_2026-04-10_phase2_4_PMO主动检查机制复核.md`
+- `prompts/discuss/029_2026-04-10_phase2_5_core_principles复核.md`
+- `prompts/discuss/030_2026-04-10_phase2_6_README流程图复核.md`
+- `prompts/discuss/031_2026-04-10_phase3_1_根README插件定位收口.md`
+- `prompts/discuss/032_2026-04-10_phase3_2_插件README收口.md`
+- `prompts/discuss/033_2026-04-10_phase3_3_plugin_json复核.md`
+- `prompts/discuss/034_2026-04-10_phase3_4_shared_skills核心资产复核.md`
+- `prompts/discuss/035_2026-04-10_phase3_5_zh_prompt规则层复核.md`
+
+## 0.3.0 - 2026-04-09
+
+**标题**: 仓库主骨架与中文主版本初步建立
+
+**变更原因**:
+
+- 需要把仓库从零散文档整理成可继续迭代的中文主版本骨架。
+
+**核心内容**:
+
+- 建立交付目录骨架
+- 建立共享角色与 playbook
+- 建立 workflow 与 template 基础集合
+- 建立中文 README 与中文治理文档
+
+**涉及文件 / 落点**:
+
+- `docs/prd/`
+- `docs/tech/`
+- `docs/qa/`
+- `docs/memo/`
+- `docs/todo/`
+- `docs/release/`
+- `skills/shared/agents/*`
+- `skills/shared/workflows/*`
+- `skills/shared/templates/*`
+- `README.md`
+
+## 0.2.0 - 2026-04-09
+
+**标题**: 中文规则层与共享执行层扩展
+
+**变更原因**:
+
+- 需要把中文规则、角色约束和共享执行层从基础骨架扩展到可继续迁移的状态。
+
+**核心内容**:
+
+- 扩展共享角色规则
+- 扩展交付阶段 workflow
+- 扩展模板与追溯字段
+
+## 0.1.0 - 2026-04-09
+
+**标题**: 初始自包含仓库骨架
+
+**变更原因**:
+
+- 建立独立仓库和最初的目录结构。
+
+**核心内容**:
+
+- 初始化仓库结构
+- 初始化中文主版本与适配层骨架
