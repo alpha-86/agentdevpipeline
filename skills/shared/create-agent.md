@@ -102,6 +102,13 @@
 - `templates/agent-activation-template.md`
 - `templates/agent-creation-log-template.md`
 
+## 创建失败规则
+
+- 若 `project_id`、主 issue、当前阶段 任一缺失，拒绝创建正式角色实例。
+- 若角色文件或 playbook 缺失，拒绝创建并返回缺失项。
+- 若当前阶段 workflow 未知，角色只能停在初始化确认，不得直接开始正式工作。
+- 若初始化确认未输出，不得视为角色已成功激活。
+
 ## 禁止行为
 
 - 用通用空白 agent 执行正式角色职责

@@ -36,6 +36,12 @@
 - 必要的升级动作
 - 必要的 Issue 评论 或 gate 纠偏动作
 
+## 会后必做
+
+1. 将新增 action item 写入 `TODO_REGISTRY.md`。
+2. 对需要升级的阻塞项指定明确 负责人 和下一次检查时间。
+3. 若发现 issue / gate / todo 状态漂移，立即纠偏或升级。
+
 ## 日会纪要必填字段
 
 - project_id
