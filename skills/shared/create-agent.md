@@ -8,10 +8,10 @@
 
 - `team-lead`
 - `product-manager`
-- `tech-lead`
+- `architect`
 - `engineer`
 - `qa-engineer`
-- `researcher`
+- `research-support`
 - `platform-sre`
 - `process-auditor`
 
@@ -38,6 +38,11 @@
 
 - `skills/shared/agents/{role}.md`
 - `skills/shared/agents/{role}.playbook.md`
+
+兼容映射：
+
+- `architect` -> `tech-lead`
+- `research-support` -> `researcher`
 
 ### 步骤 2. 读取并提取关键内容
 

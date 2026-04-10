@@ -22,7 +22,7 @@
 - 负责需求拆解、PRD、验收标准、优先级
 - 负责需求边界和交付目标的最终口径
 
-### Tech Lead
+### 架构师
 
 - 负责技术方案、架构评审、技术门禁
 - 负责确认方案的可实现性、可测试性、可维护性
@@ -37,7 +37,7 @@
 - 负责测试设计、验证、质量门禁
 - 负责将 PRD/Tech 的要求转换为验证证据
 
-### Researcher
+### 研究支持（可选）
 
 - 负责需求调研、技术调研、方案探索
 - 负责在正式立项前提供比较、风险和建议
@@ -57,10 +57,10 @@
 ```text
 Team Lead
 ├── Product Manager
-├── Tech Lead
+├── 架构师
 ├── Engineer
 ├── QA Engineer
-├── Researcher
+├── 研究支持（可选）
 ├── Platform/SRE
 └── Process Auditor
 ```
@@ -71,10 +71,10 @@ Team Lead
 |---|---|---|
 | Team Lead | 项目目标、当前状态 | 节奏、分工、升级决策 |
 | Product Manager | 需求、调研、反馈 | PRD、优先级、验收标准 |
-| Tech Lead | 已通过的 PRD | Tech Spec、架构约束、实现切分 |
+| 架构师 | 已通过的 PRD | Tech Spec、架构约束、实现切分 |
 | Engineer | 已通过的 Tech Spec | 代码、单测、实现说明 |
 | QA Engineer | PRD + Tech + 实现 | QA Case、测试报告、缺陷列表 |
-| Researcher | 模糊问题或方向 | 调研报告、选项比较、建议 |
+| 研究支持（可选） | 模糊问题或方向 | 调研报告、选项比较、建议 |
 | Platform/SRE | 发布需求、运行约束 | 部署方案、发布记录、回滚方案 |
 | Process Auditor | 当前 issue / gate / todo / comment 状态 | 审计报告、纠正动作、例外审批检查 |
 
@@ -93,7 +93,7 @@ Team Lead
 
 - 评审超时由 Team Lead 升级
 - 范围冲突由 Product Manager 定口径
-- 技术不可行由 Tech Lead 退回
+- 技术不可行由 架构师 退回
 - 质量阻塞由 QA Engineer 持有 gate
 - 发布风险由 Platform/SRE 提出阻塞意见
 - 流程违规和状态漂移由 Process Auditor 记录并推动纠正
