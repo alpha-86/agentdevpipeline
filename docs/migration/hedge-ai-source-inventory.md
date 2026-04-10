@@ -123,6 +123,15 @@
 - 先固化边界，再迁移机制，再补模板与 workflow。
 - 任何出现量化交易语义的内容，一律退回重写。
 
+## D. Phase 7 复核摘要
+
+- 已复核根 `README.md`、插件入口、共享角色、共享 workflow。
+- 当前未发现新的交易业务语义混入插件主干。
+- 当前仓库中保留的交易相关词汇，均用于：
+  - 源文档分类
+  - 禁止迁移说明
+  - 边界审计
+
 详见：
 
 - [与 hedge-ai 的迁移边界（强约束）](/home/work/code/agentdevpipeline/docs/governance/migration-boundary-from-hedge-ai.md)

@@ -75,6 +75,12 @@
 - PR 描述中必须包含“可迁移项 / 删除项 / 语义替换项”三段说明。
 - 若评审者发现交易语义残留，必须阻断合并，不允许“后续再改”。
 
+## Phase 7 边界复核结论
+
+- 根 `README.md` 与 `plugins/agentdevpipeline/README.md` 当前未发现新的交易业务语义混入主干。
+- `skills/shared/agents/*` 与 `skills/shared/workflows/*` 当前未发现新的交易角色、交易节奏或交易指标字段残留。
+- 当前仓库中出现的“量化 / 交易 / 回测 / 因子 / DBR”等词，主要用于迁移边界、源清单和禁止迁移说明，不用于插件主干执行语义。
+
 ## 与本仓库交付目录的对齐要求
 
 - `docs/prd/`、`docs/tech/`、`docs/qa/`、`docs/release/`：只承载通用产研交付内容。
