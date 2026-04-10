@@ -7,21 +7,10 @@ on:
 
 jobs:
   check-code-pr:
+    # Skip if title starts with [DOC] (doc PR) or [DOC #N]
+    if: "!startsWith(github.event.pull_request.title, '[DOC]')"
     runs-on: ubuntu-latest
     steps:
-      - name: Check PR is not a doc PR
-        id: validate
-        run: |
-          set -x
-          TITLE="${{ github.event.pull_request.title }}"
-          echo "PR title is: $TITLE"
-          echo "First 4 chars: ${TITLE:0:4}"
-          if [ "${TITLE:0:4}" = "[DOC" ]; then
-            echo "Doc PR detected"
-            exit 78
-          fi
-          echo "Not a doc PR"
-
       - name: Checkout code
         uses: actions/checkout@v4
 
