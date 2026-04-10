@@ -60,6 +60,53 @@
 - `docs/`
   - 当前唯一说明、治理、迁移审计入口
 
+## 插件自身资产与外部依赖资产的边界
+
+### 一、插件自身资产
+
+这些内容必须由本仓库自己承载，不能外包给外部能力包：
+
+- `plugins/agentdevpipeline/.codex-plugin/plugin.json`
+- `README.md`
+- `prompts/`
+- `docs/`
+- `skills/shared/agents/`
+- `skills/shared/workflows/`
+- `skills/shared/templates/`
+- `skills/shared/team-setup.md`
+- `skills/shared/start-agent-team.md`
+- `skills/shared/create-agent.md`
+- `skills/shared/skill-protocol.md`
+- `skills/shared/event-bus.md`
+
+这些资产共同构成：
+
+- 插件入口
+- 研发流程规则
+- 角色职责与执行手册
+- 交付模板与留痕规范
+- 迁移边界与审计依据
+
+### 二、外部依赖资产
+
+这些内容可以接入，但不能替代插件自身资产：
+
+- `superpowers`
+  - 定位：执行方法与结构组织参考
+- `gstack`
+  - 定位：可选宿主环境
+- `gh`
+  - 定位：GitHub 自动化接入工具
+- CI / PR / Issue 平台能力
+  - 定位：平台检查层与流程自动化承载
+
+### 三、边界规则
+
+- 外部依赖只能增强执行效率，不能定义核心流程规则。
+- 任何平台或工具接入都不得改写 `prompts/` 与 `skills/shared/` 的核心语义。
+- 若移除外部依赖，插件自身资产仍必须可以被阅读、审计和手动执行。
+- 若某个流程只有依赖外部宿主才能成立，则它不应被写成插件主干规则。
+
 ## 推荐复用的外部能力
 
 ### 1. `superpowers`
@@ -104,6 +151,7 @@
 - 外部依赖优先“引用和适配”，避免重复造轮子。
 - 若团队已有 `gstack` 约定，则在平台接入文档中明确其命令约定。
 - 若外部依赖缺失，必须说明哪些流程可降级执行，哪些流程不可执行。
+- 插件自身资产与外部依赖资产的边界，必须优先以本文件定义为准。
 
 ## Phase 5.1 结论
 

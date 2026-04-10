@@ -54,6 +54,30 @@
 4. [hedge-ai-plugin-migration-matrix.md](/home/work/code/agentdevpipeline/docs/migration/hedge-ai-plugin-migration-matrix.md)
    负责记录源文档、当前落点和插件落点。
 
+## 插件自身资产与外部依赖的关系
+
+本插件要求明确区分两类东西：
+
+1. 插件自身资产
+   也就是本仓库必须自己承载的内容：
+   - `prompts/`
+   - `docs/`
+   - `skills/shared/`
+   - `plugin.json`
+
+2. 外部依赖资产
+   也就是可接入、但不应成为插件成立前提的内容：
+   - `superpowers`
+   - `gstack`
+   - `gh`
+   - CI / PR / Issue 平台能力
+
+原则是：
+
+- 外部依赖只能增强执行效率
+- 外部依赖不能替代插件主干规则
+- 即使没有这些宿主能力，插件自身资产也必须保持可阅读、可审计、可手动执行
+
 ## 当前插件最重要的共享资产
 
 ### 1. 共享协议与入口
