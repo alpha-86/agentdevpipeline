@@ -1,43 +1,47 @@
 #!/usr/bin/env python3
 """
-Bootstrap Sync Script
+Bootstrap Sync Script for AgentDevFlow (adf-prefix version)
 
-Reads all .md files from skills/shared/ and generates corresponding SKILL.md
-files in adapters/claude/.claude/skills/.
+Reads all .md files from skills/shared/ and generates corresponding skill files
+in .claude/skills/ with adf- prefix.
 
-Each .md file in skills/shared/ becomes a skill with the same name.
-The generated SKILL.md includes:
-- The original file content
-- A YAML frontmatter with name and description
+Each skill gets its own subdirectory: .claude/skills/adf-{name}/
+SKILL.md is generated for top-level entries; subdirectory contents are copied.
+
+Step 0: Clear .claude/skills/
+Step 1: Dynamically scan skills/shared/ and generate adf- prefix mapping
+Step 2: Generate SKILL.md files to .claude/skills/adf-*/
+Step 3: Batch replace internal references
+Step 4: git add -> commit -> push to main
 """
 
 import os
 import sys
 import re
+import shutil
 import hashlib
 from pathlib import Path
 from typing import Optional
 
 SKILLS_SHARED_DIR = Path("skills/shared")
-ADAPTER_SKILLS_DIR = Path("adapters/claude/.claude/skills")
+TARGET_DIR = Path(".claude/skills")
 
-# Skills that have subdirectories with their own SKILL.md — skip top-level files for these
-SUBDIR_SKILLS = {
-    "start-agent-team": SKILLS_SHARED_DIR / "start-agent-team",
-    "create-agent": SKILLS_SHARED_DIR / "create-agent",
-}
-
-# Skills that should NOT be synced (internal/shared use only, not Claude adapter skills)
-SKIP_SKILLS = {
+# Files that should NOT be synced (internal/shared use only)
+SKIP_FILES = {
     "skill-protocol.md",
     "event-bus.md",
     "README.md",
 }
 
 
+def compute_hash(content: str) -> str:
+    """Compute SHA256 hash of content (first 16 chars)."""
+    return hashlib.sha256(content.encode()).hexdigest()[:16]
+
+
 def slugify(name: str) -> str:
-    """Convert a filename to a valid skill name."""
-    return name.replace(".md", "").replace("-", "-").replace("_", "-")
+    """Convert a filename to a valid skill name (use dashes)."""
+    return name.replace(".md", "").replace("_", "-")
 
 
 def extract_name_and_description(content: str) -> tuple[str, str]:
@@ -48,14 +52,10 @@ def extract_name_and_description(content: str) -> tuple[str, str]:
     2. First markdown heading as name
     3. First paragraph as description
     """
-    # Check for existing YAML frontmatter
     fm_match = re.match(r"^---\n(.*?)\n---\n", content, re.DOTALL)
     if fm_match:
         fm_text = fm_match.group(1)
-        fm_lines = fm_text.split("\n")
-        name = None
-        desc = None
-        for line in fm_lines:
+        for line in fm_text.split("\n"):
             if line.startswith("name:"):
                 name = line.split(":", 1)[1].strip().strip('"').strip("'")
             elif line.startswith("description:"):
@@ -63,11 +63,9 @@ def extract_name_and_description(content: str) -> tuple[str, str]:
         if name and desc:
             return name, desc
 
-    # Fallback: extract from content
     name_match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
     name = name_match.group(1).strip() if name_match else "unknown"
 
-    # Get first non-empty non-heading line as description
     lines = content.split("\n")
     desc = ""
     for line in lines:
@@ -79,18 +77,91 @@ def extract_name_and_description(content: str) -> tuple[str, str]:
     return slugify(name), desc
 
 
-def generate_skill_md(skill_name: str, source_content: str) -> str:
-    """Generate a SKILL.md file content from source markdown."""
-    # Extract name and description from source
-    name, desc = extract_name_and_description(source_content)
+def build_name_mapping() -> dict[str, str]:
+    """Dynamically scan skills/shared/ and build {original_name: adf_name} mapping."""
+    mapping = {}
 
-    # Clean up the source content — remove existing frontmatter
+    # Top-level .md files → top-level skills
+    for f in sorted(SKILLS_SHARED_DIR.glob("*.md")):
+        if f.name in SKIP_FILES:
+            continue
+        name = f.stem  # filename without extension
+        mapping[name] = f"adf-{name}"
+
+    # Subdirectories → subdirectory skills
+    for subdir in sorted(SKILLS_SHARED_DIR.iterdir()):
+        if not subdir.is_dir():
+            continue
+        name = subdir.name
+        mapping[name] = f"adf-{name}"
+
+    return mapping
+
+
+def replace_internal_references(content: str, mapping: dict[str, str]) -> str:
+    """Replace all internal skill references in content.
+
+    Patterns replaced:
+    - /{orig} → /adf-{adf}  (skill invocation paths, only when / is followed by word char)
+    - skills/shared/{orig}/ → .claude/skills/adf-{adf}/  (subdirectory references)
+    - skills/shared/{orig}.md → .claude/skills/adf-{adf}/SKILL.md  (direct file references)
+    """
+
+    # Only apply replacements for non-skipped items
+    skip_set = {*SKIP_FILES}
+
+    replacements = []
+
+    for orig, adf in mapping.items():
+        if orig in skip_set:
+            continue
+
+        # Skill invocation paths: /agent-bootstrap → /adf-agent-bootstrap
+        # Use word-boundary aware replacement (only at / + word start)
+        # This avoids replacing things like "/start-agent-team" inside "/adf-start-agent-team"
+        replacements.append((f"/{orig}", f"/{adf}"))
+
+        # Subdirectory references: skills/shared/agents/ → .claude/skills/adf-agents/
+        replacements.append((f"skills/shared/{orig}/", f".claude/skills/{adf}/"))
+
+        # Direct file references: skills/shared/agent-bootstrap.md → .claude/skills/adf-agent-bootstrap/SKILL.md
+        replacements.append(
+            (f"skills/shared/{orig}.md", f".claude/skills/{adf}/SKILL.md")
+        )
+
+    # Sort by length descending to avoid partial replacement issues
+    # (e.g., replace "skills/shared/agents/" before "skills/shared/agent-...")
+    replacements.sort(key=lambda x: -len(x[0]))
+
+    for old, new in replacements:
+        content = content.replace(old, new)
+
+    return content
+
+
+def needs_update(target_file: Path, new_content: str) -> bool:
+    """Check if file needs update by comparing content hash."""
+    if not target_file.exists():
+        return True
+    old_hash = compute_hash(target_file.read_text())
+    new_hash = compute_hash(new_content)
+    return old_hash != new_hash
+
+
+def sync_top_level_skill(name: str, adf_name: str, source_path: Path) -> bool:
+    """Sync a top-level .md file to .claude/skills/adf-{name}/SKILL.md."""
+    target_dir = TARGET_DIR / adf_name
+    target_file = target_dir / "SKILL.md"
+
+    source_content = source_path.read_text()
+    name_val, desc = extract_name_and_description(source_content)
+
+    # Remove existing frontmatter
     cleaned = re.sub(r"^---\n.*?\n---\n", "", source_content, flags=re.DOTALL)
 
-    skill_id = skill_name.replace(".md", "")
-
-    return f"""---
-name: {skill_id}
+    # Build adf-prefixed frontmatter
+    new_content = f"""---
+name: {adf_name}
 description: {desc}
 user-invocable: true
 ---
@@ -98,149 +169,159 @@ user-invocable: true
 {cleaned}
 """
 
+    # Replace internal references
+    mapping = build_name_mapping()
+    new_content = replace_internal_references(new_content, mapping)
 
-def compute_file_hash(path: Path) -> str:
-    """Compute SHA256 hash of file content."""
-    return hashlib.sha256(path.read_bytes()).hexdigest()[:16]
-
-
-def skill_needs_update(skill_dir: Path, new_content: str) -> bool:
-    """Check if a skill needs to be updated by comparing content hash."""
-    skill_md = skill_dir / "SKILL.md"
-    if not skill_md.exists():
-        return True
-
-    new_hash = hashlib.sha256(new_content.encode()).hexdigest()[:16]
-    old_hash = compute_file_hash(skill_md)
-
-    return new_hash != old_hash
-
-
-def sync_skill(skill_name: str, source_path: Path) -> bool:
-    """Sync a single shared skill to the adapter directory. Returns True if changed."""
-    source_content = source_path.read_text()
-    skill_id = skill_name.replace(".md", "")
-    skill_dir = ADAPTER_SKILLS_DIR / skill_id
-    new_content = generate_skill_md(skill_id, source_content)
-
-    if not skill_needs_update(skill_dir, new_content):
+    if not needs_update(target_file, new_content):
         return False
 
-    skill_dir.mkdir(parents=True, exist_ok=True)
-    (skill_dir / "SKILL.md").write_text(new_content)
+    target_dir.mkdir(parents=True, exist_ok=True)
+    target_file.write_text(new_content)
     return True
+
+
+def sync_subdirectory_skill(subdir_name: str, adf_subdir_name: str, subdir_path: Path) -> bool:
+    """Sync a subdirectory of .md files to .claude/skills/adf-{subdir}/.
+
+    - Creates .claude/skills/adf-{subdir}/SKILL.md from the main entry file
+    - Copies all other .md files from the subdirectory as-is
+    - Replaces internal references in all generated files
+    """
+    mapping = build_name_mapping()
+    changed = False
+    target_dir = TARGET_DIR / adf_subdir_name
+
+    # Find main entry file (subdir_name.md or README.md in subdir)
+    entry_file = subdir_path / f"{subdir_name}.md"
+    if not entry_file.exists():
+        entry_file = subdir_path / "README.md"
+    if not entry_file.exists():
+        md_files = list(subdir_path.glob("*.md"))
+        if md_files:
+            entry_file = md_files[0]
+
+    # Generate SKILL.md from entry file
+    if entry_file.exists():
+        entry_content = entry_file.read_text()
+        name_val, desc = extract_name_and_description(entry_content)
+        cleaned = re.sub(r"^---\n.*?\n---\n", "", entry_content, flags=re.DOTALL)
+
+        skill_content = f"""---
+name: {adf_subdir_name}
+description: {desc}
+user-invocable: true
+---
+
+{cleaned}
+"""
+        skill_content = replace_internal_references(skill_content, mapping)
+
+        if needs_update(target_dir / "SKILL.md", skill_content):
+            target_dir.mkdir(parents=True, exist_ok=True)
+            (target_dir / "SKILL.md").write_text(skill_content)
+            changed = True
+
+    # Copy all .md files from subdirectory
+    for md_file in sorted(subdir_path.glob("*.md")):
+        target_file = target_dir / md_file.name
+        content = md_file.read_text()
+        content = replace_internal_references(content, mapping)
+
+        if needs_update(target_file, content):
+            target_dir.mkdir(parents=True, exist_ok=True)
+            target_file.write_text(content)
+            changed = True
+
+    return changed
 
 
 def main():
     import argparse
 
-    parser = argparse.ArgumentParser(description="Sync shared skills to Claude adapter")
-    parser.add_argument(
-        "--force",
-        action="store_true",
-        help="Force resync all skills (ignore diff check)",
-    )
+    parser = argparse.ArgumentParser(description="Sync shared skills to .claude/skills/ with adf prefix")
     parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Show what would be synced without making changes",
     )
     args = parser.parse_args()
-
-    force = os.environ.get("FORCE_RESYNC", "false").lower() == "true"
-    force = force or args.force
     dry_run = args.dry_run
 
     changed = []
-    skipped = []
+    unchanged = []
 
-    # Create target directory
-    ADAPTER_SKILLS_DIR.mkdir(parents=True, exist_ok=True)
+    # Step 0: Clear target directory
+    if not dry_run:
+        if TARGET_DIR.exists():
+            shutil.rmtree(TARGET_DIR)
+        TARGET_DIR.mkdir(parents=True)
+        print(f"[CLEARED] {TARGET_DIR}/")
+    else:
+        print(f"[DRY-RUN] Would clear {TARGET_DIR}/")
 
-    # Process top-level .md files in skills/shared/
     if not SKILLS_SHARED_DIR.exists():
         print(f"WARNING: {SKILLS_SHARED_DIR} does not exist")
         sys.exit(0)
 
+    # Build name mapping
+    mapping = build_name_mapping()
+    print(f"\n[DISCOVERED] {len(mapping)} skills:")
+    for orig, adf in mapping.items():
+        print(f"  {orig} -> {adf}")
+
+    # Step 1 & 2 & 3: Sync top-level .md files
     for source_path in sorted(SKILLS_SHARED_DIR.glob("*.md")):
-        skill_name = source_path.name
-
-        # Skip files that are subdirectory skills or explicitly skipped
-        if skill_name in SKIP_SKILLS:
-            skipped.append(skill_name)
+        if source_path.name in SKIP_FILES:
+            print(f"[SKIP] {source_path.name}")
             continue
 
-        # Skip if this skill has a subdirectory (those have their own SKILL.md)
-        if source_path.stem in SUBDIR_SKILLS:
-            skipped.append(f"{skill_name} (has subdirectory, handled separately)")
+        name = source_path.stem
+        adf_name = mapping.get(name, f"adf-{name}")
+
+        if dry_run:
+            print(f"[DRY-RUN] Would sync: {source_path.name} -> {adf_name}/SKILL.md")
             continue
 
-        source_content = source_path.read_text()
-        skill_id = skill_name.replace(".md", "")
-        skill_dir = ADAPTER_SKILLS_DIR / skill_id
-        new_content = generate_skill_md(skill_id, source_content)
-
-        if force or skill_needs_update(skill_dir, new_content):
-            if dry_run:
-                print(f"[DRY-RUN] Would sync: {skill_name} -> {skill_id}/SKILL.md")
-            else:
-                skill_dir.mkdir(parents=True, exist_ok=True)
-                (skill_dir / "SKILL.md").write_text(new_content)
-                print(f"SYNCED: {skill_name} -> {skill_id}/SKILL.md")
-                changed.append(skill_id)
+        if sync_top_level_skill(name, adf_name, source_path):
+            print(f"[SYNCED] {source_path.name} -> {adf_name}/SKILL.md")
+            changed.append(adf_name)
         else:
-            print(f"UNCHANGED: {skill_name}")
+            print(f"[UNCHANGED] {source_path.name}")
+            unchanged.append(adf_name)
 
-    # Handle subdirectory skills — read the main .md file in the subdirectory
-    for skill_id, subdir_path in SUBDIR_SKILLS.items():
-        if not subdir_path.exists():
+    # Step 1 & 2 & 3: Sync subdirectories
+    for subdir_path in sorted(SKILLS_SHARED_DIR.iterdir()):
+        if not subdir_path.is_dir():
             continue
 
-        # Find the main .md file (either skill_id.md or README.md in subdir)
-        main_md = subdir_path / f"{skill_id}.md"
-        if not main_md.exists():
-            main_md = subdir_path / "README.md"
-        if not main_md.exists():
-            # Look for any .md file
-            md_files = list(subdir_path.glob("*.md"))
-            if md_files:
-                main_md = md_files[0]
-            else:
-                print(f"WARNING: No .md file found in {subdir_path}")
-                continue
+        subdir_name = subdir_path.name
+        adf_subdir_name = mapping.get(subdir_name, f"adf-{subdir_name}")
 
-        source_content = main_md.read_text()
-        skill_dir = ADAPTER_SKILLS_DIR / skill_id
-        new_content = generate_skill_md(skill_id, source_content)
+        if dry_run:
+            print(f"[DRY-RUN] Would sync subdir: {subdir_name}/ -> {adf_subdir_name}/")
+            continue
 
-        if force or skill_needs_update(skill_dir, new_content):
-            if dry_run:
-                print(f"[DRY-RUN] Would sync subdir: {main_md.name} -> {skill_id}/SKILL.md")
-            else:
-                skill_dir.mkdir(parents=True, exist_ok=True)
-                (skill_dir / "SKILL.md").write_text(new_content)
-                print(f"SYNCED: {main_md.name} -> {skill_id}/SKILL.md")
-                changed.append(skill_id)
+        if sync_subdirectory_skill(subdir_name, adf_subdir_name, subdir_path):
+            print(f"[SYNCED] {subdir_name}/ -> {adf_subdir_name}/")
+            changed.append(adf_subdir_name)
         else:
-            print(f"UNCHANGED: {skill_id}/ (subdir)")
+            print(f"[UNCHANGED] {subdir_name}/")
+            unchanged.append(adf_subdir_name)
 
-    # Output for GitHub Actions
+    # Output summary
     has_changes = "true" if changed else "false"
-    changed_skills = ",".join(changed)
+    changed_str = ",".join(sorted(changed))
 
     if "GITHUB_OUTPUT" in os.environ:
         with open(os.environ["GITHUB_OUTPUT"], "a") as f:
             f.write(f"has_changes={has_changes}\n")
-            f.write(f"changed_skills={changed_skills}\n")
-    else:
-        print(f"\nSummary:")
-        print(f"  Changed: {changed}")
-        print(f"  Skipped: {skipped}")
-        print(f"  Has changes: {has_changes}")
+            f.write(f"changed_skills={changed_str}\n")
 
-    if changed and not dry_run:
-        # Write a marker file for the PR creation step
-        (Path("adapters/claude/.claude/skills")).mkdir(parents=True, exist_ok=True)
+    print(f"\nSummary:")
+    print(f"  Changed: {changed}")
+    print(f"  Unchanged: {unchanged}")
+    print(f"  Has changes: {has_changes}")
 
     sys.exit(0)
 

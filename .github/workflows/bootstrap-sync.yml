@@ -1,17 +1,17 @@
 name: Bootstrap Sync
 
-# 持续部署：将 skills/shared/ 中的源文件同步到 adapters/claude/.claude/skills/
-# 作为 Claude Code 的技能包分发入口。
+# 持续部署：将 skills/shared/ 中的源文件同步到 .claude/skills/
+# 作为 AgentDevFlow 的 adf-prefix 自举技能包。
 #
 # 工作原理：
 # 1. 当 skills/shared/ 中的共享技能发生变更并合并到 main 分支时触发
 # 2. 读取 skills/shared/ 中每个 .md 文件
-# 3. 为每个共享技能在 adapters/claude/.claude/skills/ 下创建或更新对应的 SKILL.md
-# 4. 直接提交到 main 分支（adapter 变更不会再次触发本 workflow）
+# 3. 为每个共享技能在 .claude/skills/ 下创建或更新对应的 SKILL.md
+# 4. 直接提交到 main 分支（自举部署，无 PR）
 #
 # 禁止：
 # - 禁止修改 skills/shared/ 源文件（只读取）
-# - 禁止修改非 SKILL.md 的文件
+# - 禁止修改非生成文件
 # - 禁止在没有变更时提交空提交
 
 on:
@@ -24,19 +24,18 @@ on:
   workflow_dispatch:
     inputs:
       force_resync:
-        description: 'Force resync all shared skills to adapter (ignores diff check)'
+        description: 'Force resync all shared skills (ignores diff check)'
         required: false
         default: 'false'
         type: boolean
 
 env:
   SKILLS_SHARED_DIR: skills/shared
-  ADAPTER_CLAUDE_DIR: adapters/claude/.claude
-  SKILLS_TARGET_DIR: adapters/claude/.claude/skills
+  SKILLS_TARGET_DIR: .claude/skills
 
 jobs:
   sync:
-    name: Sync shared skills to Claude adapter
+    name: Sync shared skills to .claude/skills (adf-prefix)
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -56,7 +55,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Sync shared skills
+      - name: Sync shared skills (adf-prefix)
         id: sync
         env:
           FORCE_RESYNC: ${{ inputs.force_resync || 'false' }}
@@ -67,15 +66,15 @@ jobs:
           echo "Changed skills: ${{ steps.sync.outputs.changed_skills }}"
           echo "Has changes: ${{ steps.sync.outputs.has_changes }}"
 
-      - name: Commit and push adapter changes
+      - name: Commit and push adf-prefix skills
         if: steps.sync.outputs.has_changes == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add adapters/claude/.claude/skills/
-          git commit -m "chore(adapter): sync shared skills to Claude adapter
+          git add .claude/skills/
+          git commit -m "chore: sync adf-prefix skills to .claude/skills
 
-          Updated skills: ${{ steps.sync.outputs.changed_skills }}
+Updated: ${{ steps.sync.outputs.changed_skills }}
 
-          [skip ci]"
+[skip ci]"
           git push
