@@ -14,12 +14,12 @@ jobs:
         run: |
           TITLE="${{ github.event.pull_request.title }}"
           echo "DEBUG: PR title = '$TITLE'"
-          # Match [DOC] or [DOC #N] prefix - skip if matched
-          # Use grep for portable regex
-          if echo "$TITLE" | grep -qE '^\[DOC(\s+#[0-9]+)?\]'; then
-            echo "This is a doc PR, not a code PR. Skipping."
-            exit 78  # Special exit code for GitHub Actions skip
-          fi
+          # Match doc PR: [DOC] or [DOC #N] - these should be skipped
+          # Use case for simple pattern matching
+          case "$TITLE" in
+            "[DOC]"*) echo "doc PR"; exit 78 ;;
+            "[DOC "*) echo "doc PR"; exit 78 ;;
+          esac
           echo "This is a code PR: $TITLE"
 
       - name: Checkout code
