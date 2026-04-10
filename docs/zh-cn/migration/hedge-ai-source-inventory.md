@@ -72,13 +72,18 @@
 | 源文件 | 判定 | 迁移说明 |
 |---|---|---|
 | `team-lead.md` | 可迁移 | 通用管理边界可迁移 |
+| `pm-agent.md` | 可迁移 | 通用 PM / 文档阶段 owner 可迁移 |
+| `cto-agent.md` | 可迁移 | 通用技术评审 owner 可迁移 |
+| `engineer-agent.md` | 可迁移 | 通用开发交付角色可迁移 |
+| `qa-agent.md` | 可迁移 | 通用 QA Gate 与测试验收角色可迁移 |
+| `pmo-agent.md` | 可迁移 | 流程合规主动检查机制可迁移 |
 | `research-agent.md` | 部分迁移 | 仅保留通用研究流程 |
 | `sre-agent.md` | 可迁移 | 运行保障机制可迁移 |
 | `backtest-agent.md` | 禁止迁移 | 回测业务专属 |
 | `bull-agent.md` | 禁止迁移 | 交易策略辩论专属 |
 | `bear-agent.md` | 禁止迁移 | 交易策略辩论专属 |
 | `risk-agent.md` | 部分迁移 | 仅迁移工程风险控制方法 |
-| `cso.md` | 部分迁移 | 仅迁移通用安全治理机制 |
+| `cso.md` | 部分迁移 | 不作为插件主干角色，仅参考通用治理方法 |
 | `cro.md` | 禁止迁移 | 交易风险角色专属 |
 
 ### B2. AGENTS/evaluation

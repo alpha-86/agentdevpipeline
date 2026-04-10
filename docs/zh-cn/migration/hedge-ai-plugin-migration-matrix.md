@@ -51,14 +51,20 @@
 
 | 源文件 | 机制摘要 | 判定 | 当前仓库落点 | 插件落点 | 状态 |
 |---|---|---|---|---|---|
-| `.claude/skills/AGENTS/team-lead.md` | 团队协调、会议前读 workflow、QA 触发、评论约束 | 可迁移 | `skills/shared/agents/team-lead.md` | 插件角色包 | 已迁移，但还需继续细化 |
-| `.claude/skills/AGENTS/pm-agent.md` | 文档阶段 owner、Issue 主线、双阶段交付、Gate 前置 | 可迁移 | `skills/shared/agents/product-manager.md` | 插件角色包 | 已迁移，但还需继续细化 |
-| `.claude/skills/AGENTS/cto-agent.md` | 技术评审 owner、架构边界、签字机制 | 可迁移 | `skills/shared/agents/tech-lead.md` | 插件角色包 | 已迁移，但需逐项再核 |
-| `.claude/skills/AGENTS/engineer-agent.md` | 前置检查、开发拒绝机制、实现后交 QA | 可迁移 | `skills/shared/agents/engineer.md` | 插件角色包 | 已迁移，但需逐项再核 |
-| `.claude/skills/AGENTS/qa-agent.md` | QA 介入、测试报告、验收约束 | 可迁移 | `skills/shared/agents/qa-engineer.md` | 插件角色包 | 已迁移，但需逐项再核 |
-| `.claude/skills/AGENTS/sre-agent.md` | 平台保障、发布/回滚、平台检查 | 可迁移 | `skills/shared/agents/platform-sre.md` | 插件角色包 | 已迁移 |
-| `.claude/skills/AGENTS/pmo-agent.md` | 流程合规主动检查机制 | 可迁移 | `skills/shared/agents/process-auditor.md` | 插件治理角色包 | 已迁移，但需继续对齐源文档 |
-| `.claude/skills/AGENTS/research-agent.md` | 通用研究支持、信息澄清与前期调研 | 部分迁移 | `skills/shared/agents/researcher.md` | 插件角色包 | 已部分迁移 |
+| `.claude/skills/AGENTS/team-lead.md` | 团队协调、会议前读 workflow、QA 触发、评论约束 | 可迁移 | `skills/shared/agents/team-lead.md` | 插件主干角色包 | 已复核；属于插件主干角色 |
+| `.claude/skills/AGENTS/pm-agent.md` | 文档阶段 owner、Issue 主线、双阶段交付、Gate 前置 | 可迁移 | `skills/shared/agents/product-manager.md` | 插件主干角色包 | 已复核；属于插件主干角色 |
+| `.claude/skills/AGENTS/cto-agent.md` | 技术评审 owner、架构边界、签字机制 | 可迁移 | `skills/shared/agents/tech-lead.md` | 插件主干角色包 | 已复核；属于插件主干角色 |
+| `.claude/skills/AGENTS/engineer-agent.md` | 前置检查、开发拒绝机制、实现后交 QA | 可迁移 | `skills/shared/agents/engineer.md` | 插件主干角色包 | 已复核；属于插件主干角色 |
+| `.claude/skills/AGENTS/qa-agent.md` | QA 介入、测试报告、验收约束 | 可迁移 | `skills/shared/agents/qa-engineer.md` | 插件主干角色包 | 已复核；属于插件主干角色 |
+| `.claude/skills/AGENTS/sre-agent.md` | 平台保障、发布/回滚、平台检查 | 可迁移 | `skills/shared/agents/platform-sre.md` | 插件主干角色包 | 已复核；属于插件主干角色 |
+| `.claude/skills/AGENTS/pmo-agent.md` | 流程合规主动检查机制 | 可迁移 | `skills/shared/agents/process-auditor.md` | 插件治理主干角色包 | 已复核；属于插件主干角色 |
+| `.claude/skills/AGENTS/research-agent.md` | 通用研究支持、信息澄清与前期调研 | 部分迁移 | `skills/shared/agents/researcher.md` | 插件补充角色包 | 已复核；仅保留通用研究方法 |
+| `.claude/skills/AGENTS/risk-agent.md` | 风险识别与缓解建议 | 部分迁移 | 当前无严格对应主角色 | 插件补充风险方法 | 已复核；仅保留工程风险方法 |
+| `.claude/skills/AGENTS/cso.md` | 量化策略负责人角色 | 部分迁移 | 当前无直接主干对应 | 不作为插件主角色主干 | 已复核；仅可参考通用治理方法 |
+| `.claude/skills/AGENTS/backtest-agent.md` | 回测执行与回测报告生成 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
+| `.claude/skills/AGENTS/bull-agent.md` | 策略辩论看多方 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
+| `.claude/skills/AGENTS/bear-agent.md` | 策略辩论看空方 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
+| `.claude/skills/AGENTS/cro.md` | 交易风险负责人角色 | 禁止迁移 | 不进入主干 | 不进入插件主干 | 已复核 |
 | `.claude/skills/AGENTS/evaluation/*.md` | 完整性 / 一致性 / 逻辑 / 证据检查 | 可迁移 | `prompts/zh-cn/015_review_evaluation_dimensions.md` | 插件评审子能力 | 尚未充分产品化 |
 
 ## C. Workflow 机制
