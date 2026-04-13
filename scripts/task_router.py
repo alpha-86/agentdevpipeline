@@ -30,6 +30,7 @@ ROLE_MAP = {
     "bug": "Engineer",
     "qa": "QA Engineer",
     "research": "研究支持",
+    "telegram": "Team Lead",  # Telegram 用户消息 -> Team Lead 处理
 }
 
 
@@ -60,24 +61,46 @@ def write_pending_comment(task: Dict, role: str, log_entry: Dict):
     """写入 pending comment 到 results 目录"""
     issue_id = task.get("issue_id", "unknown")
     title = task.get("title", "无标题")
+    task_type = task.get("type", "").lower().strip()
+
+    # 构建基础内容
+    content_lines = [
+        f"# Pending Task: {issue_id}\n",
+        f"**Title:** {title}\n",
+        f"**Type:** {task.get('type', 'N/A')}\n",
+        f"**Priority:** {task.get('priority', 'N/A')}\n",
+        f"**Labels:** {task.get('labels', 'N/A')}\n",
+    ]
+
+    # Telegram 类型特殊字段
+    if task_type == "telegram":
+        content_lines.extend([
+            f"**Source:** telegram\n",
+            f"**Chat ID:** {task.get('chat_id', 'N/A')}\n",
+            f"**Username:** @{task.get('username', 'N/A')}\n",
+            f"**First Name:** {task.get('first_name', 'N/A')}\n",
+            f"**Issue URL:** (Telegram 消息，无需 GitHub Issue URL)\n",
+        ])
+    else:
+        content_lines.extend([
+            f"**Issue URL:** {task.get('issue_url', 'N/A')}\n",
+            f"**Source:** agentdevflow\n",
+        ])
+
+    content_lines.extend([
+        f"**Created:** {task.get('created_at', 'N/A')}\n",
+        f"**Assigned Role:** {role}\n\n",
+        f"---\n\n",
+        f"## Content\n\n{task.get('content', 'N/A')}\n\n",
+        f"---\n\n",
+        f"## Routing Log\n\n",
+        f"- **Routed at:** {log_entry['timestamp']}\n",
+        f"- **Routed to:** {role}\n",
+        f"- **Source file:** `{log_entry['source_file']}`\n",
+    ])
 
     comment_file = RESULTS_DIR / f"pending_{issue_id}.md"
-    comment_file.write_text(
-        f"# Pending Task: {issue_id}\n\n"
-        f"**Title:** {title}\n"
-        f"**Type:** {task.get('type', 'N/A')}\n"
-        f"**Priority:** {task.get('priority', 'N/A')}\n"
-        f"**Labels:** {task.get('labels', 'N/A')}\n"
-        f"**Issue URL:** {task.get('issue_url', 'N/A')}\n"
-        f"**Created:** {task.get('created_at', 'N/A')}\n"
-        f"**Assigned Role:** {role}\n\n"
-        f"**Source:** agentdevflow\n\n"
-        f"---\n\n"
-        f"## Routing Log\n\n"
-        f"- **Routed at:** {log_entry['timestamp']}\n"
-        f"- **Routed to:** {role}\n"
-        f"- **Source file:** `{log_entry['source_file']}`\n"
-    )
+    comment_file.write_text("".join(content_lines), encoding="utf-8")
 
 
 def route_all(verbose: bool = False) -> Dict[str, int]:

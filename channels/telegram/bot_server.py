@@ -20,6 +20,8 @@ import requests
 
 AGENTDEVFLOW_ROOT = Path(__file__).parent.parent.parent.resolve()
 LOG_FILE = AGENTDEVFLOW_ROOT / "logs" / "telegram_bot.log"
+TASK_QUEUE_DIR = AGENTDEVFLOW_ROOT / ".claude" / "task_queue"
+SESSION_FILE = AGENTDEVFLOW_ROOT / ".claude" / "telegram_sessions.json"
 
 
 def _init_logging():
@@ -77,6 +79,9 @@ class TelegramBotServer:
         # 回调
         self.on_message: Optional[Callable] = None
         self.on_command: Optional[Callable] = None
+
+        # Session 管理 (chat_id 持久化)
+        self._sessions: Dict[str, int] = self._load_sessions()
 
     # ===== API 方法 =====
 
@@ -165,6 +170,75 @@ class TelegramBotServer:
         except Exception as e:
             logger.error(f"回答回调失败: {e}")
 
+    # ===== Session 管理 =====
+
+    def _load_sessions(self) -> Dict[str, int]:
+        """加载 session 映射 (session_id -> chat_id)"""
+        try:
+            if SESSION_FILE.exists():
+                with open(SESSION_FILE, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+        except Exception as e:
+            logger.warning(f"加载 session 失败: {e}")
+        return {}
+
+    def _save_sessions(self):
+        """保存 session 映射到文件"""
+        try:
+            SESSION_FILE.parent.mkdir(parents=True, exist_ok=True)
+            with open(SESSION_FILE, 'w', encoding='utf-8') as f:
+                json.dump(self._sessions, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            logger.error(f"保存 session 失败: {e}")
+
+    def _register_session(self, session_id: str, chat_id: int):
+        """注册 session -> chat_id 映射"""
+        self._sessions[session_id] = chat_id
+        self._save_sessions()
+        logger.info(f"Session 注册: {session_id} -> {chat_id}")
+
+    def get_chat_id_by_session(self, session_id: str) -> Optional[int]:
+        """根据 session_id 查找 chat_id"""
+        return self._sessions.get(session_id)
+
+    # ===== TaskQueue 写入 =====
+
+    def _write_to_task_queue(self, update: Dict):
+        """将 Telegram 消息写入 task_queue，触发 Team Lead 通知"""
+        import uuid
+        from datetime import datetime
+
+        message = update.get("message", {})
+        chat_id = message.get("chat", {}).get("id")
+        text = message.get("text", "")
+        first_name = message.get("from", {}).get("first_name", "unknown")
+        username = message.get("from", {}).get("username", "")
+
+        if not text:
+            return  # 忽略空消息
+
+        task_id = f"telegram_{uuid.uuid4().hex[:8]}"
+        TASK_QUEUE_DIR.mkdir(parents=True, exist_ok=True)
+        task_file = TASK_QUEUE_DIR / f"{task_id}.task"
+
+        # 写入 task 文件（兼容 task_router.py 格式）
+        task_file.write_text(
+            f"issue_id={task_id}\n"
+            f"title=TG消息 from {first_name}\n"
+            f"type=telegram\n"
+            f"source=telegram\n"
+            f"chat_id={chat_id}\n"
+            f"username={username}\n"
+            f"first_name={first_name}\n"
+            f"content={text}\n"
+            f"created_at={datetime.now().isoformat()}\n",
+            encoding="utf-8"
+        )
+        logger.info(f"消息已写入 task_queue: {task_id} (chat_id={chat_id})")
+
+        # 注册 session 映射，便于 Team Lead 回传
+        self._register_session(task_id, chat_id)
+
     # ===== 消息处理 =====
 
     def _process_update(self, update: Dict):
@@ -188,9 +262,11 @@ class TelegramBotServer:
 
         # 解析命令
         response = None
+        is_command = False
         if text:
             if text.startswith("/start"):
                 response = "👋 AgentDevFlow Bot 已启动。发送 /help 查看可用命令。"
+                is_command = True
             elif text.startswith("/help"):
                 response = (
                     "📋 *可用命令*\n\n"
@@ -200,15 +276,26 @@ class TelegramBotServer:
                     "/health - 健康检查\n\n"
                     "也可以直接发送文本消息。"
                 )
+                is_command = True
             elif text.startswith("/status"):
                 response = self._get_status_text()
+                is_command = True
             elif text.startswith("/health"):
                 response = self._health_check_text()
+                is_command = True
+
+        # 命令消息：直接响应（同时写入 task_queue 让 Team Lead 知晓）
+        if is_command:
+            if response:
+                self.send_message(chat_id, response)
+            # 写入 task_queue 让 Team Lead 看到命令
+            self._write_to_task_queue(update)
+        else:
+            # 普通消息：写入 task_queue 触发 Team Lead 处理
+            if text:
+                self._write_to_task_queue(update)
 
         # 触发回调
-        if response:
-            self.send_message(chat_id, response)
-
         if self.on_message:
             self.on_message(update, response)
 

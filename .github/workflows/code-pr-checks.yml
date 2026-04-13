@@ -35,6 +35,65 @@ jobs:
             exit 1
           fi
 
+      - name: Check Issue Comment Gate
+        id: comment-gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          ISSUE=${{ steps.extract-issue.outputs.issue_number }}
+          if [ -z "$ISSUE" ]; then
+            echo "Could not extract issue number, skipping Issue Comment Gate check"
+            exit 0
+          fi
+
+          echo ""
+          echo "=========================================="
+          echo "Issue Comment Gate Check"
+          echo "=========================================="
+          echo "Checking Issue #$ISSUE for required Agent Comments..."
+
+          # Fetch issue comments via GitHub API
+          COMMENTS=$(curl -s -H "Authorization: token $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/issues/$ISSUE/comments" \
+            | python3 -c "import sys, json; comments = json.load(sys.stdin); print(len(comments))" 2>/dev/null || echo "0")
+
+          echo "Found $COMMENTS comment(s) on Issue #$ISSUE"
+
+          # V2.2.5 Gate Rule: Issue must have at least 1 Agent Comment with artifact links
+          if [ "$COMMENTS" -lt 1 ]; then
+            echo ""
+            echo "[Gate Check] FAILED: Issue #$ISSUE has no comments"
+            echo ""
+            echo "Issue Comment Gate 要求:"
+            echo "  - Issue 下至少有 1 条 Agent Comment"
+            echo "  - Comment 内容必须包含产物链接 (PRD/Tech/PR)"
+            echo ""
+            echo "解决方案:"
+            echo "  1. 在 Issue #$ISSUE 下添加 Agent Comment"
+            echo "  2. Comment 必须包含产物链接 (PRD/Tech/PR)"
+            echo "  3. 参考: prompts/020_issue_comment_gate_and_artifact_linkage.md"
+            exit 1
+          fi
+
+          # Check if any comment contains artifact links (PRD, Tech, PR)
+          BODY=$(curl -s -H "Authorization: token $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/issues/$ISSUE/comments" \
+            | python3 -c "import sys, json; comments = json.load(sys.stdin); print(' '.join([c.get('body','') for c in comments]))" 2>/dev/null)
+
+          if echo "$BODY" | grep -qE "(PRD|Tech|PR|文档|技术|代码)"; then
+            echo "[Gate Check] PASSED: Issue #$ISSUE has Agent Comment with artifact links"
+          else
+            echo ""
+            echo "[Gate Check] WARNING: Comments exist but may not contain artifact links"
+            echo "Issue Comment Gate 要求:"
+            echo "  - Comment 内容必须包含产物链接 (PRD/Tech/PR)"
+            echo ""
+            echo "建议: 在 Issue Comment 中添加产物链接以满足 V2.2.5 Gate 要求"
+          fi
+
       - name: Check doc PR is merged
         run: |
           ISSUE=${{ steps.extract-issue.outputs.issue_number }}

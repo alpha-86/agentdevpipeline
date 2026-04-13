@@ -11,11 +11,12 @@ GitHub Issue & Comment 同步脚本
 import os
 import sys
 import json
+import re
 import logging
 import subprocess
 import argparse
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 from datetime import datetime, timezone
 
 # 允许的工具列表（安全约束，Phase 2 扩展时使用）
@@ -76,6 +77,42 @@ REQUIRED_TYPE_LABELS = {
 }
 # 允许的 priority 标签
 ALLOWED_PRIORITY_LABELS = {"priority/high", "priority/critical"}
+
+# Issue 命名格式 (AgentDevFlow 标准: Issue_${type}#${id}:${name})
+# 参考: docs/governance/issue-naming-convention.md
+ISSUE_NAMING_PATTERN = re.compile(r"^Issue_(feature|bug|discuss)#(\d+):(.+)$")
+ALLOWED_ISSUE_TYPES = {"feature", "bug", "discuss"}
+
+
+def validate_issue_naming(title: str) -> Tuple[bool, str]:
+    """
+    验证 Issue 标题是否符合命名规范
+
+    格式: Issue_${type}#${id}:${name}
+    示例: Issue_feature#1:添加Telegram Bot部署说明
+
+    Returns:
+        (is_valid, error_message)
+    """
+    match = ISSUE_NAMING_PATTERN.match(title)
+    if not match:
+        # 提取实际类型（如果有）
+        type_match = re.match(r"^Issue_([^#]+)#", title)
+        if type_match:
+            actual_type = type_match.group(1)
+            if actual_type not in ALLOWED_ISSUE_TYPES:
+                return False, f"无效的 Issue 类型 '{actual_type}'，必须是: {', '.join(ALLOWED_ISSUE_TYPES)}"
+        return False, f"标题不符合 Issue_${ '{type}#{{id}}:{{name}}' } 格式"
+
+    issue_type, issue_id, issue_name = match.groups()
+
+    if not issue_name or not issue_name.strip():
+        return False, "Issue 名称不能为空"
+
+    if int(issue_id) <= 0:
+        return False, f"Issue ID 必须为正整数，实际: {issue_id}"
+
+    return True, ""
 
 
 def get_processed_issues() -> set:
@@ -257,13 +294,29 @@ def sync_issue(issue: dict, processed: set, auto_push: bool = True) -> bool:
         logger.debug(f"Issue #{issue_number} 已处理，跳过")
         return False
 
+    # Issue 命名格式验证
+    title = issue.get("title", "")
+    is_valid, error_msg = validate_issue_naming(title)
+    naming_warning = ""
+    if not is_valid:
+        naming_warning = (
+            f"\n\n⚠️ **Issue 命名格式警告**\n"
+            f"标题: `{title}`\n"
+            f"问题: {error_msg}\n"
+            f"正确格式: `Issue_{{type}}#{{id}}:{{name}}`，例如: `Issue_feature#1:添加Telegram Bot部署说明`\n"
+            f"参考: `docs/governance/issue-naming-convention.md`\n"
+        )
+        logger.warning(f"Issue #{issue_number} 命名格式不符: {error_msg}")
+
     # 写入任务文件
     task_file = write_task_file(issue)
     if task_file:
         # 确认评论（仅首次成功时评论）- 通过 post-comment workflow 发送
+        warning_section = naming_warning if naming_warning else ""
         msg = (
             f"AgentDevFlow Issue 已接收，正在处理。\n\n"
             f"**任务队列**: `.claude/task_queue/issue_{issue_number}.task`\n\n"
+            f"{warning_section}"
             f"> 此评论由 GitHub Actions 自动生成"
         )
         result_file = write_pending_comment(issue_number, msg)
