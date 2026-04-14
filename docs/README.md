@@ -26,36 +26,35 @@ AgentDevFlow 是一套自包含的通用产研 Agent 能力包，目标是把可
 - Agent 创建规范、平台适配约束和跨平台接入方式
 - 面向自动化编排的共享 prompts、workflows、templates、playbooks
 
-## 与 hedge-ai 的边界
+## 迁移与审计层（可后续参考）
 
-- hedge-ai 只作为流程参考样本，不是本项目运行依赖。
-- 本项目严禁引入量化交易业务语义（角色、时段、报表、指标）。
-- 保留通用研发日会机制，但日会内容必须使用通用产研语义。
-- 详细约束见：[迁移边界（强约束）](/home/work/code/AgentDevFlow/docs/governance/migration-boundary-from-hedge-ai.md)
+> 以下目录保留迁移依据，不影响当前规则层表达。
+> 普通用户无需阅读此层，可直接使用 `prompts/` 和 `skills/shared/`。
+
+- [迁移边界（强约束）](./governance/migration-boundary-from-hedge-ai.md)
+- [hedge-ai 源文档清单与迁移判定](./migration/hedge-ai-source-inventory.md)
+- [可迁移机制落地计划](./migration/portable-mechanism-rollout-plan.md)
+- [完成度审计](./migration/completion-audit.md)
+- [与 hedge-ai 的对照审计](./migration/review-vs-hedge-ai.md)
 
 ## 阅读顺序
 
-1. [仓库结构图](/home/work/code/AgentDevFlow/docs/architecture/repository-map.md)
-2. [依赖清单](/home/work/code/AgentDevFlow/docs/reference/dependencies.md)
-3. [外部复用调研](/home/work/code/AgentDevFlow/docs/reference/reuse-survey.md)
-4. [与 hedge-ai 的迁移边界（强约束）](/home/work/code/AgentDevFlow/docs/governance/migration-boundary-from-hedge-ai.md)
-5. [hedge-ai 源文档清单与迁移判定](/home/work/code/AgentDevFlow/docs/migration/hedge-ai-source-inventory.md)
-6. [可迁移机制落地计划](/home/work/code/AgentDevFlow/docs/migration/portable-mechanism-rollout-plan.md)
-7. [完成度审计](/home/work/code/AgentDevFlow/docs/migration/completion-audit.md)
-8. [与 hedge-ai 的对照审计](/home/work/code/AgentDevFlow/docs/migration/review-vs-hedge-ai.md)
-9. [治理目录](/home/work/code/AgentDevFlow/docs/governance/README.md)
-10. [核心原则](/home/work/code/AgentDevFlow/docs/governance/core-principles.md)
-11. [共享技能使用协议](/home/work/code/AgentDevFlow/docs/governance/skill-protocol.md)
-12. `prompts/discuss/` 中的复核与讨论记录
-13. 平台与沟通通道接入文档
-14. `prompts/` 中的 Issue / 变更 / 异常 / 合规机制
-15. `skills/shared/` 中的角色、workflow、template
-16. `skills/shared/team-setup.md`
-17. `skills/shared/start-agent-team.md`
-18. `skills/shared/create-agent.md`
-19. `skills/shared/skill-protocol.md`
-20. `skills/shared/event-bus.md`
-21. `skills/shared/agents/pmo.md` 与其他角色文件
+1. [仓库结构图](./architecture/repository-map.md)
+2. [依赖清单](./reference/dependencies.md)
+3. [外部复用调研](./reference/reuse-survey.md)
+4. [治理目录](./governance/README.md)
+5. [核心原则](./governance/core-principles.md)
+6. [共享技能使用协议](./governance/skill-protocol.md)
+7. `prompts/discuss/` 中的复核与讨论记录
+8. 平台与沟通通道接入文档
+9. `prompts/` 中的 Issue / 变更 / 异常 / 合规机制
+10. `skills/shared/` 中的角色、workflow、template
+11. `skills/shared/team-setup.md`
+12. `skills/shared/start-agent-team.md`
+13. `skills/shared/create-agent.md`
+14. `skills/shared/skill-protocol.md`
+15. `skills/shared/event-bus.md`
+16. `skills/shared/agents/pmo.md` 与其他角色文件
 
 ## 可直接使用的交付目录
 

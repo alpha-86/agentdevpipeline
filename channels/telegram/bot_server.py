@@ -1,9 +1,8 @@
 """
 Telegram 机器人服务器（通用版）
 
-从 hedge-ai/channels/telegram/bot_server.py 迁移
-剥离：交易信号推送、策略推送、回测报告推送等业务逻辑
-保留：通用消息收发、健康检查、重试机制、轮询循环
+提供通用消息收发、健康检查、重试机制、轮询循环等基础设施。
+支持 TaskQueue 写入、Session 持久化和 Team Lead 回复闭环。
 """
 
 import os
@@ -42,8 +41,8 @@ class TelegramBotServer:
     """Telegram Bot 服务器（轮询模式）"""
 
     def __init__(self, token: str = None, config_path: str = None):
-        # 加载 Token
-        self.token = token or os.environ.get("TELEGRAM_TOKEN", "")
+        # 加载 Token（优先 TELEGRAM_BOT_TOKEN，兼容 TELEGRAM_TOKEN）
+        self.token = token or os.environ.get("TELEGRAM_BOT_TOKEN") or os.environ.get("TELEGRAM_TOKEN", "")
         if not self.token:
             config_file = AGENTDEVFLOW_ROOT / ".claude" / "config" / "bot_config.json"
             if config_file.exists():
@@ -396,7 +395,8 @@ def get_bot_server(token: str = None) -> "TelegramBotServer":
 def run_bot_server(token: str = None):
     """运行 Bot 服务器"""
     if not token:
-        token = os.environ.get("TELEGRAM_TOKEN", "")
+        # 优先 TELEGRAM_BOT_TOKEN，兼容 TELEGRAM_TOKEN
+        token = os.environ.get("TELEGRAM_BOT_TOKEN") or os.environ.get("TELEGRAM_TOKEN", "")
         config_file = AGENTDEVFLOW_ROOT / ".claude" / "config" / "bot_config.json"
         if not token and config_file.exists():
             with open(config_file) as f:
@@ -404,7 +404,7 @@ def run_bot_server(token: str = None):
                 token = config.get("telegram", {}).get("token", "")
 
     if not token:
-        print("请设置 TELEGRAM_TOKEN 环境变量或传入 token 参数")
+        print("请设置 TELEGRAM_BOT_TOKEN 环境变量或传入 token 参数")
         return
 
     bot = TelegramBotServer(token)

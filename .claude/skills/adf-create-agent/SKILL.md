@@ -17,9 +17,8 @@ user-invocable: true
 - `architect`
 - `engineer`
 - `qa-engineer`
-- `research-support`
 - `platform-sre`
-- `process-auditor`
+- `pmo`
 
 ## 执行前必读
 
@@ -44,10 +43,6 @@ user-invocable: true
 
 - `.claude/skills/adf-agents/{role}.md`
 - `.claude/skills/adf-agents/{role}.playbook.md`
-
-兼容映射：
-
-- `research-support` -> `researcher`
 
 （注意：`architect` 已有独立文件，无需映射。）
 

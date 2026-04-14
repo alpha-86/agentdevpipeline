@@ -29,11 +29,7 @@
 4. `qa-engineer`
 5. `engineer`
 6. `platform-sre`
-7. `process-auditor`
-
-按需：
-
-8. `research-support`
+7. `pmo`
 
 ## 必须加载的共享资产
 

@@ -13,14 +13,12 @@ Supported types:
 - architect
 - engineer
 - qa-engineer
-- research-support
 - platform-sre
-- process-auditor
+- pmo
 
 Role mapping:
 
 - `architect` -> `skills/shared/agents/architect.md`
-- `research-support` -> `skills/shared/agents/researcher.md`
 
 The created agent must load its shared role file under `skills/shared/agents/` and the required source prompts under `prompts/`.
 
@@ -30,4 +28,4 @@ The created agent must load its shared role file under `skills/shared/agents/` a
 2. load the required source prompts
 3. inject critical rules, responsibilities, required reading, and standard actions
 4. do not create a generic fallback role for a gated delivery responsibility
-5. do not enable `research-support` by default unless the task actually requires research work
+5. `team-lead` is the human user themselves, not a separate agent

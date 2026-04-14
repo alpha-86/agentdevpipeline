@@ -20,5 +20,4 @@ user-invocable: true
 4. qa-engineer
 5. engineer
 6. platform-sre
-7. process-auditor
-8. research-support
+7. pmo
