@@ -26,17 +26,6 @@ AgentDevFlow 是一套自包含的通用产研 Agent 能力包，目标是把可
 - Agent 创建规范、平台适配约束和跨平台接入方式
 - 面向自动化编排的共享 prompts、workflows、templates、playbooks
 
-## 迁移与审计层（可后续参考）
-
-> 以下目录保留迁移依据，不影响当前规则层表达。
-> 普通用户无需阅读此层，可直接使用 `prompts/` 和 `skills/shared/`。
-
-- [迁移边界（强约束）](./governance/migration-boundary-from-hedge-ai.md)
-- [hedge-ai 源文档清单与迁移判定](./migration/hedge-ai-source-inventory.md)
-- [可迁移机制落地计划](./migration/portable-mechanism-rollout-plan.md)
-- [完成度审计](./migration/completion-audit.md)
-- [与 hedge-ai 的对照审计](./migration/review-vs-hedge-ai.md)
-
 ## 阅读顺序
 
 1. [仓库结构图](./architecture/repository-map.md)
