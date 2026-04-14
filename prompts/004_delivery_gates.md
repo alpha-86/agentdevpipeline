@@ -83,8 +83,8 @@
 
 | Gate | 文档类型 | 必需签字 | 检查位置 |
 |------|---------|----------|----------|
-| **PRD Gate 1** | PRD | PM + CTO + CSO/CRO | PRD 文档头部 Gate 块 |
-| **Tech Gate 2** | Tech | PM + CRO + QA | Tech 文档头部 Gate 块 |
+| **PRD Gate 1** | PRD | PM + 架构评审人 + 质量评审人 | PRD 文档头部 Gate 块 |
+| **Tech Gate 2** | Tech | PM + 技术评审人 + QA | Tech 文档头部 Gate 块 |
 | **QA Case Design** | QA Case | PM + CTO + Engineer (三方签字) | QA Case 文档头部 Gate 块 |
 | **QA Test Report** | QA Test Report | CTO + Engineer + PM (三方签字验收) | QA Test Report 文档头部 Gate 块 |
 
@@ -96,8 +96,8 @@
      ▼
 doc-pr-checks.yml 执行
      │
-     ├── 检查 PRD Gate 1 (PM + CTO + CSO/CRO)
-     ├── 检查 Tech Gate 2 (PM + CRO + QA)
+     ├── 检查 PRD Gate 1 (PM + 架构评审人 + 质量评审人)
+     ├── 检查 Tech Gate 2 (PM + 技术评审人 + QA)
      └── 检查 QA Case Design (PM + CTO + Engineer)
           │
           ├── 全部通过 → 允许提交
@@ -114,7 +114,7 @@ doc-pr-checks.yml 执行
 要求:
   □ PM 签字: 未通过
   □ CTO 签字: 已通过
-  □ CRO 签字: 未通过
+  □ 技术评审签字: 未通过
   □ QA 签字: 已通过
 
 解决方案:

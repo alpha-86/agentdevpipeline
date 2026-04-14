@@ -54,7 +54,7 @@
 1. 新增 `skills/shared/team-setup.md`
 2. 新增 `skills/shared/skill-protocol.md`
 3. 在 `skills/shared/README.md`、`docs/zh-cn/README.md`、`README.md` 中增加入口
-4. 继续保持不引入任何量化交易业务角色或自动创建策略类 agent 的语义
+4. 继续保持不引入任何业务角色或自动创建方案类 agent 的语义
 
 ## 四、后续项
 
