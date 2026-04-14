@@ -14,11 +14,10 @@ user-invocable: true
 
 ## Recommended Startup Order
 
-> **注意**：`team-lead` 是 human 用户本身，不需要通过 `create-agent` 创建。
-
-1. product-manager
-2. architect
-3. qa-engineer
-4. engineer
-5. platform-sre
-6. pmo
+1. team-lead
+2. product-manager
+3. architect
+4. qa-engineer
+5. engineer
+6. platform-sre
+7. pmo
