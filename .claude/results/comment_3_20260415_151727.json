@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 3,
+  "body": "AgentDevFlow Issue 已接收，正在处理。\n\n**任务队列**: `.claude/task_queue/issue_3.task`\n\n> 此评论由 GitHub Actions 自动生成",
+  "agent": "github-actions[sync]",
+  "source_comment_url": "",
+  "created_at": "2026-04-15T15:17:27Z",
+  "status": "pending"
+}
