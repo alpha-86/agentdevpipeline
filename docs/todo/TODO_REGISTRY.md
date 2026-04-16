@@ -8,19 +8,31 @@
 
 ## 角色分配
 
-| 角色 | 状态 | Agent ID | 说明 |
-|------|------|----------|------|
-| Team Lead | ✅ | - | Claude Code (本会话，Human) |
-| Product Manager | ✅ 已创建 | add4f6508a452e391 | 子 Agent，已初始化 |
-| 架构师 | ✅ 已创建 | a3015eef48af9c473 | 子 Agent，已初始化 |
-| QA Engineer | ✅ 已创建 | a3015eef48af9c473 (QA) | 子 Agent，已初始化 |
-| Engineer | ✅ 已创建 | acac37e1934dedfd3 | 子 Agent，已初始化，待命 |
-| Platform/SRE | ✅ 已创建 | af692ea23e8896a7e | 子 Agent，已初始化，关注 Issue #8 |
-| PMO | ✅ 已创建 | aa516ed021edee70e | 子 Agent，已初始化，待命 |
+| 角色 | 状态 | Agent ID | tmux  panes |
+|------|------|----------|-------------|
+| Team Lead | ✅ | - | - |
+| Product Manager | ✅ | product-manager@agentdevflow | %54 |
+| 架构师 | ✅ | architect@agentdevflow | %55 |
+| QA Engineer | ✅ | qa-engineer@agentdevflow | %56 |
+| Engineer | ✅ | engineer@agentdevflow | %57 |
+| Platform/SRE | ✅ | platform-sre@agentdevflow | %58 |
+| PMO | ✅ | pmo@agentdevflow | %59 |
 
 ## 当前 Gate
 
-- Gate 0: Team Startup ✅ 已完成 (2026-04-16 全员角色补充完成)
+- Gate 0: Team Startup ✅ 已完成 (2026-04-16 全员角色补充完成，tmux 模式)
+
+## 待处理 Issue
+
+| Issue | 标题 | 路由 | 状态 |
+|-------|------|------|------|
+| #8 | GOV-004 HR#1 被跳过 | Engineer | pending |
+| #5 | ADF 技能系统完善 | Engineer | pending |
+| #3 | gstack/superpower 增强层接入 | Engineer | pending |
+
+## 已知问题
+
+- Platform/SRE 报告 4 个 skill 文件缺失：release-review.md, anomaly-response.md, release-record-template.md, platform-check-result-template.md
 - Gate 1: PRD Review
 - Gate 2: Tech Doc Review
 - Gate 3: QA Case Review
