@@ -40,6 +40,13 @@
 
 3. **Team 创建完成后，继续步骤 1**
 
+**⚠️ 路径陷阱：Claude Code Team 系统 vs 项目本地配置是两套路径系统**：
+- TeamCreate tooling 读取全局注册表：`~/.claude/teams/{team_name}/config.json`（home 目录，不是项目目录）
+- 项目本地配置：`.claude/teams/{project_id}/config.json`（项目目录）
+- **正确顺序**：先用 TeamCreate 在全局注册 Team → 再在项目目录建立本地 mirror
+- **禁止跳过全局注册直接用本地配置**，否则 Agent tool 报"Team 不存在"
+- 验证方法：`ls ~/.claude/teams/{team_name}/config.json` 确认全局注册存在
+
 **禁止行为**：
 - 在 Team 未建立的情况下直接创建多个 Agent
 - 将 `team-lead` 作为需要创建的 Agent（team-lead 是当前 Claude Code 窗口本身，不是需要创建的 Agent）
