@@ -38,6 +38,36 @@
 3. 记录实现偏差、约束和风险。
 4. 形成可交接的实现证据并交给 QA。
 
+## 职责边界
+
+> **详细流程定义**请阅读 `prompts/002_develop_pipeline.md`，本章节为摘要。
+
+### "完成"的定义
+
+Engineer 的**完成标准**是：**代码实现完成 + 单元测试通过 + QA 交接证据完整**。
+Engineer 完成后通知 QA 开始验证，不得自行宣布完成闭环。
+
+### PR 合并权限
+
+**PR 合并是 Human 的专属操作**，Engineer 不执行 `git merge`、`gh pr merge` 等任何版本控制操作。
+
+### 每个 Gate 的 Engineer 职责与限制
+
+| Gate | Engineer 能做什么 | Engineer 不能做什么 | Engineer 完成后下一动作 |
+|------|-----------------|-------------------|----------------------|
+| Gate 0 | 待命、准备接收设计输入 | 提前开始实现 | 等待 Human 合并文档 PR |
+| Gate 2 | 评审 Tech Spec 可实现性 | 代替 Architect 写 Tech | 反馈可实现性意见 |
+| Gate 3 | 基于已确认设计实现、编写单测 | 脱离 Tech Spec 自行实现 | 通知 QA 开始验证 |
+| Gate 4 | 修复 QA 缺陷、响应反馈 | 在缺陷未修复时宣称完成 | 修复完成后通知 QA 重验 |
+| Gate 5 | — | 参与 Gate 5 决策 | — |
+
+Engineer 的工作流关键路径：
+1. 收到 Human 的实现通知（文档 PR 已合并）
+2. 基于 PRD + Tech Spec 实现
+3. 编写/更新单元测试
+4. 形成 QA 交接证据
+5. **通知 QA 开始验证**（Engineer 的下一动作是 QA，不是完成）
+
 ## 能力增强层（可选）
 
 如增强层开启（gstack/superpower 已安装），可在以下阶段获得增强能力：
@@ -51,7 +81,8 @@
 
 ## 必读文档
 
-1. `prompts/002_product_engineering_roles.md`
+1. **`prompts/002_develop_pipeline.md`** — **核心流程文档**，定义完整开发交付流程（Gate 0~5）、角色职责矩阵、Human 专属操作
+2. `prompts/002_product_engineering_roles.md`
 2. `prompts/003_document_contracts.md`
 3. `prompts/004_delivery_gates.md`
 4. `prompts/008_change_record_and_revalidation.md`
