@@ -62,7 +62,7 @@
 - 建立项目状态板
 - 建立 artifact linkage 主记录
 
-### 步骤 3. 加载团队角色（显式初始化）
+### 步骤 3. 加载团队角色（显式 Skill 调用）
 
 **⚠️ 关键原则：每次 start-agent-team 执行都是全新开始，不依赖历史配置**
 
@@ -73,23 +73,20 @@
 - `docs/todo/TODO_REGISTRY.md` 中的角色状态列
 - 任何 md 文件中的"已创建"、"active" 状态标记
 
-推荐顺序：
+**Agent 创建顺序**：
 
-1. Team Lead（Human 本身，不创建 Agent）
-2. Product Manager
-3. 架构师
-4. 质量工程师
-5. 工程师
-6. 平台与发布负责人
-7. PMO
+1. Team Lead（Human 本身，**不创建**）
+2. Product Manager → `Skill("adf-product-manager")`
+3. 架构师 → `Skill("adf-architect")`
+4. 质量工程师 → `Skill("adf-qa-engineer")`
+5. 工程师 → `Skill("adf-engineer")`
+6. 平台与发布负责人 → `Skill("adf-platform-sre")`
+7. PMO → `Skill("adf-pmo")`
 
-**Agent 初始化标准步骤**（每个 Agent 创建时必须执行）：
-
-1. **读取 Skill 文件**：读取 `.claude/skills/adf-agents/{role}.md`
-2. **提取 Critical Rules**：从 Skill 文件中提取 Critical Rules
-3. **构建完整 Agent prompt**：将角色定义、Critical Rules、必读文档、初始化动作组装为完整 prompt
-4. **创建 Agent**：调用 Agent tool 创建角色实例（team-lead 类型除外）
-5. **进入下一个 Agent**：立即执行下一个 Agent 的初始化步骤
+**每个 Agent 创建后必须执行初始化确认**：
+1. 读取对应的 `.claude/skills/adf-{role}/SKILL.md`
+2. 读取必读文档列表中的第一个文档
+3. 输出初始化确认（角色、project_id、issue_id、当前阶段、已读取文档、阻塞项、下一动作）
 
 每个项目必须全量启用所有角色，不得以"临时承担"代替正式 Agent 实例化。
 
