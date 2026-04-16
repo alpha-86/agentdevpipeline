@@ -73,20 +73,57 @@
 - `docs/todo/TODO_REGISTRY.md` 中的角色状态列
 - 任何 md 文件中的"已创建"、"active" 状态标记
 
+**Agent 创建方式**：
+
+> ⚠️ **必须使用 `Agent()` 工具创建 agent，不能仅用 `Skill()`**
+> - `Skill()` 只是加载指令到当前对话，不会创建 agent 进程，也不会让 agent 加入 team
+> - 必须使用 `Agent(team_name="{project_id}", ...)` 创建 agent 实例，agent 才会加入 team
+> - **禁止使用 `run_in_background: true`**，后台任务不会加入 team
+
 **Agent 创建顺序**：
 
 1. Team Lead（Human 本身，**不创建**）
-2. Product Manager → `Skill("adf-product-manager")`
-3. 架构师 → `Skill("adf-architect")`
-4. 质量工程师 → `Skill("adf-qa-engineer")`
-5. 工程师 → `Skill("adf-engineer")`
-6. 平台与发布负责人 → `Skill("adf-platform-sre")`
-7. PMO → `Skill("adf-pmo")`
+2. Product Manager → 使用 `Agent()` 创建
+3. 架构师 → 使用 `Agent()` 创建
+4. 质量工程师 → 使用 `Agent()` 创建
+5. 工程师 → 使用 `Agent()` 创建
+6. 平台与发布负责人 → 使用 `Agent()` 创建
+7. PMO → 使用 `Agent()` 创建
+
+**Agent 创建模板**（不使用 `run_in_background`）：
+
+```json
+Agent(
+  subagent_type="general-purpose",
+  team_name="{project_id}",
+  name="{role-name}",
+  prompt="你是 {角色名} Agent。请初始化：
+1. 读取你的 skill 文件：`.claude/skills/adf-{role}/SKILL.md`
+2. 读取必读文档：`prompts/001_team_topology.md`（已读）和角色对应必读文档
+3. 输出初始化确认（角色、project_id、issue_id、当前阶段、已读取文档、阻塞项、下一动作）
+4. 通过 SendMessage 向 team-lead 报告初始化完成"
+)
+```
+
+**⚠️ 关键错误：禁止使用 `run_in_background: true`**
+
+错误示例：
+```json
+Agent(..., run_in_background: true)  // ❌ 错误！后台任务不会加入 team
+```
+
+正确做法：Agent 创建后同步等待其完成初始化，再创建下一个。
 
 **每个 Agent 创建后必须执行初始化确认**：
-1. 读取对应的 `{role}/SKILL.md`
+1. 读取对应的 `adf-{role}/SKILL.md`
 2. 读取必读文档列表中的第一个文档
 3. 输出初始化确认（角色、project_id、issue_id、当前阶段、已读取文档、阻塞项、下一动作）
+4. 通过 SendMessage 向 team-lead 发送初始化报告
+
+**Agent 创建后验证**：
+- 检查 `~/.claude/teams/{project_id}/config.json` 的 `members` 数组
+- 确认新 agent 已在 members 中列出
+- 若 agent 未加入 team，重新使用 `Agent()` 创建并确保 `team_name` 参数正确
 
 每个项目必须全量启用所有角色，不得以"临时承担"代替正式 Agent 实例化。
 
