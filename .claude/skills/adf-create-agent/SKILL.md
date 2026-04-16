@@ -18,13 +18,13 @@
 
 | 序号 | Agent 名称 | 角色类型 | 角色 Skill | 状态 |
 |------|-----------|---------|------------|------|
-| 1 | Team Lead | team-lead | `adf-team-lead` | **不创建**（Human 本身）|
-| 2 | Product Manager | product-manager | `adf-product-manager` | 立即创建 |
-| 3 | 架构师 | architect | `adf-architect` | 立即创建 |
-| 4 | 质量工程师 | qa-engineer | `adf-qa-engineer` | 立即创建 |
-| 5 | 工程师 | engineer | `adf-engineer` | 立即创建 |
-| 6 | 平台与发布负责人 | platform-sre | `adf-platform-sre` | 立即创建 |
-| 7 | PMO | pmo | `adf-pmo` | 按需创建 |
+| 1 | Team Lead | team-lead | `team-lead` | **不创建**（Human 本身）|
+| 2 | Product Manager | product-manager | `product-manager` | 立即创建 |
+| 3 | 架构师 | architect | `architect` | 立即创建 |
+| 4 | 质量工程师 | qa-engineer | `qa-engineer` | 立即创建 |
+| 5 | 工程师 | engineer | `engineer` | 立即创建 |
+| 6 | 平台与发布负责人 | platform-sre | `platform-sre` | 立即创建 |
+| 7 | PMO | pmo | `pmo` | 按需创建 |
 
 **状态说明**：
 - **不创建**：Team Lead 是 Human 本身，不需要创建 Agent 实例
@@ -36,8 +36,8 @@
 ## 执行前必读
 
 1. `prompts/006_agent_creation_contract.md`
-2. `skills/shared/skill-protocol.md`
-3. `skills/shared/event-bus.md`
+2. `skills/skill-protocol.md`
+3. `skills/event-bus.md`
 4. 对应角色 Skill（见上方速查表）
 
 ## 创建步骤
@@ -57,7 +57,7 @@
 |---------|-----------|
 | `product-manager` | `.claude/skills/adf-product-manager/SKILL.md` |
 | `architect` | `.claude/skills/adf-architect/SKILL.md` |
-| `qa-engineer` | `.claude/skills/adf-qa-engineer/SKILL.md` |
+| `qa-engineer` | `.claude/skills/adf-qa-.claude/skills/adf-engineer/SKILL.md` |
 | `engineer` | `.claude/skills/adf-engineer/SKILL.md` |
 | `platform-sre` | `.claude/skills/adf-platform-sre/SKILL.md` |
 | `pmo` | `.claude/skills/adf-pmo/SKILL.md` |

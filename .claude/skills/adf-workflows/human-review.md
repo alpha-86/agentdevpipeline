@@ -32,8 +32,8 @@
 
 ## 推荐模板与输出目录
 
-- 评审评论：`.claude/skills/adf-templates/review-comment-template.md`
-- Memo：`.claude/skills/adf-templates/memo-template.md`
+- 评审评论：`skills/adf-templates/review-comment-template.md`
+- Memo：`skills/adf-templates/memo-template.md`
 - 推荐输出目录：`docs/memo/` 或关联 PR / issue
 
 ## 步骤

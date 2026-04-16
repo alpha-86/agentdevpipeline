@@ -54,11 +54,11 @@
 8. `prompts/018_issue_routing_and_project_portfolio.md`
 9. `prompts/019_dual_stage_pr_and_three_layer_safeguard.md`
 10. `prompts/020_issue_comment_gate_and_artifact_linkage.md`
-11. `.claude/skills/adf-workflows/prd-review.md`
-12. `.claude/skills/adf-workflows/human-review.md`
-13. `.claude/skills/adf-workflows/issue-lifecycle.md`
-14. `.claude/skills/adf-templates/prd-template.md`
-15. `.claude/skills/adf-templates/review-comment-template.md`
+11. `skills/adf-workflows/prd-review.md`
+12. `skills/adf-workflows/human-review.md`
+13. `skills/adf-workflows/issue-lifecycle.md`
+14. `skills/adf-templates/prd-template.md`
+15. `skills/adf-templates/review-comment-template.md`
 
 ## 何时启用
 
@@ -122,7 +122,7 @@
 
 ## 会议与评审前必做
 
-1. 读取 `.claude/skills/adf-workflows/prd-review.md`。
+1. 读取 `skills/adf-workflows/prd-review.md`。
 2. 确认 PRD、Tech、QA Case Design 哪些已存在，哪些仍缺失。
 3. 确认本次结论会落到 纪要、Issue 评论 还是 change record。
 4. 如本轮属于双阶段交付，确认是否已经具备发起 人工评审 #1 的条件。

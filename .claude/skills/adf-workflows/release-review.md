@@ -22,8 +22,8 @@
 
 ## 推荐模板与输出目录
 
-- Release 记录：`.claude/skills/adf-templates/release-record-template.md`
-- 评审评论：`.claude/skills/adf-templates/review-comment-template.md`
+- Release 记录：`skills/adf-templates/release-record-template.md`
+- 评审评论：`skills/adf-templates/review-comment-template.md`
 - 推荐输出目录：`docs/release/`
 
 ## 步骤

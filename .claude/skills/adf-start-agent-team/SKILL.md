@@ -6,9 +6,9 @@
 
 ## 执行前必读
 
-1. `.claude/skills/adf-team-setup/SKILL.md`
-2. `skills/shared/skill-protocol.md`
-3. `skills/shared/event-bus.md`
+1. `skills/adf-team-setup.md`
+2. `skills/skill-protocol.md`
+3. `skills/event-bus.md`
 4. `prompts/001_team_topology.md`
 5. `prompts/010_team_setup_and_bootstrap.md`
 6. `prompts/018_issue_routing_and_project_portfolio.md`
@@ -84,7 +84,7 @@
 7. PMO → `Skill("adf-pmo")`
 
 **每个 Agent 创建后必须执行初始化确认**：
-1. 读取对应的 `.claude/skills/adf-{role}/SKILL.md`
+1. 读取对应的 `{role}/SKILL.md`
 2. 读取必读文档列表中的第一个文档
 3. 输出初始化确认（角色、project_id、issue_id、当前阶段、已读取文档、阻塞项、下一动作）
 
@@ -162,10 +162,10 @@ python scripts/task_router.py --verbose
 |-------|---------|
 | Team Lead | prompts/001_team_topology.md, prompts/010_team_setup_and_bootstrap.md, prompts/018_issue_routing_and_project_portfolio.md |
 | Product Manager | prompts/001_team_topology.md, prompts/003_document_contracts.md, prompts/004_delivery_gates.md |
-| 架构师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, .claude/skills/adf-workflows/tech-review.md |
-| 质量工程师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, .claude/skills/adf-workflows/qa-validation.md |
+| 架构师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, skills/adf-workflows/tech-review.md |
+| 质量工程师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, skills/adf-workflows/qa-validation.md |
 | 工程师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, prompts/019_dual_stage_pr_and_three_layer_safeguard.md |
-| Platform/SRE | prompts/001_team_topology.md, prompts/019_dual_stage_pr_and_three_layer_safeguard.md, .claude/skills/adf-workflows/release-review.md |
+| Platform/SRE | prompts/001_team_topology.md, prompts/019_dual_stage_pr_and_three_layer_safeguard.md, skills/adf-workflows/release-review.md |
 | PMO | prompts/001_team_topology.md, prompts/005_meeting_and_todo.md, docs/governance/core-principles.md |
 
 ### 步骤 4. 执行首轮初始化检查
@@ -184,13 +184,13 @@ python scripts/task_router.py --verbose
 
 | Agent | 触发时间 | 执行 Workflow | 关联文档 |
 |-------|---------|--------------|----------|
-| Team Lead | 每日启动时 | .claude/skills/adf-workflows/weekly-review.md | 启动会纪要 |
-| Product Manager | PRD Gate 完成后 | .claude/skills/adf-workflows/prd-review.md | PRD 文档 |
-| 架构师 | PRD Gate 通过后 | .claude/skills/adf-workflows/tech-review.md | Tech Spec |
-| 质量工程师 | Tech Gate 通过后 | .claude/skills/adf-workflows/qa-validation.md | QA Case |
+| Team Lead | 每日启动时 | skills/adf-workflows/weekly-review.md | 启动会纪要 |
+| Product Manager | PRD Gate 完成后 | skills/adf-workflows/prd-review.md | PRD 文档 |
+| 架构师 | PRD Gate 通过后 | skills/adf-workflows/tech-review.md | Tech Spec |
+| 质量工程师 | Tech Gate 通过后 | skills/adf-workflows/qa-validation.md | QA Case |
 | 工程师 | QA Case Design 通过后 | prompts/019_dual_stage_pr_and_three_layer_safeguard.md | 代码 PR |
-| Platform/SRE | Release 前 | .claude/skills/adf-workflows/release-review.md | 发布检查单 |
-| PMO | 每周定期 | .claude/skills/adf-workflows/weekly-review.md | 审计报告 |
+| Platform/SRE | Release 前 | skills/adf-workflows/release-review.md | 发布检查单 |
+| PMO | 每周定期 | skills/adf-workflows/weekly-review.md | 审计报告 |
 
 ### 步骤 5. 执行 启动会
 

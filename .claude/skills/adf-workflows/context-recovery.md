@@ -20,7 +20,7 @@
 
 ## 推荐模板与输出目录
 
-- 恢复摘要：`.claude/skills/adf-templates/context-recovery-template.md`
+- 恢复摘要：`skills/adf-templates/context-recovery-template.md`
 - 推荐输出目录：`docs/memo/` 或当前阶段工作目录
 
 ## 步骤

@@ -36,10 +36,10 @@
 4. `prompts/019_dual_stage_pr_and_three_layer_safeguard.md`
 5. `prompts/021_platform_checks_and_gate_automation.md`
 6. `docs/governance/platform-minimum-checks.md`
-7. `.claude/skills/adf-workflows/release-review.md`
-8. `.claude/skills/adf-workflows/anomaly-response.md`
-9. `.claude/skills/adf-templates/release-record-template.md`
-10. `.claude/skills/adf-templates/platform-check-result-template.md`
+7. `skills/adf-workflows/release-review.md`
+8. `skills/adf-workflows/anomaly-response.md`
+9. `skills/adf-templates/release-record-template.md`
+10. `skills/adf-templates/platform-check-result-template.md`
 
 ## 何时启用
 
@@ -63,7 +63,7 @@
 
 ## 发布前准备
 
-1. 读取 `.claude/skills/adf-workflows/release-review.md`。
+1. 读取 `skills/adf-workflows/release-review.md`。
 2. 确认部署计划、回滚计划、监控项、已知风险和 负责人。
 3. 对照 `platform-minimum-checks` 核对检查集合是否齐全。
 4. 检查 issue、release record 和平台状态是否一致。

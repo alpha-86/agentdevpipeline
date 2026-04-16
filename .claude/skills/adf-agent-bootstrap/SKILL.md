@@ -11,14 +11,14 @@
 | 适用场景 | 任意目标项目启动 AgentDevFlow | AgentDevFlow 自身初始化 |
 | 起点 | 目标项目已有骨架 | 项目骨架待建立或待复核 |
 | 重点 | 建立交付目录、Issue、团队 | 建立 AgentDevFlow 自身治理 + 交付机制 |
-| 角色来源 | `skills/shared/{role}.md` | `skills/shared/{role}.md` (自身) |
+| 角色来源 | `skills/{role}.md` | `skills/{role}.md` (自身) |
 
 ## 执行前必读
 
-1. `.claude/skills/adf-start-agent-team/SKILL.md`
-2. `.claude/skills/adf-create-agent/SKILL.md`
-3. `skills/shared/skill-protocol.md`
-4. `skills/shared/event-bus.md`
+1. `skills/adf-start-agent-team.md`
+2. `skills/adf-create-agent.md`
+3. `skills/skill-protocol.md`
+4. `skills/event-bus.md`
 5. `prompts/001_team_topology.md`
 6. `prompts/010_team_setup_and_bootstrap.md`
 7. `docs/governance/core-principles.md`
@@ -43,7 +43,7 @@
 - `docs/release/` - 发布记录
 - `docs/memo/` - 纪要
 - `docs/todo/` - 待办注册
-- `skills/shared/` - 共享资产层
+- `skills/` - 共享资产层
 - `prompts/` - 规则层
 - `adapters/` - 平台适配
 

@@ -23,9 +23,9 @@
 
 ## 推荐模板与输出目录
 
-- QA Case：`.claude/skills/adf-templates/qa-case-template.md`
-- QA Report：`.claude/skills/adf-templates/qa-report-template.md`
-- 评审评论：`.claude/skills/adf-templates/review-comment-template.md`
+- QA Case：`skills/adf-templates/qa-case-template.md`
+- QA Report：`skills/adf-templates/qa-report-template.md`
+- 评审评论：`skills/adf-templates/review-comment-template.md`
 - 推荐输出目录：`docs/qa/`
 
 ## 步骤

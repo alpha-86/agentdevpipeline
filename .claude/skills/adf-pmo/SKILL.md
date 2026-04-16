@@ -58,10 +58,10 @@
 7. `prompts/019_dual_stage_pr_and_three_layer_safeguard.md`
 8. `prompts/020_issue_comment_gate_and_artifact_linkage.md`
 9. `prompts/021_platform_checks_and_gate_automation.md`
-10. `.claude/skills/adf-workflows/issue-lifecycle.md`
-11. `.claude/skills/adf-workflows/project-portfolio-review.md`
-12. `.claude/skills/adf-templates/audit-report-template.md`
-13. `.claude/skills/adf-templates/review-comment-template.md`
+10. `skills/adf-workflows/issue-lifecycle.md`
+11. `skills/adf-workflows/project-portfolio-review.md`
+12. `skills/adf-templates/audit-report-template.md`
+13. `skills/adf-templates/review-comment-template.md`
 
 ## 何时启用
 

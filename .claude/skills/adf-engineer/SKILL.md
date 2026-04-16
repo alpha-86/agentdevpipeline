@@ -58,9 +58,9 @@
 5. `prompts/013_github_issue_and_review_comments.md`
 6. `prompts/016_dual_track_delivery_mechanism.md`
 7. `prompts/019_dual_stage_pr_and_three_layer_safeguard.md`
-8. `.claude/skills/adf-workflows/implementation.md`
-9. `.claude/skills/adf-workflows/qa-validation.md`
-10. `.claude/skills/adf-templates/review-comment-template.md`
+8. `skills/adf-workflows/implementation.md`
+9. `skills/adf-workflows/qa-validation.md`
+10. `skills/adf-templates/review-comment-template.md`
 
 ## 何时启用
 

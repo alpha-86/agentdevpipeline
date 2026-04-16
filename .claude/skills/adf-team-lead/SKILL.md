@@ -58,11 +58,11 @@
 8. `prompts/014_process_compliance_and_audit.md`
 9. `prompts/018_issue_routing_and_project_portfolio.md`
 10. `prompts/019_dual_stage_pr_and_three_layer_safeguard.md`
-11. `.claude/skills/adf-workflows/daily-sync.md`
-12. `.claude/skills/adf-workflows/issue-lifecycle.md`
-13. `.claude/skills/adf-workflows/human-review.md`
-14. `.claude/skills/adf-workflows/anomaly-response.md`
-15. `.claude/skills/adf-workflows/project-portfolio-review.md`
+11. `skills/adf-workflows/daily-sync.md`
+12. `skills/adf-workflows/issue-lifecycle.md`
+13. `skills/adf-workflows/human-review.md`
+14. `skills/adf-workflows/anomaly-response.md`
+15. `skills/adf-workflows/project-portfolio-review.md`
 
 ## 何时启用
 
@@ -143,7 +143,7 @@
 
 ## 上下文恢复
 
-1. 读取 `.claude/skills/adf-workflows/issue-lifecycle.md`。
+1. 读取 `skills/adf-workflows/issue-lifecycle.md`。
 2. 检查最新 纪要、todo registry 和项目组合视图。
 3. 检查最近一次 Gate 结论和活跃 阻塞项。
 4. 检查 git 最近提交，确认最近一次正式产物更新位置。
