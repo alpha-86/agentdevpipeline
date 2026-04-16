@@ -59,6 +59,22 @@ python scripts/github_issue_sync.py
 
 **原因**：`github_issue_sync.py` 提供标准化封装，包含：断点续传、命名格式校验、TaskQueue 写入、GitHub Actions 集成、processed_issues 记录。直接用 gh 命令会绕过这些保障。
 
+### PR 关联 Issue 规范
+
+**PMO / 治理类 Issue 必须使用 `Refs #N`，禁止使用 `Fixes #N` 或 `Closes #N`。**
+
+- `Fixes #N` / `Closes #N`：PR 合并后**自动关闭** Issue
+- `Refs #N`：仅关联，不自动关闭
+
+**原因**：PMO Issue 需要验收确认后才关闭，不能依赖 PR 合并自动关闭。验收人是 Human，不是机器。
+
+**PR 标题格式**：
+```
+<type>: <short description> (Refs #N)
+```
+
+示例：`pmo: GOV-004 HR#1 强制不可跳过 (Refs #8)`
+
 ### 相关文件位置
 
 - bootstrap-sync 脚本：`.github/workflows/bootstrap-sync.py`
