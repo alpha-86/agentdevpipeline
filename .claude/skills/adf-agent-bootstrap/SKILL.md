@@ -1,9 +1,3 @@
----
-name: adf-agent-bootstrap
-description: 让 AgentDevFlow 仓库自身能够像任何目标项目一样，先建立完整的项目骨架、团队、Issue 和交付目录，再启动 Agent 协作开发。这是 AgentDevFlow 的"自举"——项目吃自己
-user-invocable: true
----
-
 # AgentDevFlow 自举
 
 ## 目标
@@ -17,18 +11,17 @@ user-invocable: true
 | 适用场景 | 任意目标项目启动 AgentDevFlow | AgentDevFlow 自身初始化 |
 | 起点 | 目标项目已有骨架 | 项目骨架待建立或待复核 |
 | 重点 | 建立交付目录、Issue、团队 | 建立 AgentDevFlow 自身治理 + 交付机制 |
-| 角色来源 | `.claude/skills/adf-agents/` | `.claude/skills/adf-agents/` (自身) |
+| 角色来源 | `skills/{role}.md` | `skills/{role}.md` (自身) |
 
 ## 执行前必读
 
-1. `.claude/skills/adf-start-agent-team/SKILL.md`
-2. `.claude/skills/adf-create-agent/SKILL.md`
-3. `skills/shared/skill-protocol.md`
-4. `skills/shared/event-bus.md`
-5. `prompts/001_team_topology.md`
-6. `prompts/010_team_setup_and_bootstrap.md`
-7. `docs/governance/core-principles.md`
-8. `README.md`
+1. `skills/adf-start-agent-team.md`
+2. `skills/skill-protocol.md`
+3. `skills/event-bus.md`
+4. `prompts/001_team_topology.md`
+5. `prompts/010_team_setup_and_bootstrap.md`
+6. `docs/governance/core-principles.md`
+7. `README.md`
 
 ## 自举步骤
 
@@ -49,7 +42,7 @@ user-invocable: true
 - `docs/release/` - 发布记录
 - `docs/memo/` - 纪要
 - `docs/todo/` - 待办注册
-- `skills/shared/` - 共享资产层
+- `skills/` - 共享资产层
 - `prompts/` - 规则层
 - `adapters/` - 平台适配
 
@@ -113,4 +106,3 @@ user-invocable: true
 - 跳过角色初始化检查
 - 没有明确的 Gate 就开始实现
 - 未声明缺失职责归属就默认"之后再说"
-

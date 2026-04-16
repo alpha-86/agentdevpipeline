@@ -1,9 +1,3 @@
----
-name: adf-team-setup
-description: 为 AgentDevFlow 的真实项目 启动会 提供统一的共享启动入口，确保团队在进入正式交付前，先完成角色加载、主 issue 建立、交付目录初始化和首轮状态检查。
-user-invocable: true
----
-
 # 团队启动
 
 ## 目标
@@ -112,4 +106,3 @@ user-invocable: true
 - 角色未加载必读文档就开始做关键判断
 - 启动会 后没有 纪要 和 行动项
 - 不明确缺失角色由谁承担其职责
-

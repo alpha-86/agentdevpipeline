@@ -21,9 +21,9 @@
 
 ## 推荐模板与输出目录
 
-- PRD：`.claude/skills/adf-templates/prd-template.md`
-- 评审评论：`.claude/skills/adf-templates/review-comment-template.md`
-- Memo：`.claude/skills/adf-templates/memo-template.md`
+- PRD：`skills/adf-templates/prd-template.md`
+- 评审评论：`skills/adf-templates/review-comment-template.md`
+- Memo：`skills/adf-templates/memo-template.md`
 - 推荐输出目录：`docs/prd/`、`docs/memo/`
 
 ## 步骤

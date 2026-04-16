@@ -1,9 +1,3 @@
----
-name: adf-start-agent-team
-description: 提供通用研发项目的团队启动统一入口，确保在任何平台里启动多 Agent 协作前，先把团队、角色、Issue、交付目录和首轮检查建立完整。
-user-invocable: true
----
-
 # 启动团队
 
 ## 目标
@@ -12,9 +6,9 @@ user-invocable: true
 
 ## 执行前必读
 
-1. `.claude/skills/adf-team-setup/SKILL.md`
-2. `skills/shared/skill-protocol.md`
-3. `skills/shared/event-bus.md`
+1. `skills/adf-team-setup.md`
+2. `skills/skill-protocol.md`
+3. `skills/event-bus.md`
 4. `prompts/001_team_topology.md`
 5. `prompts/010_team_setup_and_bootstrap.md`
 6. `prompts/018_issue_routing_and_project_portfolio.md`
@@ -30,19 +24,21 @@ user-invocable: true
 
 ### 步骤 0.5. Team 创建检查
 
-> **注**：此步骤确保项目级别的 Agent Team 已建立。TeamCreate 是 Claude Code 内置 tooling。若使用 `create-agent` skill 创建子 Agent（角色类型非 `team-lead`），该 skill 会处理 Agent 创建；但 Team 本身需提前确认存在。
+> **注**：每次执行 start-agent-team 时，**必须假设团队不存在**，从零开始检查和创建。上一个 session 的任何配置文件、日志、状态记录都与当前 session 无关。
 
 **执行步骤**：
 
-1. 检查当前项目是否已有 Team 定义：
-   - 查找 `.claude/teams/{team_name}/config.json` 或 equivalent Team 配置文件
-   - 若 Team 已存在，跳过此步
-2. 若 Team 不存在，使用平台相关 TeamCreate tooling 建立项目级 Team：
-   - 示意调用格式（按实际平台语法执行）：`TeamCreate(team_name="{project_id}", description="{项目描述}")`
-   - 具体调用格式需参照所在平台的 TeamCreate tooling 文档
-3. Team 创建完成后，继续步骤 1
+1. **检查全局 Team 注册表**：
+   - 执行 `ls ~/.claude/teams/` 检查是否存在
+   - 若存在，检查是否是当前项目的 Team
+   - **禁止依赖** `agent-creation.log`、`TODO_REGISTRY.md`、`.claude/teams/` 等文件的历史状态
 
-**本仓库约定 fallback**：若平台 TeamCreate tooling 不可用，可改为创建本地配置文件 `.claude/teams/{project_id}/config.json`（team_id、description、created_at 字段）。此为 AgentDevFlow 仓库约定，非跨平台标准。
+2. **若 Team 不存在，使用 TeamCreate 创建**：
+   ```json
+   TeamCreate(team_name="{project_id}", description="AgentDevFlow 项目团队")
+   ```
+
+3. **Team 创建完成后，继续步骤 1**
 
 **⚠️ 路径陷阱：Claude Code Team 系统 vs 项目本地配置是两套路径系统**：
 - TeamCreate tooling 读取全局注册表：`~/.claude/teams/{team_name}/config.json`（home 目录，不是项目目录）
@@ -53,7 +49,7 @@ user-invocable: true
 
 **禁止行为**：
 - 在 Team 未建立的情况下直接创建多个 Agent
-- 将 `team-lead` 作为需要创建的 Agent（team-lead 是 Human 本身，见 `create-agent.md` 步骤 1.5）
+- 将 `team-lead` 作为需要创建的 Agent（team-lead 是当前 Claude Code 窗口本身，不是需要创建的 Agent）
 - 每个项目只创建一个 Team，禁止重复创建
 
 ### 步骤 1. 建立项目骨架
@@ -73,32 +69,80 @@ user-invocable: true
 - 建立项目状态板
 - 建立 artifact linkage 主记录
 
-### 步骤 3. 加载团队角色（显式初始化）
+### 步骤 3. 加载团队角色（显式 Skill 调用）
 
-推荐顺序：
+**⚠️ 关键原则：每次 start-agent-team 执行都是全新开始，不依赖历史配置**
 
-1. Team Lead（Human 本身，不创建 Agent）
-2. Product Manager
-3. 架构师
-4. 质量工程师
-5. 工程师
-6. 平台与发布负责人
-7. PMO
+以下文件/内容**不能**作为 Agent 存在的证明：
+- `.claude/logs/agent-creation.log`
+- `.claude/logs/agent-liveness.log`
+- `.claude/teams/{team}/config.json`
+- `docs/todo/TODO_REGISTRY.md` 中的角色状态列
+- 任何 md 文件中的"已创建"、"active" 状态标记
 
-**Agent 初始化标准步骤**（每个 Agent 创建时必须执行）：
+**Agent 创建方式**：
 
-1. **读取 Skill 文件**：读取 `.claude/skills/adf-agents/{role}.md`
-2. **提取 Critical Rules**：从 Skill 文件中提取 Critical Rules
-3. **构建完整 Agent prompt**：将角色定义、Critical Rules、必读文档、初始化动作组装为完整 prompt
-4. **创建 Agent**：调用 create-agent skill 创建角色实例（team-lead 类型除外）
-5. **记录创建日志**：写入创建日志到 `.claude/logs/agent-creation.log`
-6. **进入下一个 Agent**：立即执行下一个 Agent 的初始化步骤
+> ⚠️ **必须使用 `Agent()` 工具创建 agent，不能仅用 `Skill()`**
+> - `Skill()` 只是加载指令到当前对话，不会创建 agent 进程，也不会让 agent 加入 team
+> - 必须使用 `Agent(team_name="{project_id}", ...)` 创建 agent 实例，agent 才会加入 team
+> - **禁止使用 `run_in_background: true`**，后台任务不会加入 team
 
-不是每个项目都必须全量启用，但必须记录：
+**Agent 创建顺序**：
 
-- 已启用角色
-- 未启用角色
-- 缺失职责的临时承担者
+1. Team Lead（Human 本身，**不创建**）
+2. Product Manager → 使用 `Agent()` 创建
+3. 架构师 → 使用 `Agent()` 创建
+4. 质量工程师 → 使用 `Agent()` 创建
+5. 工程师 → 使用 `Agent()` 创建
+6. 平台与发布负责人 → 使用 `Agent()` 创建
+7. PMO → 使用 `Agent()` 创建
+
+**Agent 创建模板**（不使用 `run_in_background`）：
+
+```json
+Agent(
+  subagent_type="general-purpose",
+  team_name="{project_id}",
+  name="{role-name}",
+  prompt="你是 {角色名} Agent。请初始化：
+1. 读取你的 skill 文件：`.claude/skills/adf-{role}/SKILL.md`
+2. 读取必读文档：`prompts/001_team_topology.md`（已读）和角色对应必读文档
+3. 输出初始化确认（角色、project_id、issue_id、当前阶段、已读取文档、阻塞项、下一动作）
+4. 通过 SendMessage 向 team-lead 报告初始化完成"
+)
+```
+
+**⚠️ 关键错误：禁止使用 `run_in_background: true`**
+
+错误示例：
+```json
+Agent(..., run_in_background: true)  // ❌ 错误！后台任务不会加入 team
+```
+
+正确做法：Agent 创建后同步等待其完成初始化，再创建下一个。
+
+**每个 Agent 创建后必须执行初始化确认**：
+1. 读取对应的 `adf-{role}/SKILL.md`
+2. 读取必读文档列表中的第一个文档
+3. 输出初始化确认（角色、project_id、issue_id、当前阶段、已读取文档、阻塞项、下一动作）
+4. 通过 SendMessage 向 team-lead 发送初始化报告
+
+**Agent 创建后验证**：
+- 检查 `~/.claude/teams/{project_id}/config.json` 的 `members` 数组
+- 确认新 agent 已在 members 中列出
+- 若 agent 未加入 team，重新使用 `Agent()` 创建并确保 `team_name` 参数正确
+
+每个项目必须全量启用所有角色，不得以"临时承担"代替正式 Agent 实例化。
+
+**原因**：`team-lead.md` 强制规则明确规定"团队负责人不得越权替其他角色做正式签字"。Team Lead 承担其他角色职责会导致：
+1. 角色权责边界模糊，无法进行有效的流程合规审计
+2. PMO 无法对"Team Lead 既当裁判又当运动员"进行独立检查
+3. 缺失职责无正式 Agent 承担，任务路由失效
+
+**正确做法**：
+- 启动前必须创建 Engineer、Platform/SRE、PMO 的 Agent 实例
+- 角色暂不需要实际工作时，Agent 处于"待命"状态（idle），但不分配给其他角色
+- 所有角色都必须完成初始化检查（步骤 4），进入各自的角色循环
 
 ### 步骤 3.5. 发现并路由待处理任务
 
@@ -162,10 +206,10 @@ python scripts/task_router.py --verbose
 |-------|---------|
 | Team Lead | prompts/001_team_topology.md, prompts/010_team_setup_and_bootstrap.md, prompts/018_issue_routing_and_project_portfolio.md |
 | Product Manager | prompts/001_team_topology.md, prompts/003_document_contracts.md, prompts/004_delivery_gates.md |
-| 架构师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, .claude/skills/adf-workflows/tech-review.md |
-| 质量工程师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, .claude/skills/adf-workflows/qa-validation.md |
+| 架构师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, skills/adf-workflows/tech-review.md |
+| 质量工程师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, skills/adf-workflows/qa-validation.md |
 | 工程师 | prompts/001_team_topology.md, prompts/004_delivery_gates.md, prompts/019_dual_stage_pr_and_three_layer_safeguard.md |
-| Platform/SRE | prompts/001_team_topology.md, prompts/019_dual_stage_pr_and_three_layer_safeguard.md, .claude/skills/adf-workflows/release-review.md |
+| Platform/SRE | prompts/001_team_topology.md, prompts/019_dual_stage_pr_and_three_layer_safeguard.md, skills/adf-workflows/release-review.md |
 | PMO | prompts/001_team_topology.md, prompts/005_meeting_and_todo.md, docs/governance/core-principles.md |
 
 ### 步骤 4. 执行首轮初始化检查
@@ -184,13 +228,13 @@ python scripts/task_router.py --verbose
 
 | Agent | 触发时间 | 执行 Workflow | 关联文档 |
 |-------|---------|--------------|----------|
-| Team Lead | 每日启动时 | .claude/skills/adf-workflows/weekly-review.md | 启动会纪要 |
-| Product Manager | PRD Gate 完成后 | .claude/skills/adf-workflows/prd-review.md | PRD 文档 |
-| 架构师 | PRD Gate 通过后 | .claude/skills/adf-workflows/tech-review.md | Tech Spec |
-| 质量工程师 | Tech Gate 通过后 | .claude/skills/adf-workflows/qa-validation.md | QA Case |
+| Team Lead | 每日启动时 | skills/adf-workflows/weekly-review.md | 启动会纪要 |
+| Product Manager | PRD Gate 完成后 | skills/adf-workflows/prd-review.md | PRD 文档 |
+| 架构师 | PRD Gate 通过后 | skills/adf-workflows/tech-review.md | Tech Spec |
+| 质量工程师 | Tech Gate 通过后 | skills/adf-workflows/qa-validation.md | QA Case |
 | 工程师 | QA Case Design 通过后 | prompts/019_dual_stage_pr_and_three_layer_safeguard.md | 代码 PR |
-| Platform/SRE | Release 前 | .claude/skills/adf-workflows/release-review.md | 发布检查单 |
-| PMO | 每周定期 | .claude/skills/adf-workflows/weekly-review.md | 审计报告 |
+| Platform/SRE | Release 前 | skills/adf-workflows/release-review.md | 发布检查单 |
+| PMO | 每周定期 | skills/adf-workflows/weekly-review.md | 审计报告 |
 
 ### 步骤 5. 执行 启动会
 
@@ -222,11 +266,12 @@ python scripts/task_router.py --verbose
 - 若任一关键角色未完成初始化检查，不得宣布启动完成。
 - 若主 issue、状态板、todo registry 三者缺一，必须回到步骤 1 或步骤 2 补齐。
 - 若首轮 Gate 或 人工评审 #1 判定不明确，必须补会议结论后再继续。
+- **若有任何角色未经正式 Agent 实例化即以"临时承担"方式运作，必须补充创建该角色 Agent 并重新完成初始化检查。**
 
 ## 禁止行为
 
+- **严禁 Team Lead 承担其他 Agent 的职责**：Team Lead 不得以”临时承担””暂由 Team Lead 代管”等理由，实际履行 Engineer、PMO、Platform/SRE 等角色的决策权、签字权和工作触发权。违反此规则等同于绕开角色分离机制，PMO 应立即标记为 P0 级 governance 问题。
 - 没有主 issue 就启动多角色并发
 - 角色未读取必读文档就开始做正式判断
 - 启动会 后没有 纪要、负责人、到期时间 和下游 Gate
-- 未声明缺失角色职责归属就默认“之后再说”
-
+- 未启用全部角色就宣布启动完成

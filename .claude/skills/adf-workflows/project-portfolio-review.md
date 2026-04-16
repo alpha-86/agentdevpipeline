@@ -14,8 +14,8 @@
 
 ## 推荐模板与输出目录
 
-- 项目组合视图：`.claude/skills/adf-templates/project-portfolio-template.md`
-- 审计报告：`.claude/skills/adf-templates/audit-report-template.md`
+- 项目组合视图：`skills/adf-templates/project-portfolio-template.md`
+- 审计报告：`skills/adf-templates/audit-report-template.md`
 - 推荐输出目录：`docs/memo/` 或项目治理目录
 
 ## 步骤

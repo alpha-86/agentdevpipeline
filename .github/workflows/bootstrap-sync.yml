@@ -1,16 +1,16 @@
 name: Bootstrap Sync
 
-# 持续部署：将 skills/shared/ 中的源文件同步到 .claude/skills/
+# 持续部署：将 skills/ 中的源文件同步到 .claude/skills/
 # 作为 AgentDevFlow 的 adf-prefix 自举技能包。
 #
 # 工作原理：
-# 1. 当 skills/shared/ 中的共享技能发生变更并合并到 main 分支时触发
-# 2. 读取 skills/shared/ 中每个 .md 文件
+# 1. 当 skills/ 中的共享技能发生变更并合并到 main 分支时触发
+# 2. 读取 skills/ 中每个 .md 文件
 # 3. 为每个共享技能在 .claude/skills/ 下创建或更新对应的 SKILL.md
 # 4. 直接提交到 main 分支（自举部署，无 PR）
 #
 # 禁止：
-# - 禁止修改 skills/shared/ 源文件（只读取）
+# - 禁止修改 skills/ 源文件（只读取）
 # - 禁止修改非生成文件
 # - 禁止在没有变更时提交空提交
 
@@ -19,7 +19,7 @@ on:
     branches:
       - main
     paths:
-      - 'skills/shared/**/*.md'
+      - 'skills/**/*.md'
       - '.github/workflows/bootstrap-sync.yml'
   workflow_dispatch:
     inputs:
@@ -30,7 +30,7 @@ on:
         type: boolean
 
 env:
-  SKILLS_SHARED_DIR: skills/shared
+  SKILLS_SHARED_DIR: skills
   SKILLS_TARGET_DIR: .claude/skills
 
 jobs:

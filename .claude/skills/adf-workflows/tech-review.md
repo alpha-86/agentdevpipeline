@@ -22,9 +22,9 @@
 
 ## 推荐模板与输出目录
 
-- Tech Spec：`.claude/skills/adf-templates/tech-spec-template.md`
-- 评审评论：`.claude/skills/adf-templates/review-comment-template.md`
-- Artifact Linkage：`.claude/skills/adf-templates/artifact-linkage-template.md`
+- Tech Spec：`skills/adf-templates/tech-spec-template.md`
+- 评审评论：`skills/adf-templates/review-comment-template.md`
+- Artifact Linkage：`skills/adf-templates/artifact-linkage-template.md`
 - 推荐输出目录：`docs/tech/`、`docs/memo/`
 
 ## 步骤

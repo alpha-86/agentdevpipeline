@@ -4,6 +4,8 @@
 
 在关键交付节点引入明确的人类评审与确认，避免流程只在 Agent 内部自循环。
 
+**Human Review #1 是强制环节，不可跳过。**
+
 ## 适用对象
 
 - 文档 PR（PRD + Tech Spec + QA Case Design）
@@ -30,8 +32,8 @@
 
 ## 推荐模板与输出目录
 
-- 评审评论：`.claude/skills/adf-templates/review-comment-template.md`
-- Memo：`.claude/skills/adf-templates/memo-template.md`
+- 评审评论：`skills/adf-templates/review-comment-template.md`
+- Memo：`skills/adf-templates/memo-template.md`
 - 推荐输出目录：`docs/memo/` 或关联 PR / issue
 
 ## 步骤
@@ -71,6 +73,14 @@
 - 没有明确 reviewer
 - 只有口头结论，没有正式留痕
 - 没有条件项却标记为条件通过
-- 人工评审 未完成却继续推进下游阶段
+- **Human Review #1 未完成却继续推进下游阶段（禁止）**
 - 文档 PR 缺 PRD / Tech / QA Case Design
 - 代码 PR 缺文档 PR 链接或测试报告
+
+## Human Review #1 强制规范
+
+**Human Review #1 评审 PRD、Tech Spec、Case 设计文档，与交付方式无关。**
+
+- `*.md` 文档是本项目的实现层，"纯文档交付"不是可以跳过 HR#1 的理由
+- **不存在任何可以跳过 Human Review #1 的情况**
+- Gate 2 → Human Review #1 → Gate 3 → Gate 4 是强制顺序，不得颠倒

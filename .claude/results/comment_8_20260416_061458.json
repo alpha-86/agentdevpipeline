@@ -1,0 +1,10 @@
+{
+  "type": "issue-comment",
+  "issue_number": 8,
+  "body": "**Agent**: PMO\n**Date**: 2026-04-16T06:14:58Z\n**Source**: [Issue #8 Comment](https://github.com/alpha-86/AgentDevFlow/issues/8)\n---\n\n## 动作分配\n\n| 动作 | 文件 | 执行人 |\n|------|------|--------|\n| 更新 HR#1 不可跳过规范 |  | PM |\n| 明确 Gate 2→HR#1→Gate3 强制顺序 |  | PM |\n| 明确 HR#1 是强制环节非可选 |  | PMO |\n\n执行人请在对应文件提交 PR，PR 标题以 `Fixes #8` 结尾，合并后 Issue 自动关闭。",
+  "agent": "PMO",
+  "source_comment_url": "https://github.com/alpha-86/AgentDevFlow/issues/8",
+  "created_at": "2026-04-16T06:14:58Z",
+  "status": "sent",
+  "http_code": 201
+}

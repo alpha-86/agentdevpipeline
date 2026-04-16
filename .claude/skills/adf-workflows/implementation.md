@@ -24,8 +24,8 @@
 
 ## 推荐模板与输出目录
 
-- 评审评论：`.claude/skills/adf-templates/review-comment-template.md`
-- Artifact Linkage：`.claude/skills/adf-templates/artifact-linkage-template.md`
+- 评审评论：`skills/adf-templates/review-comment-template.md`
+- Artifact Linkage：`skills/adf-templates/artifact-linkage-template.md`
 - 推荐输出目录：代码仓库实现位置、`docs/memo/`
 
 ## 步骤
