@@ -9,6 +9,7 @@
 | 类别 | governance |
 | 状态 | Open |
 | 关联 Issue | #3 |
+| 追踪 GitHub Issue | https://github.com/alpha-86/AgentDevFlow/issues/8 |
 
 ## 问题描述
 
