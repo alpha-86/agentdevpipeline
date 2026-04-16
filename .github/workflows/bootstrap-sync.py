@@ -2,14 +2,14 @@
 """
 Bootstrap Sync Script for AgentDevFlow (adf-prefix version)
 
-Reads all .md files from skills/shared/ and generates corresponding skill files
+Reads all .md files from skills/ and generates corresponding skill files
 in .claude/skills/ with adf- prefix.
 
 Each skill gets its own subdirectory: .claude/skills/adf-{name}/
 SKILL.md is generated for top-level entries; subdirectory contents are copied.
 
 Step 0: Clear .claude/skills/
-Step 1: Dynamically scan skills/shared/ and generate adf- prefix mapping
+Step 1: Dynamically scan skills/ and generate adf- prefix mapping
 Step 2: Generate SKILL.md files to .claude/skills/adf-*/
 Step 3: Batch replace internal references
 Step 4: git add -> commit -> push to main
@@ -23,7 +23,7 @@ import hashlib
 from pathlib import Path
 from typing import Optional
 
-SKILLS_SHARED_DIR = Path("skills/shared")
+SKILLS_SHARED_DIR = Path("skills")
 TARGET_DIR = Path(".claude/skills")
 
 # Files that should NOT be synced (internal/shared use only)
@@ -78,7 +78,7 @@ def extract_name_and_description(content: str) -> tuple[str, str]:
 
 
 def build_name_mapping() -> dict[str, str]:
-    """Dynamically scan skills/shared/ and build {original_name: adf_name} mapping."""
+    """Dynamically scan skills/ and build {original_name: adf_name} mapping."""
     mapping = {}
 
     # Top-level .md files → top-level skills
@@ -102,9 +102,10 @@ def replace_internal_references(content: str, mapping: dict[str, str]) -> str:
     """Replace all internal skill references in content.
 
     Patterns replaced:
-    - /{orig} → /adf-{adf}  (skill invocation paths, only when / is followed by word char)
-    - skills/shared/{orig}/ → .claude/skills/adf-{adf}/  (subdirectory references)
-    - skills/shared/{orig}.md → .claude/skills/adf-{adf}/SKILL.md  (direct file references)
+    - /{orig} → /adf-{adf}  (skill invocation paths)
+    - Skill("{orig}") → Skill("{adf}")  (skill invocation calls)
+    - {orig}/SKILL.md → .claude/skills/{adf}/SKILL.md  (skill file references)
+    - skills/{orig}/SKILL.md → .claude/skills/{adf}/SKILL.md  (skills prefix references)
     """
 
     # Only apply replacements for non-skipped items
@@ -117,20 +118,18 @@ def replace_internal_references(content: str, mapping: dict[str, str]) -> str:
             continue
 
         # Skill invocation paths: /agent-bootstrap → /adf-agent-bootstrap
-        # Use word-boundary aware replacement (only at / + word start)
-        # This avoids replacing things like "/start-agent-team" inside "/adf-start-agent-team"
         replacements.append((f"/{orig}", f"/{adf}"))
 
-        # Subdirectory references: skills/shared/agents/ → .claude/skills/adf-agents/
-        replacements.append((f"skills/shared/{orig}/", f".claude/skills/{adf}/"))
+        # Skill invocation calls: Skill("product-manager") → Skill("adf-product-manager")
+        replacements.append((f'Skill("{orig}")', f'Skill("{adf}")'))
 
-        # Direct file references: skills/shared/agent-bootstrap.md → .claude/skills/adf-agent-bootstrap/SKILL.md
-        replacements.append(
-            (f"skills/shared/{orig}.md", f".claude/skills/{adf}/SKILL.md")
-        )
+        # Subdirectory references: product-manager/SKILL.md → .claude/skills/adf-product-manager/SKILL.md
+        replacements.append((f"{orig}/SKILL.md", f".claude/skills/{adf}/SKILL.md"))
+
+        # Also handle skills/ prefix: skills/architect/SKILL.md → .claude/skills/adf-architect/SKILL.md
+        replacements.append((f"skills/{orig}/SKILL.md", f".claude/skills/{adf}/SKILL.md"))
 
     # Sort by length descending to avoid partial replacement issues
-    # (e.g., replace "skills/shared/agents/" before "skills/shared/agent-...")
     replacements.sort(key=lambda x: -len(x[0]))
 
     for old, new in replacements:

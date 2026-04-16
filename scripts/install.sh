@@ -12,7 +12,7 @@
 #   ./scripts/install.sh --dry-run              # 预览模式
 #
 # 安装内容:
-#   - skills/shared/ -> {target}/skills/shared/
+#   - skills/ -> {target}/skills/
 #   - adapters/claude/.claude/ -> {target}/skills/
 #
 # 注意:
@@ -113,8 +113,8 @@ check_prerequisites() {
         exit 1
     fi
 
-    if [[ ! -d "$REPO_ROOT/skills/shared" ]]; then
-        error "skills/shared/ 目录不存在"
+    if [[ ! -d "$REPO_ROOT/skills" ]]; then
+        error "skills/ 目录不存在"
         exit 1
     fi
 
@@ -162,9 +162,9 @@ install_dev() {
     fi
     echo ""
 
-    # 安装共享技能（skills/shared/）
-    local shared_source="${REPO_ROOT}/skills/shared"
-    local shared_target="${TARGET_DIR}/skills/shared"
+    # 安装共享技能（skills/）
+    local shared_source="${REPO_ROOT}/skills"
+    local shared_target="${TARGET_DIR}/skills"
 
     info "安装共享技能到 ${shared_target}..."
     if $DRY_RUN; then
@@ -258,8 +258,8 @@ post_install_check() {
     local skill_count=0
     local adapter_count=0
 
-    if [[ -d "${TARGET_DIR}/skills/shared" ]]; then
-        skill_count=$(find "${TARGET_DIR}/skills/shared" -name "*.md" 2>/dev/null | wc -l)
+    if [[ -d "${TARGET_DIR}/skills" ]]; then
+        skill_count=$(find "${TARGET_DIR}/skills" -name "*.md" 2>/dev/null | wc -l)
     fi
 
     if [[ -d "${TARGET_DIR}/skills" ]]; then
@@ -300,7 +300,7 @@ show_next_steps() {
     echo ""
     info "更多信息请查看:"
     echo "  - ${REPO_ROOT}/README.md"
-    echo "  - ${REPO_ROOT}/skills/shared/README.md"
+    echo "  - ${REPO_ROOT}/skills/README.md"
     echo ""
 }
 
