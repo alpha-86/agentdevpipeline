@@ -1,8 +1,15 @@
-# Tech Spec: gstack / superpower 增强层接入 — 文档交付
+---
+name: AgentDevFlow gstack/superpower 增强层接入 — Tech Spec v4
+description: 定义增强层接入的文档交付架构、检测机制语义、角色映射、技术风险与研发计划
+status: In Review
+owner: Architect
+date: 2026-04-17
+update_date: 2026-04-17
+issue: "#3"
+prd: docs/prd/003_adf_enhancement_layer_2026-04-17.md
+---
 
-## Issue
-
-#3: 讨论 gstack 与 superpower 增强层接入
+# Tech Spec #003 — gstack/superpower 增强层接入（v4）
 
 ---
 
