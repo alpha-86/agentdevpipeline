@@ -1,7 +1,7 @@
 ---
 name: AgentDevFlow gstack/superpower 增强层接入
 description: 明确 gstack / superpower 作为 AgentDevFlow 能力增强层的接入方式、角色映射和边界约束
-status: Draft
+status: Approved
 owner: Product Manager
 date: 2026-04-17
 update_date: 2026-04-17
@@ -116,8 +116,20 @@ AgentDevFlow 与 gstack、superpower 三个项目解决的问题层级不同：
 - prompts/discuss/028_2026-04-14_gstack与superpower增强层接入方案.md（已有详细分析）
 - README.md 当前内容（已包含三者差异 FAQ）
 
-## 10. 评审记录
+## 10. Gate 1 Review Record
+
+| 日期 | 评审人 | 结论 | 关键意见 | 待办 |
+|---|---|---|---|---|
+| 2026-04-17 | PM | 起草完成，发起评审 | 符合新约束：禁止技术细节 | 等待 Architect + QA 签字 |
+| 2026-04-17 | Architect | **Approved** ✅ | PRD v4 符合新约束：无技术选型/代码/接口/架构；Section 4 范围重构合理 | — |
+| 2026-04-17 | QA | **Approved** ✅ | Section 7 验收标准覆盖完整，可测试性明确 | — |
+
+---
+
+## 11. 评审记录
 
 | 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|
 | 2026-04-17 | PM | PRD 起草（符合新约束：禁止技术细节）| Draft |
+| 2026-04-17 | Architect | Gate 1 签字：Approved — 符合新约束，无技术选型/代码/接口/架构 | Approved |
+| 2026-04-17 | QA | Gate 1 签字：Approved — Section 7 验收标准覆盖完整 | Approved |
