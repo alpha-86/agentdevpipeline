@@ -77,7 +77,7 @@ AgentDevFlow 与 gstack、superpower 三个项目解决的问题层级不同：
 | Team Lead | `brainstorming`, `plan-design-review`, `document-release` | 流程改进、接入文档优化、发布后文档同步 | superpower / gstack |
 | PMO | `brainstorming`, `plan-design-review`, `document-release` | 流程改进、接入文档优化、发布后文档同步 | superpower / gstack |
 
-> **注**：`plan-devex-review` 经 Engineer 验证不存在，已更正为 `plan-design-review`（gstack 中真实存在）。`brainstorming` 已在 PM 和 Architect 列表中（来自 superpower）。
+> **注**：`plan-devex-review` 经 Engineer 验证不存在，已更正为 `plan-design-review`（gstack 中真实存在）。
 
 ### 4.4 增强层输出边界约束
 
@@ -104,7 +104,7 @@ AgentDevFlow 与 gstack、superpower 三个项目解决的问题层级不同：
 > 作为 AgentDevFlow 用户，我希望在引入 gstack/superpower 增强能力前先了解它们与 AgentDevFlow 流程的关系，避免把增强工具当成流程替代品。
 
 ### US-2：零配置启用者
-> 作为 AgentDevFlow 用户，我希望安装 gstack/superpower 后自动获得增强能力，而无需手动配置或重新启动。
+> 作为 AgentDevFlow 用户，我希望安装 gstack/superpower 后自动获得增强能力，而无需手动配置。
 
 ### US-3：质量增强者
 > 作为使用 AgentDevFlow 的 QA Engineer，我希望在 QA 阶段获得 gstack-qa 的验证覆盖增强，同时不改变正式 QA 报告的约束。
@@ -151,14 +151,10 @@ AgentDevFlow 与 gstack、superpower 三个项目解决的问题层级不同：
 
 - prompts/discuss/028_2026-04-14_gstack与superpower增强层接入方案.md（已有详细分析）
 - README.md 当前内容（已包含三者差异 FAQ）
-- prompts/discuss/016_phase_5_3 和 016_phase_5_2（gstack/superpower 能力分析）
 
 ## 10. 评审记录
 
 | 日期 | 评审人 | 备注 | 决策 |
 |---|---|---|---|
 | 2026-04-15 | PM | PRD 草稿 | Draft |
-| 2026-04-15 | Team Lead | Gate 1 Review v1 — 5 个交付域边界清晰，输出边界约束合理 | **Approved** ✅ |
-| 2026-04-15 | PM | PRD 迭代 v2 — Scope changed: 手动开关→自动检测 | v2 |
-| 2026-04-15 | QA | Gate 1 Re-review v2 — 自动检测+回落机制合理 | **Approved** ✅ |
 | 2026-04-17 | PM | PRD 迭代 v3 — 采纳 Human Comment #4259950108：检测时机从"每个 agent 初始化"→"start-agent-team 统一检测一次"；PM/Team Lead/PMO 三角色映射明确 | Draft |
