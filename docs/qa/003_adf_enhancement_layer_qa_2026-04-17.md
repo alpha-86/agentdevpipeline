@@ -1,16 +1,16 @@
-# QA Case Design #3 — 增强层文档交付
-
-## Issue
-
-#3: 讨论 gstack 与 superpower 增强层接入
-
+---
+name: AgentDevFlow 增强层接入 — QA Case Design
+description: 定义增强层文档交付的 QA 测试用例（文档搜索型验收测试）
+status: In Review
+owner: QA Engineer
+date: 2026-04-17
+update_date: 2026-04-17
+issue: "#3"
+prd: docs/prd/003_adf_enhancement_layer_2026-04-17.md
+tech: docs/tech/003_adf_enhancement_layer_tech_2026-04-17.md
 ---
 
-**ID**: QA-3_v1
-**状态**: Draft
-**负责人**: PM / QA
-**日期**: 2026-04-17
-**更新日期**: 2026-04-17
+# QA Case Design #003 — 增强层文档交付
 
 ---
 
@@ -144,3 +144,13 @@
 | 预期结果 | 文档包含 gstack + superpower skill 包的安装前置条件 |
 | 验证方法 | 文档内容验证 |
 | 优先级 | P2 |
+
+---
+
+## Gate 2 Review Record
+
+| 日期 | 评审人 | 结论 | 关键意见 | 待办 |
+|---|---|---|---|---|
+| 2026-04-17 | PM | 发起评审 | Tech + QA Case 均已起草，追溯关系完整 | 等待 Architect + QA 签字 |
+| — | Architect | 待签字 | — | — |
+| — | QA | 待签字 | — | — |

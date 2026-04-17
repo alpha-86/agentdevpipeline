@@ -1,16 +1,15 @@
-# Tech Spec: gstack / superpower 增强层接入 — 文档交付
-
-## Issue
-
-#3: 讨论 gstack 与 superpower 增强层接入
-
+---
+name: AgentDevFlow gstack/superpower 增强层接入 — Tech Spec
+description: 定义增强层接入的文档交付架构、角色映射、可测试性、风险与研发计划
+status: In Review
+owner: Architect
+date: 2026-04-15
+update_date: 2026-04-17
+issue: "#3"
+prd: docs/prd/003_adf_enhancement_layer_2026-04-17.md
 ---
 
-**ID**: Tech-3_v3
-**状态**: Draft
-**负责人**: 架构师
-**日期**: 2026-04-15
-**更新日期**: 2026-04-17（基于 PRD #003 v3 更新）
+# Tech Spec #003 — AgentDevFlow gstack/superpower 增强层接入
 
 ---
 
@@ -185,5 +184,6 @@ skills/*/SKILL.md              # 修改：各角色文档补充可选增强 skil
 | 2026-04-15 | PM | PM 评审 v2 — 范围与 PRD v2 一致 | Approved |
 | 2026-04-15 | 架构师 | Gate 2 Tech Review — 技术可行性确认 | Approved |
 | 2026-04-15 | PM | Skill 名称验证更新 | v2.1 |
-| 2026-04-15 | Team Lead | Gate 2 补签 | **Approved** ✅ |
+| 2026-04-15 | Team Lead | Gate 2 补签 | Approved |
 | 2026-04-17 | 架构师 | 更新至 v3：PRD v3 迭代 — 统一检测（start-agent-team一次）+ 6角色映射 | Draft |
+| 2026-04-17 | PM | Gate 2 发起评审 — Tech Spec + QA Case 均已起草 | In Review |
