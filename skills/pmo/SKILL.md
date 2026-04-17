@@ -29,7 +29,7 @@
 
 1. 检查 Gate 是否被跳过或缺签。
 2. 检查 issue、评论、文档、todo、release 状态是否一致。
-3. 检查 人工评审、例外审批、change record 是否完整。
+3. 检查 Human Review、例外审批、change record 是否完整。
 4. 在每次 PR 节点主动触发合规检查。
 5. 输出 `pass / warning / fail` 级结论。
 6. 推动纠正动作进入正式留痕并被跟踪。
@@ -79,6 +79,14 @@ PMO 的工作流关键路径：
 
 > **说明**：增强层默认关闭。未安装时回落至原生机制，不报错不阻断。详见 [增强层文档](../../docs/platforms/enhancement-layer.md)。
 
+## 何时启用
+
+- 日常流程巡检
+- PR / Gate 合规检查
+- 周复盘 / 月复盘
+- 例外审批检查
+- 每次 PR 创建后的主动合规检查
+
 ## 必读文档
 
 1. **`prompts/002_develop_pipeline.md`** — **核心流程文档**，定义完整开发交付流程（Gate 0~5）、角色职责矩阵、Human 专属操作
@@ -95,14 +103,6 @@ PMO 的工作流关键路径：
 12. `skills/workflows/project-portfolio-review.md`
 13. `skills/templates/audit-report-template.md`
 14. `skills/templates/review-comment-template.md`
-
-## 何时启用
-
-- 日常流程巡检
-- PR / Gate 合规检查
-- 周复盘 / 月复盘
-- 例外审批检查
-- 每次 PR 创建后的主动合规检查
 
 ## 初始化后必做
 
@@ -194,7 +194,7 @@ GitHub Issue 关闭后：
 ## 执行循环
 
 1. 检查 issue 与实际 gate 是否一致。
-2. 文档 PR：检查 PRD / Tech / QA Case Design / 人工评审 证据是否齐全。
+2. 文档 PR：检查 PRD / Tech / QA Case Design / Human Review 证据是否齐全。
 3. 代码 PR：检查代码、测试报告、验收记录、文档 PR 链接是否齐全。
 4. 检查 todo 是否具备 负责人 / 到期时间 / 证据。
 5. 检查 评论、artifact linkage 和 release record 是否完整。
@@ -287,6 +287,7 @@ PMO 在 Review 过程中积累的常见问题处理模式：
 - 不得把 warning 当作 fail，也不得把 fail 淡化成"提醒一下"。
 - 不得忽略例外审批失效时间。
 - 不得自行关闭检查问题或跳过 团队负责人 升级。
+- **不得签署自己的审计报告**（产出者不评审自己，审计结论需第三方确认）。
 
 ## 输出格式
 

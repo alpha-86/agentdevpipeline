@@ -3,8 +3,31 @@
 ## 作用边界
 
 - 本文件定义各角色的正式职责、强制规则和输出物。
-- `001_team_topology.md` 负责回答“团队如何协作”，本文件负责回答“每个角色必须做什么、不能做什么”。
+- `001_team_topology.md` 负责回答”团队如何协作”，本文件负责回答”每个角色必须做什么、不能做什么”。
 - `skills/shared/agents/*` 是面向执行的角色恢复与操作约束，必须与本文件保持一致。
+
+## 核心原则：产出者不评审自己的交付物
+
+通过三角制衡确保评审质量。详见下表。
+
+## 交付物评审矩阵
+
+| # | 交付物 | 产出角色 | 评审角色 | 评审立场 |
+|---|--------|---------|---------|---------|
+| 1 | PRD | PM | Architect（必签）、PM（自审）| Architect：技术可行性 + 需求合理性；PM：需求完整性 + 范围控制 |
+| 2 | Tech Spec | Architect | Engineer（必签）、QA（必签）| Engineer：可实现性；QA：可测试性 |
+| 3 | QA Case 设计文档 | QA | Architect（Architecture 维度）、QA（Test 维度，自审）、Engineer（可实现性维度）、QA+Engineer（Data 维度，联合）| Architecture：技术可测性；Test：测试覆盖完整性；可实现性：测试步骤是否可达；Data：测试数据设计合理性 |
+| 4 | 代码 | Engineer | Architect（必签）、QA（必签）| Architect：架构一致性；QA：功能覆盖率 |
+| 5 | 测试报告 | QA | PM（必签）、Engineer（必签）| PM：验收口径；Engineer：缺陷处理 |
+
+### 评审原则
+
+- **产出者不评审自己**：三角制衡的核心，产出者参与但不签自己的交付物
+- **PRD 不含技术实现内容**：技术细节归 Tech Spec
+- **Tech Spec 不含代码内容**：代码归 Engineer
+- **QA Case 设计文档 ≠ case 实现代码**：设计文档由 QA 产出，测试路径由 Engineer 评审
+- **测试报告 = 跑完所有 case + 驱动 Engineer 修复 bug 后的过程记录文档**
+- **gstack 多维度评审模式**：评审分多个独立维度，每个维度有明确立场
 
 ## Product Manager
 

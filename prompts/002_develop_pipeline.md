@@ -161,15 +161,15 @@ PM + Architect + QA 三方签字完成，Issue Comment 已落地。
 | 角色 | 职责 |
 |------|------|
 | Team Lead | 主持评审、确认流转 |
-| PM | 评审 PRD 覆盖完整性、Tech 满足需求、确认签字 |
-| Architect | 主持评审、Tech Spec 签字、识别风险和依赖 |
-| QA | 评审 QA Case 覆盖 Tech Spec、风险和回滚路径、QA 签字 |
-| Engineer | 评审 Tech Spec 可实现性（纯文档交付场景可由 Architect 代理）|
+| PM | 确认 PRD 覆盖完整性、确认 Tech + QA Case 覆盖需求 |
+| Architect | 主持评审、识别风险和依赖（不签自己的 Tech Spec）|
+| QA | 评审测试路径设计、QA Case 覆盖 Tech Spec 完整性（必签）|
+| Engineer | 评审 Tech Spec 可实现性（必签）|
 
 ### 签字要求
 
-- **Architect（必签）**：技术方案确认
-- **QA（必签）**：测试路径确认
+- **Engineer（必签）**：技术方案可实现性确认
+- **QA（必签）**：测试路径可测试性确认
 - **PM（确认）**：需求覆盖确认
 
 ### 输出物
@@ -180,7 +180,7 @@ PM + Architect + QA 三方签字完成，Issue Comment 已落地。
 
 ### 通过标准
 
-Architect + QA + PM 三方签字完成，Issue Comment 已落地。
+Engineer + QA + PM 三方签字完成，Issue Comment 已落地。
 
 ### Human 专属操作
 
@@ -469,7 +469,7 @@ PM + Architect + Platform/SRE 三方放行。
 |------|-----------|-----|-----------|-----|----------|-------------|-----|
 | Gate 0: Startup | 主持/分配 | 确认来源 | 确认范围 | 确认路径 | 待命 | 确认环境 | 记录 |
 | Gate 1: PRD Review | 主持/流转 | 主持/签字 | 评审可行性 | 评审完整性 | — | — | 审计 |
-| Gate 2: Tech Review | 主持/流转 | 确认覆盖 | 主持/签字 | 评审路径/签字 | 评审可实现性 | — | 审计 |
+| Gate 2: Tech Review | 主持/流转 | 确认覆盖 | 主持（不签自己的）| 评审路径/签字 | **评审可实现性/签字** | — | 审计 |
 | HR#1 | 推动合并 | 发起/整理 | 评审/签字 | 评审/签字 | — | — | 审计 |
 | **文档PR合并** | **—** | **通知TL** | **—** | **—** | **—** | **—** | **—** |
 | Gate 3: Impl | 跟踪 | 跟踪 | 确认一致性 | 跟踪 | **实现** | — | 审计 |
@@ -512,7 +512,7 @@ Agent 在这些操作完成后的正确行为：发布通知评论，推动 Huma
 | PM | Gate 5 | 业务放行签字 |
 | PM | **Issue Close** | **发布"Issue 关闭请求"评论，不自行关闭** |
 | Architect | Gate 1 | 评审技术可行性、签字 |
-| Architect | Gate 2 | Tech Spec 起草完成、签字 |
+| Architect | Gate 2 | 主持 Tech Spec 评审、确认 Engineer + QA 签字（不签自己的）|
 | Architect | HR#1/2 | 独立评审意见、签字 |
 | Architect | Gate 3 | 确认实现与 Tech 一致性 |
 | Architect | Gate 5 | 技术放行签字 |

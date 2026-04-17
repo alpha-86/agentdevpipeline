@@ -25,6 +25,7 @@ AgentDevFlow 是一套自包含的通用产研 Agent 能力包，目标是把可
 - 文档规范、会议纪要、Todo 闭环、Issue 驱动交付等过程治理机制
 - Agent 创建规范、平台适配约束和跨平台接入方式
 - 面向自动化编排的共享 prompts、workflows、templates、playbooks
+- **gstack/superpower 增强层**：可选的能力插件层，增强各角色在特定阶段的分析、评审和协作能力。详见 [增强层文档](../platforms/enhancement-layer.md) 和[使用指南](../guides/enhancement-guide.md)。
 
 ## 阅读顺序
 
