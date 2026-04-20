@@ -39,7 +39,7 @@ AgentDevFlow 是一套自包含的通用产研 Agent 能力包，目标是把可
 8. 平台与沟通通道接入文档
 9. `prompts/` 中的 Issue / 变更 / 异常 / 合规机制
 10. `skills/` 中的角色、workflow、template
-11. `skills/team-setup.md`
+11. `skills/team-setup/SKILL.md`
 12. `skills/start-agent-team.md`
 13. `skills/create-agent.md`
 14. `skills/skill-protocol.md`

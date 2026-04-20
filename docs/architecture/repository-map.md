@@ -65,7 +65,7 @@ plugins/
 ## 约束
 
 - 角色定义写在 `skills/agents/`，执行手册使用同名 `*.playbook.md`
-- 团队启动入口写在 `skills/team-setup.md` 与 `skills/start-agent-team.md`
+- 团队启动入口写在 `skills/team-setup/SKILL.md` 与 `skills/start-agent-team/SKILL.md`
 - Agent 统一创建入口写在 `skills/create-agent.md`
 - 事件与状态同步语义写在 `skills/event-bus.md`
 - 流程定义写在 `skills/workflows/`

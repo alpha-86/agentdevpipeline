@@ -73,7 +73,7 @@
 - `skills/agents/`
 - `skills/workflows/`
 - `skills/templates/`
-- `skills/team-setup.md`
+- `skills/team-setup/SKILL.md`
 - `skills/start-agent-team.md`
 - `skills/create-agent.md`
 - `skills/skill-protocol.md`
