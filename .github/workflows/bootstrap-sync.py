@@ -105,38 +105,38 @@ def replace_internal_references(content: str, mapping: dict[str, str]) -> str:
     """Replace all internal skill references in content.
 
     Patterns replaced:
-    - /{orig} → /adf-{adf}  (skill invocation paths)
+    - /{orig} → /adf-{adf}  (skill invocation paths, uses negative lookbehind to avoid substring matches)
     - Skill("{orig}") → Skill("{adf}")  (skill invocation calls)
-    - {orig}/SKILL.md → .claude/skills/{adf}/SKILL.md  (skill file references)
+    - {orig}/SKILL.md → .claude/skills/{adf}/SKILL.md  (skill file references, uses negative lookbehind)
     - skills/{orig}/SKILL.md → .claude/skills/{adf}/SKILL.md  (skills prefix references)
     """
 
     # Only apply replacements for non-skipped items
     skip_set = {*SKIP_FILES}
 
-    replacements = []
+    # Use regex with negative lookbehind to avoid substring matches
+    # e.g., team-setup must not match inside adf-team-setup
+    import re as re_module
 
     for orig, adf in mapping.items():
         if orig in skip_set:
             continue
 
         # Skill invocation paths: /agent-bootstrap → /adf-agent-bootstrap
-        replacements.append((f"/{orig}", f"/{adf}"))
+        # Use negative lookbehind with / excluded to avoid matching /team-setup inside paths
+        content = re_module.sub(rf'(?<![\w/])/{re_module.escape(orig)}(?![\w/])', f'/{adf}', content)
 
         # Skill invocation calls: Skill("product-manager") → Skill("adf-product-manager")
-        replacements.append((f'Skill("{orig}")', f'Skill("{adf}")'))
+        content = content.replace(f'Skill("{orig}")', f'Skill("{adf}")')
 
-        # Subdirectory references: product-manager/SKILL.md → .claude/skills/adf-product-manager/SKILL.md
-        replacements.append((f"{orig}/SKILL.md", f".claude/skills/{adf}/SKILL.md"))
+        # FIRST: full path with skills/ prefix — must be done before the short pattern
+        # to avoid matching team-setup inside skills/team-setup/SKILL.md
+        content = content.replace(f"skills/{orig}/SKILL.md", f".claude/skills/{adf}/SKILL.md")
 
-        # Also handle skills/ prefix: skills/architect/SKILL.md → .claude/skills/adf-architect/SKILL.md
-        replacements.append((f"skills/{orig}/SKILL.md", f".claude/skills/{adf}/SKILL.md"))
-
-    # Sort by length descending to avoid partial replacement issues
-    replacements.sort(key=lambda x: -len(x[0]))
-
-    for old, new in replacements:
-        content = content.replace(old, new)
+        # SECOND: short pattern without skills/ prefix — only matches standalone {orig}/SKILL.md
+        # Use negative lookbehind (?<![\w-/]) to prevent matching team-setup inside
+        # skills/team-setup/SKILL.md or adf-team-setup/SKILL.md
+        content = re_module.sub(rf'(?<![\w\-/]){re_module.escape(orig)}/SKILL\.md\b', f'.claude/skills/{adf}/SKILL.md', content)
 
     return content
 

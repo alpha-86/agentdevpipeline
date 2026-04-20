@@ -30,8 +30,9 @@
 
 - 确认当前项目标识 `project_id`
 - 确认当前主 issue 或主工作索引
-- 确认 团队负责人
 - 确认本轮需要启用的角色
+
+> **注**：Team Lead（团队负责人）是当前 Claude Code 窗口本身（Human），是 Agent Team 系统的保留角色，无需确认或创建。
 
 ### 步骤 0.5. Team 创建检查
 
