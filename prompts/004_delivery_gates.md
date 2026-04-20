@@ -8,13 +8,15 @@
 
 | README 流程节点 | Gate 编号 | 说明 |
 |---------------|-----------|------|
-| 创建主 GitHub Issue | Gate 0 | Team Startup |
-| PRD | Gate 1 | PRD Review |
-| Tech Spec + QA Case | Gate 2 | Tech Review |
-| Human Review #1 + 文档PR合并 | - | HR#1 通过后 Human 合并 |
-| Engineer 实现 | Gate 3 | Implementation |
+| Agent Team 启动 → 扫描 Issue | Gate 0 | Team Startup |
+| PM 领取 Issue + 讨论 Comment | - | Issue 是强制入口，未 Comment 视为未完成 |
+| PRD Review | Gate 1 | PRD Review（PM + Architect + QA 三方签字）|
+| Tech Review | Gate 2 | Tech Review（QA + Engineer + PM 两签）|
+| QA Case Design | - | QA Case Design（PM + Architect + Engineer 三签）|
+| 文档 PR 合并（doc-{issue} 分支）| Human Review #1 | HR#1 通过后 Human 合并 = 设计确认 |
+| Engineer 实现（feature-{issue} 分支）| Gate 3 | Implementation |
 | QA 验证 | Gate 4 | QA Validation |
-| Human Review #2 + 代码PR合并 | - | HR#2 通过后 Human 合并 |
+| 代码 PR 合并（feature-{issue} 分支）| Human Review #2 | HR#2 通过后 Human 合并 = 实现确认 |
 | Release / Issue Close | Gate 5 | Release |
 
 ---
@@ -25,9 +27,9 @@
 
 | Gate | 文档类型 | 必需签字 | CI 检查位置 |
 |------|---------|----------|------------|
-| Gate 1 | PRD | PM + Architect | PRD 文档头部 Gate 块 |
-| Gate 2 | Tech Spec | Engineer + QA | Tech 文档头部 Gate 块 |
-| Gate 2 | QA Case | Engineer + QA | QA Case 文档头部 Gate 块 |
+| Gate 1 | PRD | PM + Architect + QA | PRD 文档头部 Gate 块 |
+| Gate 2 | Tech Spec | QA + Engineer + PM | Tech 文档头部 Gate 块 |
+| QA Case Design | QA Case | PM + Architect + Engineer | QA Case 文档头部 Gate 块 |
 | Gate 3 | Implementation | 代码 + 单测 | 代码 PR |
 | Gate 4 | QA Test Report | QA + PM + Engineer | QA Test Report 文档头部 |
 | Gate 5 | Release | PM + Architect + Platform/SRE | Release 文档头部 |
@@ -42,9 +44,9 @@
      ▼
 doc-pr-checks.yml 执行
      │
-     ├── 检查 PRD Gate 1 (PM + Architect)
-     ├── 检查 Tech Gate 2 (Engineer + QA)
-     └── 检查 QA Case Gate 2 (Engineer + QA)
+     ├── 检查 PRD Gate 1 (PM + Architect + QA)
+     ├── 检查 Tech Gate 2 (QA + Engineer + PM)
+     └── 检查 QA Case Design (PM + Architect + Engineer)
           │
           ├── 全部通过 → 允许提交
           └── 任一失败 → 显示友好错误，阻止提交
@@ -55,11 +57,12 @@ doc-pr-checks.yml 执行
 ```
 [Gate Check] 前置条件未满足
 
-问题: 文档 PR 提交时，关联的 Gate 2 尚未全部签字
+问题: 文档 PR 提交时，关联的 Gate 尚未全部签字
 
 要求:
-  □ Engineer 签字: 未通过
-  □ QA 签字: 未通过
+  □ Gate 1 PRD (PM + Architect + QA): 未通过
+  □ Gate 2 Tech (QA + Engineer + PM): 未通过
+  □ QA Case Design (PM + Architect + Engineer): 未通过
 
 解决方案:
   1. 完成所有 Gate 签字后再提交 PR
@@ -117,4 +120,4 @@ doc-pr-checks.yml 执行
 
 ---
 
-*GOV-009 执行产物 | Gate 定义已统一至 `prompts/002_develop_pipeline.md` | 2026-04-17*
+*GOV-009 执行产物 | Gate 定义已统一至 `prompts/002_develop_pipeline.md` | 2026-04-20 更新 v2.0 流程修复：Gate 2 细分为 Tech Review 和 QA Case Design，双 PR 分支策略，PM 领取 Issue + 讨论 Comment 规则*

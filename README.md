@@ -73,35 +73,33 @@ QA 负责把 PRD 和 Tech 的承诺转成可验证路径，Engineer 负责按已
 ## 完整流程
 
 ```text
-需求 / 问题 / 异常
+Agent Team 启动
         │
         ▼
-创建主 GitHub Issue
+扫描所有 open GitHub Issues（Human 随时可能创建新 Issue）
         │
         ▼
-PM 澄清问题与边界
+PM 领取 Issue → 与 Human 讨论问题（必须 Comment 到 Issue）
         │
         ▼
-PRD
+PRD 产出 → Comment 到 Issue（含 PRD 链接）
         │
         ▼
-Gate 门控 1: PRD Review
+Gate 1: PRD Review（PM + Architect + QA 三方签字）
         │
         ▼
-Tech Spec + QA Case Design
-文档阶段交付物
+Gate 2: Tech Review（QA + Engineer + PM 两签）
         │
         ▼
-Gate 门控 2: Tech Review
+QA Case Design（PM + Architect + Engineer 三签）
         │
         ▼
-文档 PR
-PRD + Tech + QA Case Design
-Human Review #1
-合并 = 设计确认
+PM 创建 doc-{issue} 分支 → 提交文档 PR
+文档 PR（PRD + Tech + QA Case Design）
+Human Review #1 → 合并 = 设计确认
         │
         ▼
-Engineer 基于已确认 PRD + Tech 实现
+Engineer 基于已确认设计文档开发（feature-{issue} 分支）
         │
         ▼
 QA 基于已确认 QA Case Design 验证 / 回归
@@ -112,10 +110,9 @@ QA 基于已确认 QA Case Design 验证 / 回归
 全部约定 case 通过 + 测试报告
         │
         ▼
-代码 PR
-代码 + 测试证据 + 测试报告 / QA 结论
-Human Review #2
-合并 = 实现确认
+Engineer 创建代码 PR（feature-{issue}）
+代码 PR（代码 + 测试报告）
+Human Review #2 → 合并 = 实现确认
         │
         ▼
 Issue Comment Gate 门控

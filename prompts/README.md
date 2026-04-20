@@ -31,36 +31,30 @@
 
 角色定义位于：
 
-- `skills/shared/agents/`
+- `skills/`（如 `skills/product-manager/SKILL.md`）
 
-当前共享角色包括：
+当前角色包括：
 
-- `team-lead.md`
-- `product-manager.md`
-- `architect.md`
-- `engineer.md`
-- `qa-engineer.md`
-- `platform-sre.md`
-- `pmo.md`
-
-每个共享角色应同时维护对应的 `*.playbook.md`。
+- `product-manager/SKILL.md`
+- `architect/SKILL.md`
+- `engineer/SKILL.md`
+- `qa-engineer/SKILL.md`
+- `platform-sre/SKILL.md`
+- `pmo/SKILL.md`
+- `team-lead/SKILL.md`
+- `agent-bootstrap/SKILL.md`
+- `pmo-review/SKILL.md`
 
 工作流位于：
 
-- `skills/shared/workflows/prd-review.md`
-- `skills/shared/workflows/tech-review.md`
-- `skills/shared/workflows/implementation.md`
-- `skills/shared/workflows/qa-validation.md`
-- `skills/shared/workflows/release-review.md`
-- `skills/shared/workflows/daily-sync.md`
-- `skills/shared/workflows/todo-review.md`
-- `skills/shared/workflows/weekly-review.md`
-- `skills/shared/workflows/monthly-review.md`
-- `skills/shared/workflows/issue-lifecycle.md`
-- `skills/shared/workflows/anomaly-response.md`
-- `skills/shared/workflows/context-recovery.md`
-- `skills/shared/workflows/human-review.md`
-- `skills/shared/workflows/issue-routing.md`
+- `skills/workflows/issue-lifecycle.md`
+- `skills/workflows/human-review.md`
+- `skills/workflows/project-portfolio-review.md`
+
+模板位于：
+
+- `skills/templates/audit-report-template.md`
+- `skills/templates/review-comment-template.md`
 
 ## 当前判定
 

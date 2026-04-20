@@ -83,4 +83,7 @@
 
 - `*.md` 文档是本项目的实现层，"纯文档交付"不是可以跳过 HR#1 的理由
 - **不存在任何可以跳过 Human Review #1 的情况**
-- Gate 2 → Human Review #1 → Gate 3 → Gate 4 是强制顺序，不得颠倒
+- Human Review #1 对应文档 PR（`doc-{issue}` 分支）合并 = 设计确认
+- Human Review #2 对应代码 PR（`feature-{issue}` 分支）合并 = 实现确认
+- **强制流程顺序**（不得颠倒或跳过）：
+  - Gate 1 → Gate 2 → QA Case Design → 文档 PR（HR#1）→ Gate 3 → Gate 4 → 代码 PR（HR#2）→ Gate 5
