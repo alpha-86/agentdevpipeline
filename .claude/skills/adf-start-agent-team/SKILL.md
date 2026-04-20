@@ -11,7 +11,7 @@
 | # | 文档 | 用途 | 状态 |
 |---|------|------|------|
 | 1 | `prompts/002_develop_pipeline.md` | 核心流程文档，定义完整开发交付流程（Gate 0~5）、角色职责矩阵、Human 专属操作 | ⬜ 未读 |
-| 2 | `.claude/skills/adf-.claude/skills/adf-team-setup/SKILL.md` | 团队启动规范 | ⬜ 未读 |
+| 2 | `.claude/skills/adf-team-setup/SKILL.md` | 团队启动规范 | ⬜ 未读 |
 | 3 | `skills/skill-protocol.md` | 共享技能协议 | ⬜ 未读 |
 | 4 | `skills/event-bus.md` | 事件总线规范 | ⬜ 未读 |
 | 5 | `prompts/001_team_topology.md` | 团队拓扑、Human vs Agent 角色区分 | ⬜ 未读 |
@@ -30,8 +30,9 @@
 
 - 确认当前项目标识 `project_id`
 - 确认当前主 issue 或主工作索引
-- 确认 团队负责人
 - 确认本轮需要启用的角色
+
+> **注**：Team Lead（团队负责人）是当前 Claude Code 窗口本身（Human），是 Agent Team 系统的保留角色，无需确认或创建。
 
 ### 步骤 0.5. Team 创建检查
 
@@ -230,7 +231,7 @@ python scripts/task_router.py --verbose
 
 ```
 [ ] 1. prompts/002_develop_pipeline.md   — 核心流程文档，Gate 0~5、角色职责矩阵、Human 专属操作
-[ ] 2. .claude/skills/adf-.claude/skills/adf-team-setup/SKILL.md             — 团队启动规范
+[ ] 2. .claude/skills/adf-team-setup/SKILL.md             — 团队启动规范
 [ ] 3. skills/skill-protocol.md          — 共享技能协议
 [ ] 4. skills/event-bus.md              — 事件总线规范
 [ ] 5. prompts/001_team_topology.md      — 团队拓扑、Human vs Agent 角色区分

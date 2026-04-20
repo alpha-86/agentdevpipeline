@@ -20,7 +20,7 @@
 | # | 文档 | 用途 | 状态 |
 |---|------|------|------|
 | 1 | `prompts/002_develop_pipeline.md` | 核心流程文档，定义完整开发交付流程（Gate 0~5）、角色职责矩阵、Human 专属操作 | ⬜ 未读 |
-| 2 | `skills/adf-start-agent-team.md` | 启动团队规范 | ⬜ 未读 |
+| 2 | `skills/start-agent-team.md` | 启动团队规范 | ⬜ 未读 |
 | 3 | `skills/skill-protocol.md` | 共享技能协议 | ⬜ 未读 |
 | 4 | `skills/event-bus.md` | 事件总线规范 | ⬜ 未读 |
 | 5 | `prompts/001_team_topology.md` | 团队拓扑、Human vs Agent 角色区分 | ⬜ 未读 |
@@ -109,7 +109,7 @@
 - 启动会纪要：`docs/memo/`
 - 待办注册：`docs/todo/TODO_REGISTRY.md`
 - 项目状态板：`docs/memo/`
-- AgentDevFlow 自举记录：`docs/memo/adf-agent-bootstrap.md`
+- AgentDevFlow 自举记录：`docs/memo/agent-bootstrap.md`
 
 ## 禁止行为
 

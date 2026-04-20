@@ -134,9 +134,9 @@ PMO 的工作流关键路径：
 PMO 的问题处理遵循以下标准闭环：
 
 ```
-发现问题 → 记录到 docs/adf-pmo/issues/
+发现问题 → 记录到 docs/pmo/issues/
 → 通知 Team Lead（P0/P1 立即）
-→ /adf-pmo-review 讨论 → 记录到 docs/adf-pmo/resolutions/
+→ /adf-pmo-review 讨论 → 记录到 docs/pmo/resolutions/
 → 发起 GitHub Issue 追踪修复
 → 执行修复
 → GitHub Issue 关闭 → 验收通过
@@ -145,7 +145,7 @@ PMO 的问题处理遵循以下标准闭环：
 
 ### Step 1: 发现问题
 
-发现问题后，记录到 `docs/adf-pmo/issues/`：
+发现问题后，记录到 `docs/pmo/issues/`：
 
 文件命名：`{全局序号}_{日期}_{类别}_{简短描述}.md`
 
@@ -162,11 +162,11 @@ PMO 的问题处理遵循以下标准闭环：
 1. 读取核心规则文件
 2. 逐个分析 Open 问题
 3. 使用 `/plan-ceo-review` 发起讨论
-4. 记录讨论结论到 `docs/adf-pmo/resolutions/`
+4. 记录讨论结论到 `docs/pmo/resolutions/`
 
 ### Step 4: 记录解决方案
 
-讨论对齐后，记录到 `docs/adf-pmo/resolutions/`：
+讨论对齐后，记录到 `docs/pmo/resolutions/`：
 
 文件命名：`{Issue ID}_{日期}_{简短描述}_resolution.md`
 
@@ -181,7 +181,7 @@ Resolution 包含：
 
 每个 resolution 必须对应一个 GitHub Issue：
 
-1. 在 `docs/adf-pmo/resolutions/{filename}.md` 中记录 GitHub Issue URL
+1. 在 `docs/pmo/resolutions/{filename}.md` 中记录 GitHub Issue URL
 2. GitHub Issue 作为项目级追踪，关联相关 PR
 3. 执行修复的责任人通过 GitHub Issue 追踪进度
 
@@ -198,8 +198,8 @@ Resolution 包含：
 ### Step 8: 关闭 PMO Issue
 
 GitHub Issue 关闭后：
-1. 更新 `docs/adf-pmo/resolutions/{filename}.md` 中的验收记录
-2. 更新 `docs/adf-pmo/issues/{filename}` 中的状态为 Closed
+1. 更新 `docs/pmo/resolutions/{filename}.md` 中的验收记录
+2. 更新 `docs/pmo/issues/{filename}` 中的状态为 Closed
 
 ## 执行循环
 
@@ -210,7 +210,7 @@ GitHub Issue 关闭后：
 5. 检查 评论、artifact linkage 和 release record 是否完整。
 6. 输出 `pass / warning / fail` 结论与纠正动作。
 7. 识别重复性协同问题，并补充机制改进建议。
-8. 当天问题追加到 `docs/adf-pmo/issues/YYYY-MM-DD.md`，`P0 / P1` 立即通知 团队负责人。
+8. 当天问题追加到 `docs/pmo/issues/YYYY-MM-DD.md`，`P0 / P1` 立即通知 团队负责人。
 
 ## 交付前检查
 
@@ -225,7 +225,7 @@ GitHub Issue 关闭后：
 
 1. 读取主 issue、最近一次 Gate 结论和最新检查记录。
 2. 检查当前项目组合是否已有 warning / fail 未关闭。
-3. 检查 `docs/adf-pmo/issues/` 下是否有同类 Open 问题，避免重复建项。
+3. 检查 `docs/pmo/issues/` 下是否有同类 Open 问题，避免重复建项。
 4. 若发现记录缺失，先补检查范围和缺口清单，再继续新检查。
 
 ## 自我迭代机制
