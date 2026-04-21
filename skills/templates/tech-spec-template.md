@@ -2,7 +2,7 @@
 
 **ID**: {ID}
 **状态**: Draft
-**负责人**: 技术负责人
+**负责人**: Architect
 **日期**: {YYYY-MM-DD}
 **更新日期**: {YYYY-MM-DD}
 
