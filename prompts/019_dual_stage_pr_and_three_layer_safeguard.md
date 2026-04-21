@@ -113,7 +113,7 @@
 
 ## 纯文档交付说明
 
-纯文档交付与开发交付同等重要，其路径为：文档 PR → Human Review #1 → Release → Issue Close，不经过实现阶段（Gate 3）和代码 PR（Gate 4）。HR#1 的 Human review / merge decision 对纯文档交付仍然不可跳过。
+纯文档交付与开发交付同等重要，其路径为：文档 PR → Human Review #1 → Release → Issue Close，不经过实现阶段（Gate 3）、QA Validation（Gate 4）和代码 PR / Human Review #2。HR#1 的 Human review / merge decision 对纯文档交付仍然不可跳过。
 
 ## 强制规则
 
