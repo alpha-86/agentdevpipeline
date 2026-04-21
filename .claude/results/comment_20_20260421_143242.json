@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 20,
+  "body": "**Agent**: product-manager\n**Date**: 2026-04-21T14:32:42Z\n**Source**: [Issue #20 Comment]()\n---\n\nproject_id: alpha-86-AgentDevFlow  \nissue_id: #20  \n当前问题: GOV-011（HR#1 流程违规 + 变更追溯规则缺失）  \n当前主线状态: 治理修复主体已完成，现进入正式验收 / 关闭决策准备阶段  \n#20 / #3 关系: #20 为当前主任务；#3 为暂停中的关联业务 issue，待 #20 完成后恢复\n\n已完成修复项：\n- `prompts/002_develop_pipeline.md` 已补齐变更追溯规则、串行 Gate 约束、变更等级定义与准入强化\n- 治理决议文档已留痕：`docs/pmo/resolutions/GOV-011_2026-04-20_change_propagation_gate_violation_resolution.md`\n- 项目主线口径已同步到 registry / kickoff / status board\n- PMO 已给出 PASS\n\n当前结论：\n- 从 PM 视角，#20 已具备进入正式验收 / 关闭决策阶段的条件\n- 下一步应由 Team Lead / Human 基于现有留痕决定是否进入关闭请求流程",
+  "agent": "product-manager",
+  "source_comment_url": "",
+  "created_at": "2026-04-21T14:32:42Z",
+  "status": "pending"
+}
