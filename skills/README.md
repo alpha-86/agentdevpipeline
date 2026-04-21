@@ -95,31 +95,28 @@ Team Lead 协调多角色并行工作
 #### 单个 Issue 流程（流程图 A）
 
 ```
-PM 领取 Issue（必须 Comment）
+PM 领取 Issue → 与 Human 讨论问题（每次讨论后必须 Comment 到 Issue）
         │
         ▼
-PM 与 Human 讨论问题（Issue 含方案时必须回归问题本身讨论），每次讨论后必须 Comment 到 Issue
+Gate 1: PRD Review — 需求评审（PM + Architect + QA 三方签字）
         │
         ▼
-Gate 0: Team Startup — 角色分配、目录骨架、启动会
+Gate 2: Tech Review — 技术评审（QA + Engineer + PM 三签）
         │
         ▼
-Gate 1: PRD Review（PM + Architect + QA 三方签字）
+QA Case Design（三方：PM + Architect + Engineer 签字）
         │
         ▼
-Gate 2: Tech Review（QA + Engineer + PM 三签）
+文档 PR（doc-{issue} 分支）— Human Review #1
         │
         ▼
-QA Case Design（PM + Architect + Engineer 三方签字）
+文档 PR 合并 = 设计确认 ✅
         │
         ▼
-文档 PR（doc-{issue} 分支）— Human Review #1（文档 PR 合并 = 设计确认）
+Gate 3: Implementation — 开发实现（feature-{issue} 分支）
         │
         ▼
-Gate 3: Implementation（feature-{issue} 分支）
-        │
-        ▼
-Gate 4: QA Validation
+Gate 4: QA Validation — 质量验证
         │
         ├── QA 根据 Case Design 开发测试代码（case 代码），不是 Engineer 开发
         ├── QA 运行 case 验证 Engineer 完成的代码质量
@@ -133,16 +130,17 @@ Gate 4: QA Validation
         │   • Architect: 是否满足 Case Design 和 Tech Spec
         │   • Engineer: 修复情况如何修复的
         │
-        ▼ (三方签字通过)
-代码 PR（feature-{issue} 分支）— Human Review #2（代码 PR 合并 = 实现确认）
+        ▼ (通过)
+代码 PR（feature-{issue} 分支）— Human Review #2
         │
         ▼
-Gate 5: Release — PM + Architect + Platform/SRE 三方放行
+代码 PR 合并 = 实现确认 ✅
         │
         ▼
-PM 通过 github_issue_sync.py 发布关闭请求，Human 执行关闭
-
-打回规则：任意节点被打回 → 回滚到该节点编写阶段 → 修改文档（版本+1）→ 从该节点重新走完整流程
+Gate 5: Release — 发布
+        │
+        ▼
+PM 通过 github_issue_sync.py 发布关闭请求 → Human 执行关闭
 ```
 
 ### 双 PR 分支策略
