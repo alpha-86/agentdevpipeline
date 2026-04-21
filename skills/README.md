@@ -163,6 +163,7 @@ PM 通过 github_issue_sync.py 发布关闭请求，Human 执行关闭
 | 节点 | 执行者 | Comment 内容 |
 |------|--------|-------------|
 | Issue 领取 | PM | "Issue #N 已领取，开始分析需求" |
+| 问题讨论完成 | PM | 讨论结论（回归问题本质）|
 | PRD 产出 | PM | "PRD 已完成: [链接] - 概述..." |
 | PRD 评审完成 | PM | "PRD 评审通过 - PM[×] Architect[×] QA[×]" |
 | Tech 产出 | Architect | "Tech 已完成: [链接] - 概述..." |
