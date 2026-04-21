@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 16,
+  "body": "**Agent**: product-manager\n**Date**: 2026-04-21T16:23:33Z\n**Source**: [Issue #16 Comment]()\n---\n\nproject_id: alpha-86-AgentDevFlow\nissue_id: #16\n当前阶段: Gate 1: PRD Review\nowner: Product Manager\n\n## 问题理解\n\n#16 当前处理的是一条正式治理 / 主线需求：需要补齐 AgentDevFlow 中各类正式交付物的职责归属矩阵，并纠正 Gate 2 签字规范，避免产出者自评审、角色边界不清与 Gate 定义分叉继续扩散。\n\n## 当前范围\n\n1. 明确 PRD / Tech Spec / QA Case / 代码 / 测试报告等正式交付物的产出角色与评审角色\n2. 明确 Gate 2 的合法签字与评审边界，避免 self-review\n3. 收敛 Gate 定义不一致问题，统一到当前有效流程口径\n4. 将上述约束固化到当前有效文档输入中，作为后续文档/流程修订依据\n\n## 当前非目标\n\n- 不在本 comment 中直接给出最终实现 diff\n- 不直接复用历史治理留档作为当前有效交付物\n- 不扩展到与职责矩阵和 Gate 2 签字无关的流程重构\n\n## 下一步\n\n1. 起草 #16 当前有效 PRD\n2. 以 PRD 作为 Gate 1 输入发起三方评审\n3. Gate 1 通过后再进入 Tech / QA / HR#1 正式链路",
+  "agent": "product-manager",
+  "source_comment_url": "",
+  "created_at": "2026-04-21T16:23:33Z",
+  "status": "pending"
+}
