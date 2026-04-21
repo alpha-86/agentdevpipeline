@@ -66,16 +66,48 @@ Agent Team 启动
 PM 从已扫描的 open Issues 中领取 Issue（必须 Comment）
         │
         ▼
-PM 与 Human 讨论问题，每次讨论后必须 Comment 到 Issue
+PM 与 Human 讨论问题（Issue 含方案时必须回归问题本身讨论），每次讨论后必须 Comment 到 Issue
         │
         ▼
-Gate 1: PRD Review → Gate 2: Tech Review → QA Case Design
+Gate 1: PRD Review（PM + Architect + QA 三方签字）
         │
         ▼
-文档 PR（doc-{issue}）— Human Review #1：文档 PR 合并 = 设计确认
+Gate 2: Tech Review（QA + Engineer + PM 三签）
         │
         ▼
-代码 PR（feature-{issue}）— Human Review #2：代码 PR 合并 = 实现确认
+QA Case Design（PM + Architect + Engineer 三方签字）
+        │
+        ▼
+文档 PR（doc-{issue} 分支）— Human Review #1：文档 PR 合并 = 设计确认
+        │
+        ▼
+Gate 3: Implementation（feature-{issue} 分支）
+        │
+        ▼
+Gate 4: QA Validation
+        │
+        ├── QA 根据 Case Design 开发测试代码（case 代码），不是 Engineer 开发
+        ├── QA 运行 case 验证 Engineer 完成的代码质量
+        ├── 不合格 → 排查问题来源：
+        │   • 代码问题 → Engineer 修复 → 重新验证
+        │   • Case 问题 → QA 修复 case → 重新验证
+        ├── 验证通过 → QA 编写测试报告（QA Report）
+        │
+        ├── PM + Architect + Engineer 三方评审测试报告并签字
+        │   • PM: 是否满足 PRD 需求
+        │   • Architect: 是否满足 Case Design 和 Tech Spec
+        │   • Engineer: 修复情况如何修复的
+        │
+        ▼ (三方签字通过)
+代码 PR（feature-{issue} 分支）— Human Review #2：代码 PR 合并 = 实现确认
+        │
+        ▼
+Gate 5: Release — PM + Architect + Platform/SRE 三方放行
+        │
+        ▼
+PM 通过 github_issue_sync.py 发布关闭请求，Human 执行关闭
+
+打回规则：任意节点被 Human 打回 → 回滚到该节点编写阶段 → 修改文档（版本+1）→ 从该节点重新走完整流程
 ```
 
 ### 双 PR 分支策略
@@ -93,22 +125,21 @@ Gate 1: PRD Review → Gate 2: Tech Review → QA Case Design
 
 > 完整 Comment 节点表格见 `prompts/002_develop_pipeline.md`「Issue Comment 强制要求」章节。以下为关键节点：
 
-| 节点 | Comment 内容 |
-|------|-------------|
-| Issue 领取 | "Issue #N 已领取，开始分析需求" |
-| 问题讨论完成 | 讨论结论（回归问题本质） |
-| PRD 产出 | "PRD 已完成: [链接] - 概述..." |
-| PRD 评审完成 | "PRD 评审通过 - PM[✅] Architect[✅] QA[✅]" |
-| Tech 产出 | "Tech 已完成: [链接] - 概述..." |
-| Tech Review 完成 | "Tech Review 通过 - PM[✅] QA[✅] Engineer[✅]" |
-| QA Case Design 完成 | "QA Case Design 完成: [链接]" |
-| 文档 PR 创建 | "文档 PR 已创建: [链接] - PRD/Tech/QA Case" |
-| 文档 PR 合并 | "文档 PR 已合并，设计确认完毕" |
-| 开发完成 | "开发完成 - [组件列表] - 待测试" |
-| 测试完成 | "测试完成 - [报告链接]" |
-| 代码 PR 创建 | "代码 PR 已创建: [链接] - Fixes #N" |
-| 代码 PR 合并 | "代码 PR 已合并 - 等待 Issue 关闭" |
-| Issue 关闭 | "Issue #N 请求关闭 - 完成/重复/无法复现" |
+| 节点 | 执行者 | Comment 内容 |
+|------|--------|-------------|
+| Issue 领取 | PM | "Issue #N 已领取，开始分析需求" |
+| PRD 产出 | PM | "PRD 已完成: [链接] - 概述..." |
+| PRD 评审完成 | PM | "PRD 评审通过 - PM[×] Architect[×] QA[×]" |
+| Tech 产出 | Architect | "Tech 已完成: [链接] - 概述..." |
+| Tech Review 完成 | Architect | "Tech Review 通过 - PM[×] QA[×] Engineer[×]" |
+| QA Case Design 完成 | QA | "QA Case Design 完成: [链接]" |
+| 文档 PR 创建 | PM | "文档 PR 已创建: [链接] - PRD/Tech/QA Case" |
+| 文档 PR 合并 | PM | "文档 PR 已合并，设计确认完毕" |
+| 开发完成 | Engineer | "开发完成 - [组件列表] - 待测试" |
+| 测试完成 | QA | "测试完成 - [报告链接]" |
+| 代码 PR 创建 | Engineer | "代码 PR 已创建: [链接] - Fixes #N" |
+| 代码 PR 合并 | Engineer | "代码 PR 已合并 - 等待 Issue 关闭" |
+| Issue 关闭 | PM | "Issue #N 请求关闭 - 完成/重复/无法复现" |
 
 **必须通过 `scripts/github_issue_sync.py` 发布 Comment**，未 Comment 视为未完成，不得进入下一阶段。
 
