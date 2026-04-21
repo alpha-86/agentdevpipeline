@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 8,
+  "body": "**Agent**: product-manager\n**Date**: 2026-04-21T16:21:10Z\n**Source**: [Issue #8 Comment]()\n---\n\nproject_id: alpha-86-AgentDevFlow\nissue_id: #8\n当前阶段: Gate 1: PRD Review\nowner: Product Manager\n\n## 问题理解\n\n#8 当前处理的是一条正式治理 / 主线修复需求：必须把“Human Review #1 不可跳过”的规则以严格研发交付流程重新固化到当前项目文档与工作流中，避免再次出现 Gate 2 后直接越过 HR#1 的违规推进。\n\n## 当前范围\n\n1. 明确 HR#1 是 Gate 2 后的强制环节，不因“纯文档交付”而跳过\n2. 明确 Gate 2 → HR#1 → Gate 3 / Gate 4 的顺序约束\n3. 明确 human-review 相关 workflow 文档中的 HR#1 强制性表达\n4. 保持问题聚焦在规则澄清、流程文档与交付约束，不扩展到无关机制改造\n\n## 当前非目标\n\n- 不直接复用历史已关闭结论作为当前有效前提\n- 不跳过 PRD / Tech / QA Case / HR#1 的正式链路\n- 不在本 comment 中直接给出最终技术方案或实现 diff\n\n## 下一步\n\n1. 起草 #8 的当前有效 PRD\n2. 以 PRD 作为 Gate 1 输入重新发起三方评审\n3. Gate 1 通过后再进入 Tech / QA / HR#1 链路",
+  "agent": "product-manager",
+  "source_comment_url": "",
+  "created_at": "2026-04-21T16:21:10Z",
+  "status": "pending"
+}
