@@ -6,7 +6,7 @@
 **Issue URL:** https://github.com/alpha-86/AgentDevFlow/issues/3
 **Source:** agentdevflow
 **Created:** 2026-04-14T09:08:31Z
-**Assigned Role:** Engineer
+**Assigned Role:** Product Manager
 
 ---
 
@@ -18,6 +18,6 @@ N/A
 
 ## Routing Log
 
-- **Routed at:** 2026-04-16T07:49:50.110729
-- **Routed to:** Engineer
+- **Routed at:** 2026-04-20T11:12:14.443684
+- **Routed to:** Product Manager
 - **Source file:** `issue_3.task`

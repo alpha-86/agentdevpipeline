@@ -1,10 +1,23 @@
 ---
 name: AgentDevFlow 增强层接入 — QA Case Design
 description: 定义增强层文档交付的 QA 测试用例（文档搜索型验收测试 + 脚本执行验证）
-status: In Review
+status: Approved
 owner: QA Engineer
 date: 2026-04-17
 update_date: 2026-04-20
+signatures:
+  - role: Architect
+    name: Architect
+    date: 2026-04-20
+    conclusion: Approved
+  - role: Engineer
+    name: Engineer
+    date: 2026-04-17
+    conclusion: Approved
+  - role: PM
+    name: Product Manager
+    date: 2026-04-17
+    conclusion: Approved
 issue: "#3"
 prd: docs/prd/003_adf_enhancement_layer_2026-04-17.md (v4.1)
 tech: docs/tech/003_adf_enhancement_layer_tech_2026-04-17.md (v5)
@@ -216,6 +229,12 @@ tech: docs/tech/003_adf_enhancement_layer_tech_2026-04-17.md (v5)
 | 2026-04-17 | Engineer | **Approved** ✅ | skill 名称映射准确，检测机制语义可实现，文档交付流程可行 | — |
 | 2026-04-17 | QA | **Approved** ✅ | TC-3-01~TC-3-09 完整覆盖 PRD v4 Section 7，验证方法可执行，无覆盖缺口 | — |
 | 2026-04-20 | QA | **Approved** ✅（v2迭代）| TC-3-10（检测脚本实现）+ TC-3-11（Gate映射一致性）新增覆盖 Tech Spec v5；PRD v4.1 追溯矩阵更新；TC-3-01~TC-3-09 按 v4.1 重映射 | 待 Human Review #1 签字 |
+
+### v2.1 Architect 补签（2026-04-20）
+
+| 日期 | 评审人 | 结论 | 关键意见 | 待办 |
+|---|---|---|---|---|
+| 2026-04-20 | Architect | **Approved** ✅ | PRD v4.1 Section 7 全部覆盖；Tech Spec v5 新增项（检测脚本+Gate映射）有 TC-3-10/TC-3-11 覆盖；追溯矩阵完整；P1 用例优先级分配合理；测试步骤可执行 | — |
 
 ## v2 变更说明（2026-04-20）
 
