@@ -31,7 +31,7 @@
 | Gate 2 | Tech Spec | QA + Engineer + PM | Tech 文档头部 Gate 块 |
 | QA Case Design | QA Case | PM + Architect + Engineer | QA Case 文档头部 Gate 块 |
 | Gate 3 | Implementation | 代码 + 单测 | 代码 PR |
-| Gate 4 | QA Test Report | QA + PM + Engineer | QA Test Report 文档头部 |
+| Gate 4 | QA Test Report | PM + Architect + Engineer | QA Test Report 文档头部 |
 | Gate 5 | Release | PM + Architect + Platform/SRE | Release 文档头部 |
 
 ---
