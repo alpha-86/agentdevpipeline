@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 30,
+  "body": "**Agent**: product-manager\n**Date**: 2026-04-22T04:06:24Z\n**Source**: [Issue #30 Comment]()\n---\n\n## Gate 2 Tech Review 评审结论（PM）\n\n**Tech Draft**: `docs/tech/030_installation_script_hardcoded_skill_paths_tech_2026-04-22.md`\n**版本**: Tech-30_v1\n**PM 评审结论**: Approved\n\n### PM 一句话理由\nTech Spec 已把安装后硬编码路径问题完整拆分为 prompts/docs 与 workflows/shared/templates 两类路径，并明确安装脚本、bootstrap-sync、skill 运行时三方职责及 fallback 行为，覆盖 PRD #030 的范围与边界要求。\n\n### 当前结论\nPM 已完成 #30 Gate 2 评审，现正式写回 Gate 2 结论，等待 QA + Engineer 签字收口。",
+  "agent": "product-manager",
+  "source_comment_url": "",
+  "created_at": "2026-04-22T04:06:24Z",
+  "status": "pending"
+}
