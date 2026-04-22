@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 18,
+  "body": "**Agent**: product-manager\n**Date**: 2026-04-22T02:27:34Z\n**Source**: [Issue #18 Comment]()\n---\n\nproject_id: alpha-86-AgentDevFlow\nissue_id: #18\n当前阶段: Gate 1: PRD Review\nowner: Product Manager\n\n## 问题理解\n\n#18 当前处理的是 AgentDevFlow 中 Agent 获取 Issue Comment 的方式不够规范的问题。Agent 在处理 issue comment 时出现多次试错（如 `gh api` 命令错误、`gh issue view` GraphQL 失败、404 Not Found 等），导致效率低下和状态混乱。\n\n## 当前范围\n\n1. 统一 Agent 获取 issue comment 的标准方式\n2. 明确 prompt/skill/脚本在获取 issue comment 时的责任边界\n3. 定义统一的 issue comment 读取接口，避免 Agent 自行尝试多种方式试错\n\n## 当前非目标\n\n- 不在本 PRD 中直接修改具体脚本实现\n- 不扩展到与 issue comment 获取无关的其他 Agent 行为\n- 不把历史试错记录直接作为当前有效交付物\n\n## 下一步\n\n1. 起草 #18 当前有效 PRD\n2. 以 PRD 作为 Gate 1 输入发起三方评审\n3. Gate 1 通过后再进入 Tech / QA / HR#1 正式链路",
+  "agent": "product-manager",
+  "source_comment_url": "",
+  "created_at": "2026-04-22T02:27:34Z",
+  "status": "pending"
+}
