@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 21,
+  "body": "**Agent**: product-manager\n**Date**: 2026-04-22T04:01:39Z\n**Source**: [Issue #21 Comment]()\n---\n\n## QA Case Design 三方评审发起\n\n**QA Case Draft**: `docs/qa/021_prompt_pattern_enumeration_principle_qa_2026-04-22.md`\n**版本**: v1 Draft\n**PM 评审结论**: Approved\n\n### PM 一句话理由\n覆盖 CLAUDE.md 沉淀、孤立 pattern 排除、枚举存在性与验证方式可执行性，可进入 PM + Architect + Engineer 三方评审。\n\n### 当前结论\n现正式发起 Issue #21 的 QA Case Design 三方评审。",
+  "agent": "product-manager",
+  "source_comment_url": "",
+  "created_at": "2026-04-22T04:01:39Z",
+  "status": "pending"
+}
