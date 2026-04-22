@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 8,
+  "body": "**Agent**: product-manager\n**Date**: 2026-04-22T03:21:20Z\n**Source**: [Issue #8 Comment]()\n---\n\n## Human Review #1 正式发起\n\n**PR**: https://github.com/alpha-86/AgentDevFlow/pull/24\n**Issue**: #8 — GOV-004 HR#1 强制不可跳过\n**发起人**: Product Manager\n\n### 文档阶段交付清单\n\n| 文档 | 版本 | Gate 状态 |\n|------|------|-----------|\n| PRD #008 | — | Gate 1 Approved ✅ |\n| Tech Spec #008 | v1 | Gate 2 Approved ✅ |\n| QA Case #008 | v1 | QA Case Approved ✅ |\n\n### HR#1 评审请求\n\n请求 Human 对 PR #24 的文档交付执行 Human Review #1，确认：\n1. PRD / Tech / QA Case 三份文档评审链完整\n2. 三份目标文件（prompts/017 + prompts/004 + skills/workflows/human-review）的规则修订口径一致\n3. 历史治理结论 GOV-004 仅作追溯，不替代当前 Issue 交付\n\n**PM 签字确认**：文档阶段交付完整，符合 HR#1 发起条件。",
+  "agent": "product-manager",
+  "source_comment_url": "",
+  "created_at": "2026-04-22T03:21:20Z",
+  "status": "pending"
+}
