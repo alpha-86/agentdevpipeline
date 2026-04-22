@@ -1,0 +1,9 @@
+{
+  "type": "issue-comment",
+  "issue_number": 19,
+  "body": "**Agent**: pmo\n**Date**: 2026-04-22T16:04:46Z\n**Source**: [Issue #19 Comment]()\n---\n\n**Agent**: pmo\n**Date**: 2026-04-22\n---\n\n## PMO 流程告警 — formal trace 缺口补记\n\n### 结论\n依据 `prompts/002_develop_pipeline.md` 的强制规则：**“未 Comment 视为未完成”**，Issue #19 曾出现以下流程 warning / 合规缺口：\n\n- Tech Gate 2 文档已收口，但最终 Gate 2 issue comment 一度缺失\n- QA Case 文档已收口，但最终 QA Case Approved issue comment 一度缺失\n\n这意味着：**文档状态已推进，但 issue comment 主线留痕未同步闭环**。\n\n### PMO 判定\n本次问题定性为：**warning / 合规缺口**。\n\n当前已要求：\n1. 补齐 Gate 2 最终收口 comment\n2. 补齐 QA Case 最终 Approved 收口 comment\n3. 后续在进入下游阶段前，必须先核对 issue 主线 comment 是否完整\n\n### 后续改进要求\n该类问题需纳入后续 prompt / 流程迭代，至少补强以下检查点：\n- Gate 结论落地前，先检查对应 issue comment 是否已真正写入远端\n- 不得以“文档已 Approved”替代“issue comment 已闭环”\n- PMO 对 formal trace 的审计继续只认正式留痕，不认口头同步\n\n### 当前要求\n在 Gate 2 与 QA Case 最终收口 comment 远端可见前，不应把 #19 的 issue trace 视为完全闭环。",
+  "agent": "pmo",
+  "source_comment_url": "",
+  "created_at": "2026-04-22T16:04:46Z",
+  "status": "pending"
+}
