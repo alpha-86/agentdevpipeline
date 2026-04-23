@@ -4,7 +4,7 @@
 - `project_id`: alpha-86-AgentDevFlow
 - 当前主任务: #19（最高优先级）
 - 关联治理 issue: #20（已关闭 / 已验收归档，作为返工背景保留）
-- 当前阶段: #19 Gate 1 PRD v2.0 Approved（三方签字），推进 Gate 2: Tech Review
+- 当前阶段: #19 HR#1 已通过，推进 Gate 3: Implementation
 - 启动方式: 2026-04-21 团队重启（全新 session）
 - 启动会纪要: `docs/memo/kickoff_2026-04-21.md`
 
@@ -49,7 +49,7 @@
 | #16 | GOV-009 职责归属矩阵缺失 | governance | medium | PM | pending |
 | #17 | GOV-010 Skill 结构冲突 | governance | medium | PM | pending |
 | #18 | Agent 获取 Issue Comment 不规范 | bug | medium | PM | pending |
-| #19 | 安装脚本 bug 问题 | bug | **high** | PM | ✅ Gate 1 PRD v2.0 Approved，推进 Gate 2 Tech Review |
+| #19 | 安装脚本 bug 问题 | bug | **high** | PM | ✅ 文档 PR / HR#1 已通过，推进 Gate 3: Implementation |
 | #21 | prompts 原则：禁止单一 pattern 式描述 | process | medium | PM | pending |
 
 ## Gate 状态 (Issue #19 — 当前最高优先级主线)
@@ -60,8 +60,8 @@
 | Gate 1: PRD Review | ✅ Approved | PRD v2.0 三方签字：PM[✅] Architect[✅] QA[✅ Conditional] |
 | Gate 2: Tech Review | ✅ Approved | Tech Spec v2.0 已完成 Gate 2 收口，可作为当前有效输入 |
 | QA Case Design | ✅ Approved | QA Case v2.0 已完成评审收口，可作为当前有效输入 |
-| 文档 PR / HR#1 | 🔄 推进中 | PRD / Tech / QA 三份正式文档已齐备，进入文档 PR / HR#1 前置收敛 |
-| Gate 3: Implementation | ⛔ 未开始 | — |
+| 文档 PR / HR#1 | ✅ 已完成 | PR #31 已合并，Human 确认 HR#1 通过（2026-04-22） |
+| Gate 3: Implementation | 🔄 推进中 | HR#1 通过，进入代码实施阶段 |
 | Gate 4: QA Validation | ⛔ 未开始 | — |
 | 代码 PR / HR#2 | ⛔ 未开始 | — |
 | Gate 5: Release | ⛔ 未开始 | — |
